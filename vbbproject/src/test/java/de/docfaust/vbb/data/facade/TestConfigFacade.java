@@ -18,7 +18,6 @@ public class TestConfigFacade extends JpaBaseRolledBackTestCase {
 		Config config = new Config();
 		config.setId(1);
 		assertThat(config.getId()).isEqualTo(1);
-
 	}
 
 	@Test
