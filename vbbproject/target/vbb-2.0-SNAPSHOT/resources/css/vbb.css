@@ -1,0 +1,28 @@
+html, body {
+	font-family: Verdana, Arial, Sans-Serif;
+}
+
+div#wrapper {
+	min-width: 700px; 
+	max-width: 1200px;
+	width: 90%;
+	margin:0 auto;
+}
+
+div#login {
+	min-width: 450px;
+    max-width: 600px;
+    width: 50%;
+    margin: auto;
+}
+
+div#saldodiv {
+	min-width: 400px;
+    max-width: 600px;
+    width: 50%;
+    margin: auto;
+}
+
+.ui-panelgrid td, .ui-panelgrid tr{
+   border-style: none !important;
+}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Volleyballbuchung Registrierung</title>
+	</head>
+	<body>
+				<h1>Registrierung erfolgreich</h1>
+				<h2>Der Benutzer mit der ID $userid wurde erfolgreich registriert.</h2>
+				<h2>Sie können Sich jetzt bei der Volleyballbuchung unter <a href="$domain">$domain</a> anmelden.</h2>
+	</body>
+</html>

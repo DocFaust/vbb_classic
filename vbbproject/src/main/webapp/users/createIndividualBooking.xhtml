@@ -1,0 +1,106 @@
+<ui:composition template="../template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="createBookingForm">
+			<p:panel id="pnl" header="Individuelle Buchung erstellen">
+				<p:growl id="growl" showDetail="true" />
+				<!-- ContextMenu -->
+				<p:contextMenu for="tab">
+					<p:menuitem value="Neu" update="growl,:dlg:buchungPan"
+						icon="ui-icon-plus"
+						actionListener="#{createIndividualBookingBean.addBuchung}"
+						oncomplete="PF('buchungDialog').show()" />
+					<p:menuitem value="Bearbeiten" update="growl,:dlg:buchungPan"
+						icon="ui-icon-pencil" oncomplete="PF('buchungDialog').show()" />
+				</p:contextMenu>
+
+				<!-- Single Date Field -->
+
+				<p:outputLabel for="datumvon" value="Buchungsdatum:" />
+				<p:calendar id="datumvon"
+					value="#{createIndividualBookingBean.selectedDate}" required="true"
+					requiredMessage="Buchungsdatum erforderlich" locale="de"
+					placeholder="Buchungsdatum" />
+				<p />
+				<!-- Table of bookings -->
+				<p:dataTable id="tab"
+					value="#{createIndividualBookingBean.selectedSpiel.buchungen}"
+					var="buchung" scrollable="true"
+					selection="#{createIndividualBookingBean.selectedBuchung}"
+					selectionMode="single" rowKey="#{buchung.id}"
+					emptyMessage="Keine Buchungen vorhanden">
+					<p:column id="name" headerText="Name">
+						<h:outputText value="#{buchung.spieler.name }" />
+					</p:column>
+					<p:column id="description" headerText="Beschreibung">
+						<h:outputText value="#{buchung.description}" />
+					</p:column>
+					<p:column id="preis" headerText="Preis">
+						<h:outputText value="#{buchung.price}">
+							<f:convertNumber currencyCode="EUR" type="currency"
+								locale="de_DE" />
+						</h:outputText>
+					</p:column>
+				<f:facet name="footer">
+
+					<!-- Saldo -->
+						<p:outputLabel value="#{msg['checksumme.cs']}: " />
+						<p:outputLabel value="#{createIndividualBookingBean.saldo }">
+							<f:convertNumber currencyCode="EUR" type="currency"
+								locale="de_DE" />
+						</p:outputLabel>
+						<br/>
+						<p:outputLabel value="#{msg['checksumme.title']}: " />
+						<p:outputLabel
+							value="#{createIndividualBookingBean.completeSaldo}">
+							<f:convertNumber currencyCode="EUR" type="currency"
+								locale="de_DE" />
+						</p:outputLabel>
+				</f:facet>
+				</p:dataTable>
+				<p />
+				<!-- Save Button -->
+				<p:commandButton value="Speichern"
+					actionListener="#{createIndividualBookingBean.saveBuchungen}"
+					update=":createBookingForm:tab,:createBookingForm:pnl,:createBookingForm:growl" />
+
+			</p:panel>
+		</h:form>
+
+		<!-- Dialog -->
+		<h:form id="dlg">
+			<p:dialog header="Buchung bearbeiten" widgetVar="buchungDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="buchungPan" style="text-align:center;">
+					 <p:panelGrid columns="2" columnClasses="label,value" cellpadding="5" border="0">
+
+						<p:outputLabel for="name" value="Name:" />
+						<h:selectOneMenu id="name"
+							value="#{createIndividualBookingBean.selectedBuchung.spieler}"
+							style="width:200px" converter="#{spielerConverter}">
+							<f:selectItems value="#{createIndividualBookingBean.alleSpieler}"
+								var="sp" itemLabel="#{sp.name}" itemValue="#{sp}" />
+						</h:selectOneMenu>
+						<p:outputLabel for="descIn" value="Beschreibung:" />
+						<p:inputText id="descIn"
+							value="#{createIndividualBookingBean.selectedBuchung.description}"
+							placeholder="Beschreibung" />
+						<p:outputLabel for="preis" value="Preis:" />
+						<p:inputText id="preis"
+							value="#{createIndividualBookingBean.selectedBuchung.price}" required="true" requiredMessage="Bitte geben Sie einen Preis an">
+							<f:convertNumber type="number" locale="de_DE" />
+						</p:inputText>
+					</p:panelGrid>
+					<p:commandButton value="Ok" onclick="ruleDialog.hide()" />
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

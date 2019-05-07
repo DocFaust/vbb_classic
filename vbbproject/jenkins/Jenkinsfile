@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    tools { 
+        maven 'Maven' 
+        jdk 'jdk1.8.0_162' 
+    }
+    stages {
+       stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+       }
+	   
+       stage ('Checkstyle') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
+            }
+            post {
+			   always {
+				   step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', checkstyle: 'gitlist-PHP/build/logs/phpcs.xml'])
+			   }
+            }
+       }
+	   stage ('Cobertura') {
+		   steps {
+			   sh 'mvn -Dmaven.test.failure.ignore=true cobertura:cobertura'
+		   }
+		   post {
+			   always {
+				   step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+			   }
+		   }
+	   }
+	   stage ('Site') {
+		   steps {
+			   sh 'mvn -Dmaven.test.failure.ignore=true site'
+		   }
+	   }
+    }
+}

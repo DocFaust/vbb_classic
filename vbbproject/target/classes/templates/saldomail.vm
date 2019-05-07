@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<style>
+	html { font-family: Arial, Helvetica, sans-serif }
+</style>
+<head>
+</head>
+<body>
+Hallo $name,
+<p>
+hier die aktuellen Salden, nach dem Spiel vom $datum
+</p>
+<p>
+	<table border="1">
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Saldo
+			</th>
+		</tr>
+		#foreach( $entry in $saldo )
+
+		<tr>
+			<td>
+				$entry.name
+			</td>
+			<td align="right">
+				$entry.betrag &euro;
+			</td>
+		</tr>
+	#end
+		<tr>
+			<td colspan="2">
+				Saldo: $completesaldo &euro;
+			</td>
+		</tr>
+	</table>
+</p>
+<p>
+	Buchungen für dieses Spiel:
+</p>
+<p>
+	<table border="1">
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Betrag
+			</th>
+		</tr>
+		#foreach( $buchung in $buchungen )
+		<tr>
+			<td>
+				$buchung.name
+			</td>
+			<td align="right">
+				$buchung.betrag &euro;
+			</td>
+		</tr>
+			#end
+		
+	</table>
+</p>
+
+<p>
+Sch&ouml;ne Gr&uuml;&szlig;e
+<br/>
+Werner
+</p>
+<body>
+</html>

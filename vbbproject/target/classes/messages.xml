@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE m:messages>
+<?xml-stylesheet type="text/xml" href="messages.xsl"?>
+<m:messages xmlns:m="http://www.docfaust.de/vbb"
+	                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	                xsi:schemaLocation="http://www.docfaust.de/vbb 
+	                                    messages.xsd">
+	<m:message>
+		<m:code>NO_SEASON_CHOSEN</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Keine Auswahl!</m:summary>
+		<m:detail>Es wurde keine Saison ausgewählt</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_DELETED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Löschen erfolgreich</m:summary>
+		<m:detail>Die Saison wurde gelöscht</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_DELETION_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Löschen fehlerhaft!</m:summary>
+		<m:detail>Die Saison wurde nicht gelöscht.</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_HAS_REFERENCES</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Löschen nicht erfolgreich</m:summary>
+		<m:detail>Die Saison konnte nicht gelöscht werden. Es sind noch Spiele zu der Saison vorhanden</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Speichern erfolgreich</m:summary>
+		<m:detail>Die Saison wurde erfolgreich gespeichert.</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_SAVE_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Speichern nicht erfolgreich</m:summary>
+		<m:detail>Die Saison konnte nicht gespeichert werden. Kollisionen prüfen</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>UNKNOWN_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Fehler</m:summary>
+		<m:detail>Unbekannter Fehler aufgetreten</m:detail>
+	</m:message>
+<!--
+ Messages für EditSpiel 
+ -->
+	<m:message>
+		<m:code>GAME_DELETED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Löschen erfolgreich</m:summary>
+		<m:detail>Die Spiel wurde gelöscht</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>GAME_DELETION_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Löschen fehlerhaft</m:summary>
+		<m:detail>Das Spiel wurde nicht gelöscht</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>NO_GAME_CHOSEN</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Keine Auswahl!</m:summary>
+		<m:detail>Es wurde keine Saison ausgewählt</m:detail>
+	</m:message>
+<!--
+ Messages für Spiel eingeben
+ -->
+	<m:message>
+		<m:code>GAME_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Gespeichert</m:summary>
+		<m:detail>Das Spiel wurde erfolgreich gespeichert</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>GAME_SAVE_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Speichern fehlerhaft</m:summary>
+		<m:detail>Das Spiel konnte nicht gespeichert werden</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>GAME_PAYER_NOT_PRESENT</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Auswahl ungültig</m:summary>
+		<m:detail>Gezahlt, aber nicht anwesend</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>GAME_MORE_PAYERS</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Auswahl ungültig</m:summary>
+		<m:detail>Mehr als ein bezahlender Spieler</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>GAME_NO_PAYER</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Auswahl ungültig</m:summary>
+		<m:detail>Kein Spieler hat bezahlt</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>PLAYER_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Gespeichert</m:summary>
+		<m:detail>Der Spieler wurde erfolgreich gespeichert</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>PLAYER_EXISTING</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Speichern fehlerhaft</m:summary>
+		<m:detail>Der Spieler %s ist schon vorhanden</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>PLAYER_SAVE_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Speichern fehlerhaft</m:summary>
+		<m:detail>Der Spieler konnte nicht gespeichert werden</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>ENTRY_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Buchung gespeichert</m:summary>
+		<m:detail>Die Buchung wurde erfolgreich gespeichert</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>ENTRY_DELETED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Buchung gelöscht</m:summary>
+		<m:detail>Die Buchung wurde erfolgreich gelöscht</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>ENTRY_DELETION_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Löschen fehlerhaft</m:summary>
+		<m:detail>Die Buchung konnte nicht gespeichert werden</m:detail>
+	</m:message>
+	
+	<m:message>
+		<m:code>REGISTER_SUCCESSFUL</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Registrierung erfolgreich</m:summary>
+		<m:detail>Die Registrierung wurde erfolgreich durchgeführt. Bitte kontrollieren Sie Ihr Email-Postfach und bestätigen Sie die Registrierung!</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>ALREADYREGISTERED</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Registrierung fehlerhaft</m:summary>
+		<m:detail>Der User ist bereits registriert</m:detail>
+	</m:message>
+	
+	<m:message>
+		<m:code>PASSWORD_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Fehler beim Anmelden</m:summary>
+		<m:detail>Entweder die UserID oder das Passwort sind falsch!</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>REGISTRATION_PENDING</m:code>
+		<m:severity>WARN</m:severity>
+		<m:summary>Fehler beim Anmelden</m:summary>
+		<m:detail>Die Registrierung ist nicht vollständig abgeschlossen, bitte kontrollieren Sie Ihr Email-Postfach!</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>LOGIN_SUCCESSFUL</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Angemeldet</m:summary>
+		<m:detail>Die Anmeldung war erfolgreich</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SPIELSALDO_NICHT_NULL</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Saldo nicht Null</m:summary>
+		<m:detail>Das Saldo des Spiels vom %t1$d.%t1$m.%t1$Y ergibt nicht Null</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>REORG_SUCCESSFULL</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Buchungsschnitt erfolgreich</m:summary>
+		<m:detail>Der Buchungsschnitt wurde erfolgreich durchgeführt</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>REORG_ERROR</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Buchungsschnitt fehlerhaft</m:summary>
+		<m:detail>Der Buchungsschnitt war fehlerhaft: %s</m:detail>
+	</m:message>
+	<!-- GAME_ALREADYEXISTING, SEASON_IS_BUCHUNGSSCHNITT, SEASON_NOT_FOUND, SEASON_NO_PRICE -->
+	<m:message>
+		<m:code>GAME_ALREADYEXISTING</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Spiel bereits existent</m:summary>
+		<m:detail>Es existiert bereits ein Spiel zu diesem Datum</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_IS_BUCHUNGSSCHNITT</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Saison ist ein Buchungsschnitt</m:summary>
+		<m:detail>Die gefundene Saison ist ein Buchungsschnitt und kann nicht als Saison für ein Spiel verwendet werden.</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_NOT_FOUND</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Saison nicht gefunden</m:summary>
+		<m:detail>Es konnte keine Saison zu dem Datum gefunden werden</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>SEASON_NO_PRICE</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Saison ihne Preis</m:summary>
+		<m:detail>Die gefundene Saison hat keinen Preis</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>REORG_SUCCESSFUL</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Buchungsschnitt erfolgreich</m:summary>
+		<m:detail>Der Buchungsschnitt zum %1$td.%1$tm.%1$tY wurde erfolgreich durchgeführt</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>USER_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Benutzer gespeichert</m:summary>
+		<m:detail>Der Benutzer %s wurde erfolgreich gespeichert</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>PASSWORD_CHANGED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Passwort geändert</m:summary>
+		<m:detail>Das Passwort wurde erfolgreich geändert</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>EMAIL_EXISTS</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Email vorhanden</m:summary>
+		<m:detail>Die Emailadresse %s ist bereits registriert</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>USERID_EXISTS</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>UserID vorhanden</m:summary>
+		<m:detail>Die UserID %s ist bereits registriert</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>SPIELER_HAS_BUCHUNGEN</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Spieler hat noch Buchungen</m:summary>
+		<m:detail>Zu dem Spieler %s existieren noch Buchungen. Diese müssen gelöscht werden, bevor er gelöscht werden kann </m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>BUCHUNG_NO_INPUT</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Keine Eingabe!</m:summary>
+		<m:detail>Es wurde keine Eingabe getätigt.</m:detail>
+	</m:message>
+
+	<m:message>
+		<m:code>NO_BUCHUNG_SELECTED</m:code>
+		<m:severity>ERROR</m:severity>
+		<m:summary>Keine Auswahl!</m:summary>
+		<m:detail>Es wurde keine Buchung ausgewählt.</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>CONFIG_SAVED</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Konfiguration gespeichert</m:summary>
+		<m:detail>Die Konfiguration wurde erfolgreich gespeichert.</m:detail>
+	</m:message>
+	<m:message>
+		<m:code>CONFIG_RESET</m:code>
+		<m:severity>INFO</m:severity>
+		<m:summary>Konfiguration zurückgesetzt</m:summary>
+		<m:detail>Die Konfiguration wurde auf die gespeicherten Werte zurückgesetzt</m:detail>
+	</m:message>
+
+<!-- Leere Vorlage 	
+	<m:message>
+		<m:code></m:code>
+		<m:severity></m:severity>
+		<m:summary></m:summary>
+		<m:detail></m:detail>
+	</m:message>
+-->
+</m:messages>
+
+

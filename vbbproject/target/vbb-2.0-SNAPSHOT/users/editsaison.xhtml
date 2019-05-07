@@ -1,0 +1,94 @@
+<ui:composition template="../template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="searchSeasonForm">
+
+			<p:panel id="pnl" header="Saison bearbeiten">
+				<p:growl id="growl" showDetail="true" />
+
+				<p:contextMenu for="tab">
+					<p:menuitem value="Neu" update="growl,:dlg:seasonPan"
+						icon="ui-icon-plus" actionListener="#{editSeasonBean.addSeason}"
+						oncomplete="PF('seasonDialog').show()" />
+					<p:menuitem value="Bearbeiten" update="growl,:dlg:seasonPan"
+						icon="ui-icon-pencil" oncomplete="PF('seasonDialog').show()" />
+					<p:menuitem value="Löschen" update="growl,tab" icon="ui-icon-close"
+						actionListener="#{editSeasonBean.delete}" />
+				</p:contextMenu>
+
+				<p:dataTable id="tab" value="#{editSeasonBean.seasons}" var="season"
+					scrollHeight="200" scrollable="true"
+					selection="#{editSeasonBean.selectedSeason}" selectionMode="single"
+					rowKey="#{season.id }"
+					emptyMessage="Keine Saison gefunden">
+					<p:column id="description" headerText="Beschreibung" width="15%">
+						<h:outputText value="#{season.description }" />
+					</p:column>
+					<p:column id="startdate" headerText="Anfangsdatum" width="12%">
+						<h:outputText value="#{season.startdate }"
+							converter="javax.faces.DateTime" />
+					</p:column>
+					<p:column id="enddate" headerText="Endedatum" width="12%">
+						<h:outputText value="#{season.enddate}"
+							converter="javax.faces.DateTime" />
+					</p:column>
+					<p:column id="preis" headerText="Preis" width="12%">
+						<h:outputText value="#{season.price}">
+							<f:convertNumber currencyCode="EUR" type="currency"  locale="de_DE" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+
+		<h:form id="dlg">
+			<p:dialog header="Saison bearbeiten" widgetVar="seasonDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="seasonPan" style="text-align:center;">
+					<p:panelGrid columns="2" columnClasses="label,value">
+
+						<p:outputLabel for="descIn" value="Beschreibung:" />
+						<p:inputText id="descIn"
+							value="#{editSeasonBean.selectedSeason.description}"
+							placeholder="Beschreibung" />
+
+						<p:outputLabel for="datumvon" value="Anfangsdatum:" />
+						<p:calendar id="datumvon"
+							value="#{editSeasonBean.selectedSeason.startdate}"
+							required="true" requiredMessage="Anfangsdatum erforderlich"
+							locale="de" placeholder="Anfangsdatum" />
+
+						<p:outputLabel for="datumbis" value="Endedatum:" />
+						<p:calendar id="datumbis"
+							value="#{editSeasonBean.selectedSeason.enddate}" required="true"
+							requiredMessage="Endedatum erforderlich" locale="de"
+							placeholder="Endedatum">
+							<f:validator validatorId="dateRangeValidator" />
+							<f:attribute name="startDate"
+								value="#{editSeasonBean.selectedSeason.startdate}" />
+						</p:calendar>
+
+						<p:outputLabel for="preis" value="Preis:" />
+						<h:inputText id="preis"
+							value="#{editSeasonBean.selectedSeason.price}">
+							<f:convertNumber type="number" locale="de_DE" />
+						</h:inputText>
+
+
+					</p:panelGrid>
+					<p:commandButton value="Speichern"
+						actionListener="#{editSeasonBean.saveSeason}"
+						update=":searchSeasonForm:tab,:searchSeasonForm:pnl,:searchSeasonForm:growl"
+						onclick="ruleDialog.hide()" />
+					<p:commandButton value="Abbrechen" onclick="ruleDialog.hide()" />
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

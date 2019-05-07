@@ -1,0 +1,13 @@
+<ui:composition template="templateohnemenu.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<p:panel header="Email versandt">
+		<div>
+			Es wurde eine Email an die angegebene Adresse gesandt. Darin findest Du einen Link, mit dem Du die Emailadresse bestätigen kannst, um den Vorgang abzuschließen.
+		</div>
+		<p/>
+		<p:link outcome="/login" value="Zurück zur Anmeldung"/>
+		</p:panel>
+	</ui:define>
+</ui:composition>
