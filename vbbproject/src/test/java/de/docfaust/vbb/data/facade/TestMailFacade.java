@@ -1,10 +1,6 @@
 package de.docfaust.vbb.data.facade;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
@@ -19,16 +15,16 @@ public class TestMailFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void test() {
-		assertThat(new MailFacade(), not(nullValue()));
+		assertThat(new MailFacade()).isNotNull();
 		Mail mail = new Mail();
 		mail.setId(1);
-		assertThat(mail.getId(), equalTo(1));
+		assertThat(mail.getId()).isEqualTo(1);
 	}
 
 	@Test
 	public void testFindAll() {
-		assertFalse(facadenFactory.getMailFacade().findAll().isEmpty());
-		assertThat(facadenFactory.getMailFacade().count(), equalTo(2));
+		assertThat(facadenFactory.getMailFacade().findAll()).isNotEmpty();
+		assertThat(facadenFactory.getMailFacade().count()).isEqualTo(2);
 	}
 
 	@Test
@@ -43,14 +39,14 @@ public class TestMailFacade extends JpaBaseRolledBackTestCase {
 		facadenFactory.getMailFacade().create(mail);
 
 		LoggerFactory.getLogger(getClass()).info(mail.toString());
-		assertThat(facadenFactory.getMailFacade().count(), equalTo(count + 1));
+		assertThat(facadenFactory.getMailFacade().count()).isEqualTo(count + 1);
 		List<Mail> list = facadenFactory.getMailFacade().findAll();
 
 		Mail mail2 = list.get(count);
-		assertThat(mail2.getRecipient(), equalTo("du"));
-		assertThat(mail2.getSubject(), equalTo("subject"));
-		assertThat(mail2.getText(), equalTo("text2"));
-		assertThat(mail2.getAttempt(), equalTo(0));
+		assertThat(mail2.getRecipient()).isEqualTo("du");
+		assertThat(mail2.getSubject()).isEqualTo("subject");
+		assertThat(mail2.getText()).isEqualTo("text2");
+		assertThat(mail2.getAttempt()).isEqualTo(0);
 	}
 
 	@Test
@@ -59,7 +55,7 @@ public class TestMailFacade extends JpaBaseRolledBackTestCase {
 		Mail mail = new Mail();
 		mail.setId(1);
 		facadenFactory.getMailFacade().remove(mail);
-		assertThat(facadenFactory.getMailFacade().count(), equalTo(count - 1));
+		assertThat(facadenFactory.getMailFacade().count()).isEqualTo(count - 1);
 	}
 	
 	@Test
@@ -68,6 +64,6 @@ public class TestMailFacade extends JpaBaseRolledBackTestCase {
 		Mail mail = new Mail();
 		mail.setId(404);
 		facadenFactory.getMailFacade().remove(mail);
-		assertThat(facadenFactory.getMailFacade().count(), equalTo(count));
+		assertThat(facadenFactory.getMailFacade().count()).isEqualTo(count);
 	}
 }
