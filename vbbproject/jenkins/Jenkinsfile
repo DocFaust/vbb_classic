@@ -7,24 +7,23 @@ pipeline {
     stages {
        stage ('Build') {
             steps {
-		dir("vbbproject") {
-			sh 'mvn -Dmaven.test.failure.ignore=true install' 
- 		}
+				dir("vbbproject") {
+					sh 'mvn -Dmaven.test.failure.ignore=true install' 
+		 		}
             }
             post {
                 success {
-		dir("vbbproject") {
-                    junit 'target/surefire-reports/**/*.xml' 
-		}
+					dir("vbbproject") {
+            	        junit 'target/surefire-reports/**/*.xml' 
+					}
                 }
             }
        }
 	   
        stage ('Checkstyle') {
             steps {
-		    		dir("vbbproject") {
-
-                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
+		    	dir("vbbproject") {
+	                sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
 				}
             }
             post {
@@ -35,10 +34,9 @@ pipeline {
        }
 	   stage ('Cobertura') {
 		   steps {
-			   		dir("vbbproject") {
-
-			   sh 'mvn -Dmaven.test.failure.ignore=true cobertura:cobertura'
-					}
+			   	dir("vbbproject") {
+			   		sh 'mvn -Dmaven.test.failure.ignore=true cobertura:cobertura'
+				}
 		   }
 		   post {
 			   always {
@@ -48,10 +46,9 @@ pipeline {
 	   }
 	   stage ('Site') {
 		   steps {
-			   		dir("vbbproject") {
-
-			   sh 'mvn -Dmaven.test.failure.ignore=true site'
-					}
+				dir("vbbproject") {
+			   		sh 'mvn -Dmaven.test.failure.ignore=true site'
+				}
 		   }
 	   }
     }
