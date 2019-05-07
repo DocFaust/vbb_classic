@@ -35,50 +35,53 @@ public class TestGroupFacade extends JpaBaseRolledBackTestCase {
 		assertThat(group.getId()).isEqualTo(1);
 	}
 
-//	@Test
-//	public void testSaveGroup() {
-//		Group group = new Group();
-//		group.setName("READERS");
-//		group.setDescription("Benutzer mit Leseberechtigung");
-//
-//		facadenFactory.getGroupFacade().create(group);
-//
-//		assertEquals(4, facadenFactory.getGroupFacade().count());
-//	}
-//
-//	@Test
-//	public void testRemoveGroup() {
-//		printGroups();
-//		int count = facadenFactory.getGroupFacade().count();
-//		logger.info("Anzahl Gruppen: " + count);
-//
-//		Group group = new Group();
-//		group.setDescription("Lesender Zugriff");
-//		group.setName("READERS");
-//		facadenFactory.getGroupFacade().create(group);
-//		printGroups();
-//		logger.info(group.toString());
-//		assertThat(facadenFactory.getGroupFacade().count(), equalTo(count + 1));
-//		facadenFactory.getGroupFacade().remove(group);
-//		printGroups();
-//		assertThat(facadenFactory.getGroupFacade().count(), equalTo(count));
-//	}
-//
-//	@Test
-//	public void testRemoveGroupNotFound() {
-//		printGroups();
-//		int count = facadenFactory.getGroupFacade().count();
-//		Group group = new Group();
-//		group.setName("");
-//		group.setDescription("");
-//		group.setId(404);
-//		facadenFactory.getGroupFacade().remove(group);
-//		assertThat(facadenFactory.getGroupFacade().count(), equalTo(count));
-//	}
-//
-//	public void printGroups() {
-//		for (Group group : facadenFactory.getGroupFacade().findAll()) {
-//			logger.info(group.toString());
-//		}
-//	}
+	@Test
+	@DisplayName("Test SaveGroup")
+	public void testSaveGroup() {
+		Group group = new Group();
+		group.setName("READERS");
+		group.setDescription("Benutzer mit Leseberechtigung");
+
+		facadenFactory.getGroupFacade().create(group);
+
+		assertThat(facadenFactory.getGroupFacade().count()).isEqualTo(4);
+	}
+
+	@Test
+	@DisplayName("Test Remove Group")
+	public void testRemoveGroup() {
+		printGroups();
+		int count = facadenFactory.getGroupFacade().count();
+		logger.info("Anzahl Gruppen: " + count);
+
+		Group group = new Group();
+		group.setDescription("Lesender Zugriff");
+		group.setName("READERS");
+		facadenFactory.getGroupFacade().create(group);
+		printGroups();
+		logger.info(group.toString());
+		assertThat(facadenFactory.getGroupFacade().count()).isEqualTo(count + 1);
+		facadenFactory.getGroupFacade().remove(group);
+		printGroups();
+		assertThat(facadenFactory.getGroupFacade().count()).isEqualTo(count);
+	}
+
+	@Test
+	@DisplayName("Test Remove Group Not Found")
+	public void testRemoveGroupNotFound() {
+		printGroups();
+		int count = facadenFactory.getGroupFacade().count();
+		Group group = new Group();
+		group.setName("");
+		group.setDescription("");
+		group.setId(404);
+		facadenFactory.getGroupFacade().remove(group);
+		assertThat(facadenFactory.getGroupFacade().count()).isEqualTo(count);
+	}
+
+	public void printGroups() {
+		for (Group group : facadenFactory.getGroupFacade().findAll()) {
+			logger.info(group.toString());
+		}
+	}
 }
