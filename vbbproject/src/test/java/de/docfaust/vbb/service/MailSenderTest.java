@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Mail;
 import de.docfaust.vbb.data.entity.Spiel;

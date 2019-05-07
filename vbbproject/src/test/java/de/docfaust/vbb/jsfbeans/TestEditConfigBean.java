@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 import de.docfaust.vbb.service.VBBServices;

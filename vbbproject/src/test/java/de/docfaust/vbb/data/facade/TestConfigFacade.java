@@ -1,15 +1,9 @@
 package de.docfaust.vbb.data.facade;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Config;
 import de.docfaust.vbb.data.facades.ConfigFacade;
@@ -18,32 +12,34 @@ import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 public class TestConfigFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
+	@DisplayName("Test Config Facade ")
 	public void test() {
-		assertThat(new ConfigFacade(), not(nullValue()));
+		assertThat(new ConfigFacade()).isNotNull();
 		Config config = new Config();
 		config.setId(1);
-		assertThat(config.getId(), equalTo(1));
+		assertThat(config.getId()).isEqualTo(1);
 
 	}
 
 	@Test
+	@DisplayName("Test Find All ")
 	public void testFindAll() {
-		assertFalse(facadenFactory.getConfigFacade().findAll().isEmpty());
+		assertThat(facadenFactory.getConfigFacade().findAll()).isNotEmpty();
 	}
 
 	@Test
+	@DisplayName("Test getKey ")
 	public void testGetKey() throws Exception {
 		ConfigFacade configFacade = facadenFactory.getConfigFacade();
-
-		assertEquals("b", configFacade.getValue("a"));
-		assertEquals("c", configFacade.getValue("b"));
+		assertThat(configFacade.getValue("a")).isEqualTo("b");
+		assertThat(configFacade.getValue("b")).isEqualTo("c");
 	}
 
 	@Test
 	public void testGetKeyNotFound() throws Exception {
 		ConfigFacade configFacade = facadenFactory.getConfigFacade();
 
-		assertNull(configFacade.getValue("x"));
+		assertThat(configFacade.getValue("x")).isNull();
 	}
 
 	@Test
@@ -51,8 +47,7 @@ public class TestConfigFacade extends JpaBaseRolledBackTestCase {
 		ConfigFacade configFacade = facadenFactory.getConfigFacade();
 
 		String value = configFacade.getValue("x", "y");
-		assertNotNull(value);
-		assertEquals("y", value);
+		assertThat(value).isNotNull().isEqualTo("y");
 	}
 
 	@Test
@@ -60,25 +55,20 @@ public class TestConfigFacade extends JpaBaseRolledBackTestCase {
 		ConfigFacade configFacade = facadenFactory.getConfigFacade();
 
 		String value = configFacade.getValue("a", "y");
-		assertNotNull(value);
-		assertEquals("b", value);
+		assertThat(value).isNotNull().isEqualTo("b");
 
 		value = configFacade.getValue("b", "y");
-		assertNotNull(value);
-		assertEquals("c", value);
+		assertThat(value).isNotNull().isEqualTo("c");
+		
+		value = configFacade.getValue("r", "l");
+		assertThat(value).isNotNull().isEqualTo("l");
 	}
 
 	@Test
 	public void testGetConfig() {
 		ConfigFacade configFacade = facadenFactory.getConfigFacade();
-		assertEquals(6, configFacade.count());
-		for (Config config : configFacade.findAll()) {
-			logger.info(config.toString());
-			assertNotNull(config.getId());
-			assertNotNull(config.getConfigkey());
-			assertNotNull(config.getConfigvalue());
-		}
-
+		assertThat(configFacade.count()).isEqualTo(6);
+		assertThat(configFacade.findAll()).extracting("id", "configkey", "configvalue").isNotNull();
 	}
 
 	@Test
@@ -90,28 +80,28 @@ public class TestConfigFacade extends JpaBaseRolledBackTestCase {
 		facadenFactory.getConfigFacade().create(config);
 
 		logger.info(config.toString());
-		assertEquals(7, facadenFactory.getConfigFacade().count());
-		assertEquals(7, config.getId());
+		assertThat(facadenFactory.getConfigFacade().count()).isEqualTo(7);
+		assertThat(config.getId()).isEqualTo(7);
 	}
-	
+
 	@Test
-	public void testDeleteConfig(){
+	public void testDeleteConfig() {
 		int count = facadenFactory.getConfigFacade().count();
 		Config config = new Config();
 		config.setId(1);
 		facadenFactory.getConfigFacade().remove(config);
-		assertThat(facadenFactory.getConfigFacade().count(), equalTo(count - 1));
+		assertThat(facadenFactory.getConfigFacade().count()).isEqualTo(count - 1);
 	}
-	
+
 	@Test
-	public void testDeleteConfigNotFound(){
+	public void testDeleteConfigNotFound() {
 		int count = facadenFactory.getConfigFacade().count();
 		Config config = new Config();
 		config.setId(404);
 		config.setConfigkey("");
 		config.setConfigvalue("");
 		facadenFactory.getConfigFacade().remove(config);
-		assertThat(facadenFactory.getConfigFacade().count(), equalTo(count));
+		assertThat(facadenFactory.getConfigFacade().count()).isEqualTo(count);
 	}
 
 }

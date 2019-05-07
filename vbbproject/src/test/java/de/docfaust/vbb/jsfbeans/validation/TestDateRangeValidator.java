@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.faces.component.UIComponent;
 import javax.faces.validator.ValidatorException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.primefaces.component.celleditor.CellEditor;
 
 public class TestDateRangeValidator {

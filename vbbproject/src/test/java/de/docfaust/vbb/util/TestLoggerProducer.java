@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*;
 
 import javax.enterprise.inject.spi.InjectionPoint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
 public class TestLoggerProducer {

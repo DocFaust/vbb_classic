@@ -6,13 +6,13 @@
 <booleanAttribute key="M2_OFFLINE" value="false"/>
 <stringAttribute key="M2_PROFILES" value=""/>
 <listAttribute key="M2_PROPERTIES"/>
-<stringAttribute key="M2_RUNTIME" value="apache-maven-3.5.4"/>
+<stringAttribute key="M2_RUNTIME" value="EMBEDDED"/>
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>
 <intAttribute key="M2_THREADS" value="1"/>
 <booleanAttribute key="M2_UPDATE_SNAPSHOTS" value="false"/>
-<stringAttribute key="M2_USER_SETTINGS" value="${workspace_loc:/vbbproject2/settings.xml}"/>
+<stringAttribute key="M2_USER_SETTINGS" value="${workspace_loc:/vbbproject/settings.xml}"/>
 <booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false"/>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dmaven.test.failure.ignore=true"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc}/vbbproject2"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:/vbbproject}"/>
 </launchConfiguration>

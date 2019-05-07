@@ -18,10 +18,10 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.internal.SessionImpl;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,12 +40,12 @@ public abstract class JpaBaseRolledBackTestCase {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	protected static FacadenFactory facadenFactory = null;
 
-	@BeforeClass
+	@BeforeAll
 	public static void createEntityManagerFactory() throws DatabaseUnitException {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info(">> createEntityManagerFactory");
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void closeEntityManagerFactory() {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info(">> closeEntityManagerFactory");
 //		em.close();
@@ -53,7 +53,7 @@ public abstract class JpaBaseRolledBackTestCase {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info("<< closeEntityManagerFactory");
 	}
 
-	@Before
+	@BeforeEach
 	public void beginTransaction() throws DatabaseUnitException, SQLException, IOException {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info(">> beginTransaction");
 		emf = Persistence.createEntityManagerFactory("vbb_test");
@@ -84,7 +84,7 @@ public abstract class JpaBaseRolledBackTestCase {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info("<< beginTransaction");
 	}
 
-	@After
+	@AfterEach
 	public void rollbackTransaction() {
 		LoggerFactory.getLogger(JpaBaseRolledBackTestCase.class).info(">> rollbackTransaction");
 		try {

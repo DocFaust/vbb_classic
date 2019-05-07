@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.util.messages.MessageConstants;

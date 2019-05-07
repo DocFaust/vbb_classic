@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 import javax.faces.application.FacesMessage.Severity;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.util.messages.MessageConstants;

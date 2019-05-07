@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;

@@ -3,7 +3,7 @@ package de.docfaust.vbb.util.configuration;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Config;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;

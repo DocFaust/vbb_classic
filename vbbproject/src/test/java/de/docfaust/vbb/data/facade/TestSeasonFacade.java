@@ -12,7 +12,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Season;

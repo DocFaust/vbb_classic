@@ -7,7 +7,7 @@ import static org.junit.Assert.fail;
 
 import javax.faces.convert.ConverterException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 

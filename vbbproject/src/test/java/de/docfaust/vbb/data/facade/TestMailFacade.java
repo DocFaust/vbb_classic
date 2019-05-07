@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Mail;

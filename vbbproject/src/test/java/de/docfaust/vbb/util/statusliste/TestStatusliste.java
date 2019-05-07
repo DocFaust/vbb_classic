@@ -2,7 +2,7 @@ package de.docfaust.vbb.util.statusliste;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.util.messages.MessageConstants;

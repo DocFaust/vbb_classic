@@ -2,7 +2,7 @@ package de.docfaust.vbb.util.templates;
 
 import org.apache.velocity.runtime.RuntimeInstance;
 import org.apache.velocity.runtime.log.LogChute;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Nur zur Erhöhung der Abdeckung.
