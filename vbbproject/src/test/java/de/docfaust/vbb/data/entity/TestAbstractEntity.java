@@ -1,8 +1,8 @@
 package de.docfaust.vbb.data.entity;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 public class TestAbstractEntity {
 
@@ -10,7 +10,7 @@ public class TestAbstractEntity {
 	public void testNotEquals()
 	{
 		Season season = new Season();
-		assertThat(season, not(equalTo("irgendeinString")));
+		assertThat(season).isNotEqualTo("irgendeinString");
 	}
 	
 	@Test
@@ -20,7 +20,6 @@ public class TestAbstractEntity {
 		season1.setId(1);
 		Season season2 = new Season();
 		season2.setId(1);
-		assertThat(season1, equalTo(season2));
-		
+		assertThat(season1).isEqualTo(season2);
 	}
 }
