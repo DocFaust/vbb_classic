@@ -13,14 +13,19 @@ pipeline {
             }
             post {
                 success {
+		dir("vbbproject") {
                     junit 'target/surefire-reports/**/*.xml' 
+		}
                 }
             }
        }
 	   
        stage ('Checkstyle') {
             steps {
+		    		dir("vbbproject") {
+
                 sh 'mvn -Dmaven.test.failure.ignore=true checkstyle:checkstyle' 
+				}
             }
             post {
 			   always {
@@ -30,7 +35,10 @@ pipeline {
        }
 	   stage ('Cobertura') {
 		   steps {
+			   		dir("vbbproject") {
+
 			   sh 'mvn -Dmaven.test.failure.ignore=true cobertura:cobertura'
+					}
 		   }
 		   post {
 			   always {
@@ -40,7 +48,10 @@ pipeline {
 	   }
 	   stage ('Site') {
 		   steps {
+			   		dir("vbbproject") {
+
 			   sh 'mvn -Dmaven.test.failure.ignore=true site'
+					}
 		   }
 	   }
     }
