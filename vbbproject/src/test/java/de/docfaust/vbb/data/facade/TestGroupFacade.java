@@ -24,15 +24,17 @@ public class TestGroupFacade extends JpaBaseRolledBackTestCase {
 		assertThat(facadenFactory.getGroupFacade().count()).isEqualTo(3);
 	}
 
-//	@Test
-//	public void testFindByName() {
-//		Group group = facadenFactory.getGroupFacade().findByName("ADMIN");
-//		logger.info(group.toString());
-//		assertEquals("Administrator", group.getDescription());
-//		assertEquals("ADMIN", group.getName());
-//		assertEquals(1, group.getId());
-//	}
-//
+	@Test
+	@DisplayName("Test Find By Name")
+	public void testFindByName() {
+		Group group = facadenFactory.getGroupFacade().findByName("ADMIN");
+		assertThat(group).isNotNull();
+		logger.info(group.toString());
+		assertThat(group.getDescription()).isEqualTo("Administrator");
+		assertThat(group.getName()).isEqualTo("ADMIN");
+		assertThat(group.getId()).isEqualTo(1);
+	}
+
 //	@Test
 //	public void testSaveGroup() {
 //		Group group = new Group();
