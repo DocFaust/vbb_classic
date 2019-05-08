@@ -5,10 +5,19 @@
 	editor -->
 <!-- Checkstyle-Configuration: Own Description: none -->
 <module name="Checker">
-	<property name="severity" value="warning" />
+
 	<module name="TreeWalker">
+		<property name="severity" value="warning" />
+		<module name="SuppressionCommentFilter">
+			<property name="offCommentFormat"
+				value="CHECKSTYLE.OFF\: ([\w\|]+)" />
+			<property name="onCommentFormat"
+				value="CHECKSTYLE.ON\: ([\w\|]+)" />
+			<property name="checkFormat" value="$1" />
+		</module>
+		<module name="SuppressWithNearbyCommentFilter" />
+
 		<property name="tabWidth" value="4" />
-		<module name="FileContentsHolder" />
 		<module name="JavadocMethod">
 			<property name="suppressLoadErrors" value="true" />
 			<property name="allowMissingPropertyJavadoc" value="true" />
@@ -88,12 +97,6 @@
 			<property name="excludedClasses" value="\.Main" />
 		</module>
 	</module>
-	<module name="SuppressionCommentFilter">
-		<property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)" />
-		<property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)" />
-		<property name="checkFormat" value="$1" />
-	</module>
-	<module name="SuppressWithNearbyCommentFilter" />
 	<module name="JavadocPackage" />
 	<module name="NewlineAtEndOfFile">
 		<property name="severity" value="ignore" />

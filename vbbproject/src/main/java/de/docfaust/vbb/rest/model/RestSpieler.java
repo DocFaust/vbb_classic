@@ -2,13 +2,22 @@ package de.docfaust.vbb.rest.model;
 
 import java.math.BigDecimal;
 
+/**
+ * DTO.
+ * @author wfa339
+ *
+ */
 public class RestSpieler {
 	private String name;
 	private boolean bezahlt;
 	private boolean anwesend;
 	private BigDecimal saldo;
 
-	public RestSpieler(String name) {
+	/**
+	 * DTO Constructor.
+	 * @param name Name of the Spieler
+	 */
+	public RestSpieler(final String name) {
 		this.name = name;
 	}
 
@@ -16,7 +25,7 @@ public class RestSpieler {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -24,7 +33,7 @@ public class RestSpieler {
 		return bezahlt;
 	}
 
-	public void setBezahlt(boolean bezahlt) {
+	public void setBezahlt(final boolean bezahlt) {
 		this.bezahlt = bezahlt;
 	}
 
@@ -32,7 +41,7 @@ public class RestSpieler {
 		return anwesend;
 	}
 
-	public void setAnwesend(boolean anwesend) {
+	public void setAnwesend(final boolean anwesend) {
 		this.anwesend = anwesend;
 	}
 
@@ -40,7 +49,7 @@ public class RestSpieler {
 		return saldo;
 	}
 
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(final BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 

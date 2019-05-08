@@ -10,6 +10,11 @@ import de.docfaust.vbb.rest.model.RestSpiel;
 import de.docfaust.vbb.rest.model.RestSpieler;
 import de.docfaust.vbb.service.VBBServices;
 
+/**
+ * Rest Implementation.
+ * @author wfa339
+ *
+ */
 public class VBBRestImpl implements VBBRestInterface {
  
 	@Inject
@@ -27,7 +32,7 @@ public class VBBRestImpl implements VBBRestInterface {
 	}
 
 	@Override
-	public Response createSpiel(RestSpiel spiel) {
+	public Response createSpiel(final RestSpiel spiel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

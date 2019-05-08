@@ -6,6 +6,11 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+/**
+ * RestApplication.
+ * @author wfa339
+ *
+ */
 @ApplicationPath("/rest")
 public class MyApplication extends Application {
 	

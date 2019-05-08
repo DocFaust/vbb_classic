@@ -1,10 +1,10 @@
-use vbb2prod;
+use vbb;
 SET FOREIGN_KEY_CHECKS = 0;
-drop table if exists vbb2prod.BUCHUNG, vbb2prod.SPIELER, SPIEL, SEASON, USERS, ROLES, CONFIG, MAILS, JOURNAL cascade;
+drop table if exists BUCHUNG, SPIELER, SPIEL, SEASON, USERS, ROLES, CONFIG, MAILS, JOURNAL cascade;
 drop view if exists V_USER_ROLE;
 SET FOREIGN_KEY_CHECKS = 1;
 
-create table vbb2prod.JOURNAL (
+create table JOURNAL (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	BUSINESS_CASE VARCHAR(64),
 	DESCRIPTION VARCHAR(255),
@@ -13,7 +13,7 @@ create table vbb2prod.JOURNAL (
 	PRIMARY KEY (ID)
 );
 
-create table vbb2prod.SEASON (
+create table SEASON (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	DESCRIPTION VARCHAR(255),
 	STARTDATE DATE, 
@@ -24,7 +24,7 @@ create table vbb2prod.SEASON (
 	
 );
 
-create table vbb2prod.SPIEL (
+create table SPIEL (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	DATUM DATE,
 	SEASON_ID INTEGER,
@@ -33,7 +33,7 @@ create table vbb2prod.SPIEL (
 	FOREIGN KEY (SEASON_ID) REFERENCES SEASON(ID)
 );
 
-create table vbb2prod.SPIELER (
+create table SPIELER (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	NAME VARCHAR(40) unique,
     EMAIL varchar(255),
@@ -41,7 +41,7 @@ create table vbb2prod.SPIELER (
 	PRIMARY KEY (ID)
 );
 
-create table vbb2prod.BUCHUNG (
+create table BUCHUNG (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	SPIEL_ID INTEGER,
 	DATUM TIMESTAMP,
@@ -56,14 +56,14 @@ create table vbb2prod.BUCHUNG (
 	FOREIGN KEY (SPIELER_ID) REFERENCES SPIELER(ID)
 );
 
-create table vbb2prod.ROLES (
+create table ROLES (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	NAME VARCHAR(20) UNIQUE NOT NULL,
 	DESCRIPTION VARCHAR (255),
 	PRIMARY KEY (ID)
 );
 
-create table vbb2prod.USERS (
+create table USERS (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	USERID VARCHAR(128) UNIQUE NOT NULL,
 	USERNAME VARCHAR (255),
@@ -77,19 +77,19 @@ create table vbb2prod.USERS (
 );
 
 
-CREATE VIEW vbb2prod.V_USER_ROLE AS
+CREATE VIEW V_USER_ROLE AS
 SELECT  u.USERID, u.PASSWORD, g.NAME
  FROM USERS u
  INNER JOIN ROLES g ON g.ID =  u.GROUP_ID; 
 
-create table vbb2prod.CONFIG (
+create table CONFIG (
 	ID INTEGER NOT NULL AUTO_INCREMENT, 
 	CONFIGKEY VARCHAR(64) UNIQUE,
 	CONFIGVALUE VARCHAR (512),
 	PRIMARY KEY (ID)
 );
 
-create table vbb2prod.MAILS (
+create table MAILS (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	RECIPIENT VARCHAR (255) NOT NULL,
 	SUBJECT VARCHAR(255) NOT NULL,

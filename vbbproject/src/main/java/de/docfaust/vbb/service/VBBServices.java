@@ -277,7 +277,11 @@ public class VBBServices implements Serializable {
 		return statusliste;
 	}
 
-	public void incrementActivityLevel(Spieler spieler) {
+	/**
+	 * Increments the activity Level.
+	 * @param spieler Spiler to increase.
+	 */
+	public void incrementActivityLevel(final Spieler spieler) {
 		int activityLevel = spieler.getActivityLevel();
 		spieler.setActivityLevel(++activityLevel);
 		spielerFacade.edit(spieler);

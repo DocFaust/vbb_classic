@@ -70,7 +70,7 @@ public class Spieler extends AbstractEntity {
 		return activityLevel;
 	}
 
-	public void setActivityLevel(int activityLevel) {
+	public void setActivityLevel(final int activityLevel) {
 		this.activityLevel = activityLevel;
 	}
 

@@ -1,4 +1,4 @@
 /**
- * Contains RESTful Services 
+ * Contains RESTful Services. 
  */
 package de.docfaust.vbb.rest;

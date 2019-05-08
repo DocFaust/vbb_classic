@@ -35,20 +35,19 @@ public class SpielerFacade extends AbstractFacade<Spieler> {
 	private Logger logger;
 
 	/**
-	 * Leerer Konstruktor. Standard für den Zugriff via EJB. Die Entitätsklasse
-	 * wird der Superklasse gesetzt.
+	 * Leerer Konstruktor. Standard für den Zugriff via EJB. Die Entitätsklasse wird
+	 * der Superklasse gesetzt.
 	 */
 	public SpielerFacade() {
 		super(Spieler.class);
 	}
 
 	/**
-	 * Konstruktor für JUnit Tests. Die Entitätsklasse wird der Superklasse
-	 * gesetzt. Hier kann ein außerhalb erzeugter EntityManager getzt werden.
-	 * Achtung, für eine Transaktionsklammer muss selbst gesorgt werden.
+	 * Konstruktor für JUnit Tests. Die Entitätsklasse wird der Superklasse gesetzt.
+	 * Hier kann ein außerhalb erzeugter EntityManager getzt werden. Achtung, für
+	 * eine Transaktionsklammer muss selbst gesorgt werden.
 	 * 
-	 * @param em
-	 *            Außerhalb erzeugter EntityManager
+	 * @param em Außerhalb erzeugter EntityManager
 	 */
 	public SpielerFacade(final EntityManager em) {
 		super(Spieler.class);
@@ -66,8 +65,7 @@ public class SpielerFacade extends AbstractFacade<Spieler> {
 	/**
 	 * Sucht einen Spieler anhand seines Namens.
 	 * 
-	 * @param name
-	 *            Name des Spielers
+	 * @param name Name des Spielers
 	 * @return Spieler Objekt
 	 */
 	public Spieler findByName(final String name) {
@@ -90,8 +88,12 @@ public class SpielerFacade extends AbstractFacade<Spieler> {
 
 		return s;
 	}
-	
-	public List<Spieler> findSpieler(){
+
+	/**
+	 * Find All.
+	 * @return List of players.
+	 */
+	public List<Spieler> findSpieler() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Spieler> cq = cb.createQuery(Spieler.class);
 		Root<Spieler> root = cq.from(Spieler.class);
