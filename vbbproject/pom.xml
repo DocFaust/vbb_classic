@@ -74,6 +74,22 @@
 		</repository>
 	</repositories>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>3.0.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>8.20</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -135,14 +151,6 @@
 							<exclude>de/docfaust/**/*_.class</exclude>
 						</excludes>
 					</instrumentation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.0.0</version>
-				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -307,6 +315,15 @@
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</reporting>
 </project>
