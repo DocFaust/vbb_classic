@@ -324,16 +324,28 @@ public class VBBServices implements Serializable {
 	public final List<Entry<String, BigDecimal>> getSaldo() {
 		List<Spieler> names = getSpieler();
 		Map<String, BigDecimal> saldi = new Hashtable<String, BigDecimal>();
-		for (Spieler spieler : names) {
+		
+		names.stream()
+			.sorted((s1, s2) -> s1.getActivityLevel() - s2.getActivityLevel())
+			.forEach(spieler -> {
+			BigDecimal saldo =  spieler.getBuchungen().stream()
+					.map(Buchung::getPrice)
+					.reduce(BigDecimal.ZERO, BigDecimal::add)
+					.setScale(2, RoundingMode.HALF_UP);
 
-			List<Buchung> buchungen = spieler.getBuchungen();
-			BigDecimal saldo = BigDecimal.ZERO;
-			for (Buchung buchung : buchungen) {
-				saldo = saldo.add(buchung.getPrice());
-			}
-			saldo.setScale(2, RoundingMode.HALF_UP);
 			saldi.put(spieler.getName(), saldo);
-		}
+		});
+		
+		logger.info(saldi.toString());
+		
+//		for (Spieler spieler : names) {
+//
+//			List<Buchung> buchungen = spieler.getBuchungen();
+//			BigDecimal saldo =  buchungen.stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+//			saldo.setScale(2, RoundingMode.HALF_UP);
+//
+//			saldi.put(spieler.getName(), saldo);
+//		}
 		List<Entry<String, BigDecimal>> entries = new ArrayList<Entry<String, BigDecimal>>(saldi.entrySet());
 		return entries;
 	}
