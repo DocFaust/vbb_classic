@@ -1,0 +1,107 @@
+package de.docfaust.vbb.service;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+
+import de.docfaust.vbb.data.entity.Buchung;
+import de.docfaust.vbb.data.entity.Spieler;
+import de.docfaust.vbb.data.facades.BuchungFacade;
+import de.docfaust.vbb.data.facades.GroupFacade;
+import de.docfaust.vbb.data.facades.MailFacade;
+import de.docfaust.vbb.data.facades.SeasonFacade;
+import de.docfaust.vbb.data.facades.SpielFacade;
+import de.docfaust.vbb.data.facades.SpielerFacade;
+import de.docfaust.vbb.data.facades.UserFacade;
+import de.docfaust.vbb.model.SaldoModel;
+import de.docfaust.vbb.model.SpielerSaldo;
+
+@Dependent
+public class SaldoServiceImpl implements SaldoService {
+	/**
+	 * DB-Zugriff für Buchung.
+	 */
+	@EJB
+	private BuchungFacade buchungFacade;
+
+	/**
+	 * DB-Zugriff für Season.
+	 */
+	@EJB
+	private SeasonFacade seasonFacade;
+
+	/**
+	 * DB-Zugriff für User.
+	 */
+	@EJB
+	private UserFacade userFacade;
+
+	/**
+	 * DB-Zugriff für Group.
+	 */
+	@EJB
+	private GroupFacade groupFacade;
+
+	/**
+	 * DB-Zugriff für Spiel.
+	 */
+	@EJB
+	private SpielFacade spielFacade;
+
+	/**
+	 * DB-Zugriff für Spieler.
+	 */
+	@EJB
+	private SpielerFacade spielerFacade;
+
+	/**
+	 * DB-Zugriff für Mails.
+	 */
+	@EJB
+	private MailFacade mailFacade;
+
+	/**
+	 * Logger.
+	 */
+	@Inject
+	private Logger logger;
+
+	@Override
+	public final SaldoModel getSaldo() {
+		logger.debug("calculating Saldo");
+		SaldoModel model = new SaldoModel();
+		List<Spieler> names = spielerFacade.findSpieler();
+		names.stream()
+			.forEach(spieler -> {
+			BigDecimal saldo =  spieler.getBuchungen().stream()
+					.map(Buchung::getPrice)
+					.reduce(BigDecimal.ZERO, BigDecimal::add)
+					.setScale(2, RoundingMode.HALF_UP);
+			model.getSpielersaldi().add(SpielerSaldo.of(spieler.getName(), saldo, spieler.getActivityLevel()));
+		});
+		model.setCompleteSaldo(getCompleteSaldo());
+		logger.info(model.toString());
+		return model;
+	}
+	
+	/**
+	 * Liefert das Komplette saldo über alle Daten.
+	 * 
+	 * @return Saldo
+	 */
+	private BigDecimal getCompleteSaldo() {
+		BigDecimal completeSaldo = buchungFacade.findAll()
+				.stream()
+				.map(Buchung::getPrice)
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
+		logger.debug("Komplettes Saldo: " + completeSaldo);
+		return completeSaldo;
+	}
+
+}

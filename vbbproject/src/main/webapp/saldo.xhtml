@@ -1,0 +1,34 @@
+<ui:composition template="templateohnemenu.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form>
+			<p:panel id="saldopnl" header="Saldo" rendered="#{saldoBean.key}" >
+				<div id="saldodiv">
+				<p:dataTable id="saldo" value="#{saldoBean.saldoModel.spielersaldi }" var="s" scrollable="true">
+
+					<p:column id="namen" headerText="#{msg['saldo.name'] }" width="20%">
+						<p:outputLabel value="#{s.spielerName }" />
+					</p:column>
+					<p:column id="salden" headerText="#{msg['saldo.saldo'] }" width="15%">
+						<p:outputLabel value="#{s.saldo }" style="float:right">
+							<f:convertNumber currencyCode="EUR" type="currency" locale="de_DE"/>
+						</p:outputLabel>
+					</p:column>
+				</p:dataTable>
+				</div>
+				<p:separator/>
+				<h:panelGrid border="0" columns="2">
+					<p:outputLabel value="#{msg['checksumme.cs'] }" />
+					<p:outputLabel value="#{saldoBean.saldoModel.completeSaldo }">
+						<f:convertNumber currencyCode="EUR" type="currency" locale="de_DE"/>
+					</p:outputLabel>
+				</h:panelGrid>
+			</p:panel>
+			<p:panel id="Fehler" header="Ungültiger Key" rendered="#{!saldoBean.key}" >
+				Sie benutzen einen falschen Zugangskey.
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

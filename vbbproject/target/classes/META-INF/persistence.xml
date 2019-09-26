@@ -14,6 +14,7 @@
 		<class>de.docfaust.vbb.data.entity.Group</class>
 		<class>de.docfaust.vbb.data.entity.Mail</class>
 		<class>de.docfaust.vbb.data.entity.JournalEntry</class>
+		<class>de.docfaust.vbb.data.entity.Token</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 		<properties>
 <!-- Derby 

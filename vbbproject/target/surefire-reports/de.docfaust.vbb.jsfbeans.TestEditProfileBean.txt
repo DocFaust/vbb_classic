@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: de.docfaust.vbb.jsfbeans.TestEditProfileBean
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.663 s - in de.docfaust.vbb.jsfbeans.TestEditProfileBean
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.878 s - in de.docfaust.vbb.jsfbeans.TestEditProfileBean
