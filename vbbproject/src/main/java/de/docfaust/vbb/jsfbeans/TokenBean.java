@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.extensions.event.ClipboardErrorEvent;
-import org.primefaces.extensions.event.ClipboardSuccessEvent;
 import org.slf4j.Logger;
 
 import de.docfaust.vbb.data.entity.Token;
 import de.docfaust.vbb.service.TokenService;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
+/**
+ * JSF Bean for Token administration.
+ * @author wfa339
+ *
+ */
 @ViewScoped
 @Named
 public class TokenBean implements Serializable {
@@ -51,6 +51,9 @@ public class TokenBean implements Serializable {
 	@Setter
 	private String clipboardURL;
 
+	/**
+	 * Initializes the Bean.
+	 */
 	@PostConstruct
 	public void init() {
 		tokenList = tokenService.getTokens();
