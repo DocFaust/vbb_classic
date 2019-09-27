@@ -6,6 +6,8 @@
 	<SEASON ID="3" DESCRIPTION="Saison 3" STARTDATE="2015-01-07" ENDDATE="2015-02-09" PRICE="9" />
 	<!-- SEASON ID="4" DESCRIPTION="Saison 4" STARTDATE="2017-01-01" ENDDATE="2099-12-31" PRICE="9" /-->
 
+	<TOKEN id="1" name="TOKEN0" token="1" state="VALID"/>
+
 	<SPIEL id="1" season_id="1" datum="2014-01-01" />
 	<SPIEL id="2" season_id="1" datum="2014-01-02" />
 	<SPIEL id="3" season_id="2" datum="2014-01-05" />

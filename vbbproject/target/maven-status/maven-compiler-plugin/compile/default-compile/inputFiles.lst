@@ -5,6 +5,7 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\configur
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\ReorgDatabaseBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\Slf4jLogChute.java
 C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\package-info.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\TokenServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\facades\TokenFacade.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factories\SpielerFactory.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\VelocityRegisterTemplate.java
@@ -87,7 +88,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\Crea
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\LoggerProducer.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\model\SaldoModel.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\Config.java
-C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\filter\BrowserDetectionFilter.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\rest\model\RestSpieler.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factories\SeasonFactory.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\RegisterTemplates.java
@@ -99,12 +99,14 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\journal\
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\filter\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\rest\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\EditSpielerBean.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\TokenService.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\facades\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\AbstractMessageUtil.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\rest\VBBRestImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\rest\CharsetResponseFilter.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\MailTemplates.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\MessageData.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\TokenBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\mobile\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\filter\CharacterEncodingFilter.java
 C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\Message.java

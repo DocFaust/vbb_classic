@@ -204,7 +204,7 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>6.0</version>
+			<version>7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.faces</groupId>
@@ -290,6 +290,11 @@
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>1.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-extensions</artifactId>
+			<version>7.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -5,6 +5,5 @@
 		<locale-config>
 			<default-locale>de_DE</default-locale>
 		</locale-config>
-		<navigation-handler>org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler>
 	</application>
 </faces-config>

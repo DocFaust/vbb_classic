@@ -6,14 +6,21 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor(staticName = "of")
+@NoArgsConstructor
+@Table(name = "TOKEN")
 @Entity
 public class Token extends AbstractEntity {
 
@@ -25,9 +32,12 @@ public class Token extends AbstractEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+	@NonNull
+	private String name;
+	@NonNull
 	private String token;
 	
+	@NonNull
 	@Enumerated(EnumType.STRING)
 	private ValidityState state;
 }

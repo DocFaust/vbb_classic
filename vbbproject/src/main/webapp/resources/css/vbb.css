@@ -23,6 +23,10 @@ div#saldodiv {
     margin: auto;
 }
 
+button {
+	padding: 10px;
+	spacing: 10px;
+}
 .ui-panelgrid td, .ui-panelgrid tr{
    border-style: none !important;
 }

@@ -11,9 +11,9 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
-
 import de.docfaust.vbb.model.SaldoModel;
 import de.docfaust.vbb.service.SaldoService;
+import de.docfaust.vbb.service.TokenService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +21,13 @@ import lombok.Setter;
 @Named
 public class SaldoBean implements Serializable {
 
+	private static final String PARAM_TOKEN = "token";
+
 	@Inject
 	private SaldoService saldoService;
+
+	@Inject
+	private TokenService tokenService;
 
 	@Inject
 	private Logger logger;
@@ -30,20 +35,26 @@ public class SaldoBean implements Serializable {
 	@Getter
 	@Setter
 	private SaldoModel saldoModel;
+	
 	@Getter
 	@Setter
-	private boolean key;
+	private boolean tokenValid;
 
 	@PostConstruct
 	public void init() {
 		saldoModel = saldoService.getSaldo();
 		logger.debug("Saldomodel: {}", saldoModel.toString());
 
+		String token = getToken();
+		tokenValid = tokenService.validateToken(token);
+		logger.info("isTokenValid: ", String.valueOf(tokenValid));
+	}
+
+	private String getToken() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-		String keyParam = params.get("key");
-		logger.info("!" + keyParam + "!");
-		key = keyParam.equals("1");
-		logger.info(String.valueOf(key));
+		String tokenParam = params.get(PARAM_TOKEN);
+		logger.debug("Token: {}", tokenParam);
+		return tokenParam;
 	}
 }

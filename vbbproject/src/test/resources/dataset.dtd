@@ -1,4 +1,5 @@
 <!ELEMENT dataset (
+	TOKEN*,
     SEASON*,
     SPIEL*,
     SPIELER*,
@@ -8,6 +9,14 @@
     USERS*, 
     MAILS*,
     JOURNAL*)> 
+
+<!ELEMENT TOKEN EMPTY>
+<!ATTLIST TOKEN
+    id CDATA #REQUIRED
+    name CDATA #IMPLIED
+    token CDATA #IMPLIED
+    state CDATA #IMPLIED
+>
 
 <!ELEMENT BUCHUNG EMPTY>
 <!ATTLIST BUCHUNG

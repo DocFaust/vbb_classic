@@ -5,6 +5,7 @@
 	<persistence-unit name="vbb_test" transaction-type="RESOURCE_LOCAL">
 		<description>TEST Persistence Unit</description>
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>de.docfaust.vbb.data.entity.Token</class>
 		<class>de.docfaust.vbb.data.entity.Buchung</class>
 		<class>de.docfaust.vbb.data.entity.Config</class>
 		<class>de.docfaust.vbb.data.entity.Season</class>

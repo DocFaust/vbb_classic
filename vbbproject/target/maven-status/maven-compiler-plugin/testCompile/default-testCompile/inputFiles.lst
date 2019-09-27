@@ -28,7 +28,6 @@ C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\TestMD5.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\data\util\JpaBaseRolledBackTestCase.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\util\statusliste\TestStatusliste.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\jsfbeans\validation\AllValidatorTests.java
-C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\filter\TestBrowserDetectionFilter.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\filter\TestCharacterEncodingFilter.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\util\templates\VelocityBuilderTest.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\data\facade\TestBuchungFacade.java
@@ -43,11 +42,11 @@ C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\jsfbeans\Test
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\util\TestUIMessages.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\AllTests.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\util\TestMD5Util.java
-C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\filter\AllFilterTests.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\jsfbeans\TestRegisterBean.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\data\entity\AllEntityTests.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\jsfbeans\convert\TestSpielerConverter.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\jsfbeans\TestEditSeasonBean.java
+C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\service\TestTokenService.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\util\templates\Slf4jLogChuteTest.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\servlet\TestRegisterServlet.java
 C:\dev\github\vbb_classic\vbbproject\src\test\java\de\docfaust\vbb\data\facade\TestSeasonFacade.java

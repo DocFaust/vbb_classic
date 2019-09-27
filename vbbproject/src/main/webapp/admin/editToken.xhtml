@@ -1,0 +1,43 @@
+<ui:composition template="../template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="edittokenform">
+
+			<p:panel id="pnl" header="Token bearbeiten">
+
+ 				<p:dataTable id="tab" value="#{tokenBean.tokenList}" var="token" scrollable="true"
+					selection="#{tokenBean.selectedToken}" selectionMode="single"
+					rowKey="#{token.id }" emptyMessage="Keine Token angelegt">
+				<p:growl id="growl" showDetail="true" />
+
+					<p:column id="name" headerText="Name" style="width:20%">
+						<h:outputText value="#{token.name}" />
+					</p:column>
+					<p:column id="token" headerText="Token" style="width:20%">
+						<h:outputText value="#{token.token}" />
+					</p:column>
+					<p:column id="state" headerText="Status" style="width:10%">
+						<h:outputText value="#{token.state}" />
+					</p:column>
+				</p:dataTable>
+				<p:panelGrid columns="2">
+					<p:inputText id="name" value="#{tokenBean.name}" placeholder="Name" />
+					<p:commandButton value="Generieren" action="#{tokenBean.createToken}" update=":edittokenform:tab"/>
+				</p:panelGrid>
+				<p:panelGrid columns="5">
+					<p:commandButton value="Löschen" action="#{tokenBean.deleteToken}"  update=":edittokenform:tab"/>
+					<p:commandButton value="Invalidieren" action="#{tokenBean.invalidateToken}"  update=":edittokenform:tab"/>
+					<p:commandButton id="btnCopy" value="URL kopieren" action="#{tokenBean.generateClipBoardURL}" update="clp,:edittokenform:pnl" />
+					<pe:clipboard id="clipCopy" trigger="btnCopy" action="copy" text="#{tokenBean.clipboardURL}"/>  
+        			<p:outputLabel id="clp" value="#{tokenBean.clipboardURL}"/>  
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
