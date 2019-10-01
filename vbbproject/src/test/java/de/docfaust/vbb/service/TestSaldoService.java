@@ -1,10 +1,10 @@
 package de.docfaust.vbb.service;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.facades.BuchungFacade;

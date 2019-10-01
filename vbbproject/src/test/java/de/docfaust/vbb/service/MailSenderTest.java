@@ -1,16 +1,19 @@
 package de.docfaust.vbb.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.mockito.Matchers;
+
+import static org.mockito.Mockito.mock;
+
 import java.util.Properties;
 
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-import org.junit.Assert;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Mail;
 import de.docfaust.vbb.data.entity.Spiel;
@@ -31,7 +34,7 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 	public static final String MAIL_SMTP_TIMEOUT = "mail.smtp.timeout";
 	public static final String MAIL_SMTP_CONNECTIONTIMEOUT = "mail.smtp.connectiontimeout";
 
-	@BeforeClass
+	@BeforeAll
 	public static void initSession() {
 		Properties props = new Properties();
 		props.put("mail.debug", "true");
@@ -66,7 +69,7 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 		MailFacade mailFacade = facadenFactory.getMailFacade();
 		mailFacade.create(m);
 
-		Assert.assertEquals(0, m.getAttempt());
+		assertThat(m.getAttempt()).isEqualTo(0);
 		MailSender sender = new MailSender(em, session);
 		sender.sendMails();
 		// Assert.assertEquals(0, mailFacade.findAll().size());
@@ -86,7 +89,6 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 	
 	@Test
 	public void test() {
-		assertThat(new MailSender(), not(nullValue()));
+		assertThat(new MailSender()).isNotNull();
 	}
-
 }
