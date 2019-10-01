@@ -61,7 +61,7 @@ public class TokenServiceImpl implements TokenService {
 	 * Constructor with a given Tokenfacade for JUnit usage.
 	 * @param tf Token facade
 	 */
-	public TokenServiceImpl(final TokenFacade tf, ConfigFacade cf) {
+	public TokenServiceImpl(final TokenFacade tf, final ConfigFacade cf) {
 		tokenFacade = tf; 
 		configFacade = cf;
 		logger = LoggerFactory.getLogger(getClass());
