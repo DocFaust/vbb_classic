@@ -17,9 +17,19 @@ import de.docfaust.vbb.service.TokenService;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Bean for the Saldo Page without login.
+ * @author wfa339
+ *
+ */
 @ViewScoped
 @Named
 public class SaldoBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2717757069911070223L;
 
 	private static final String PARAM_TOKEN = "token";
 
@@ -40,6 +50,9 @@ public class SaldoBean implements Serializable {
 	@Setter
 	private boolean tokenValid;
 
+	/**
+	 * Initializes the bean.
+	 */
 	@PostConstruct
 	public void init() {
 		saldoModel = saldoService.getSaldo();

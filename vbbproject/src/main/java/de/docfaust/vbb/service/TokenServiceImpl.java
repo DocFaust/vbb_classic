@@ -16,6 +16,11 @@ import de.docfaust.vbb.data.entity.ValidityState;
 import de.docfaust.vbb.data.facades.ConfigFacade;
 import de.docfaust.vbb.data.facades.TokenFacade;
 
+/**
+ * Implementation of the Token Service.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class TokenServiceImpl implements TokenService {
 	private static final String DOMAIN = "domain";
@@ -44,11 +49,18 @@ public class TokenServiceImpl implements TokenService {
 	@Inject
 	private Logger logger;
 
+	/**
+	 * Constructor w/o parameters for CDI usage.
+	 */
 	public TokenServiceImpl() {
 		
 	}
 	
-	public TokenServiceImpl(TokenFacade tf) {
+	/**
+	 * Constructor with a given Tokenfacade for JUnit usage.
+	 * @param tf Token facade
+	 */
+	public TokenServiceImpl(final TokenFacade tf) {
 		tokenFacade = tf; 
 	}
 	

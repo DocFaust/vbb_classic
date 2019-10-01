@@ -17,6 +17,11 @@ import de.docfaust.vbb.data.facades.SpielerFacade;
 import de.docfaust.vbb.model.SaldoModel;
 import de.docfaust.vbb.model.SpielerSaldo;
 
+/**
+ * Implementation of the Saldo Service.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class SaldoServiceImpl implements SaldoService {
 	/**

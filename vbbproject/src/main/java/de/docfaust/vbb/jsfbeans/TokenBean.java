@@ -62,28 +62,42 @@ public class TokenBean implements Serializable {
 		}
 	}
 
+	/**
+	 * generates the Saldo URL for the clipboard.
+	 */
 	public void generateClipBoardURL() {
 		if (selectedToken != null) {
 			clipboardURL = tokenService.generateTokenURL(selectedToken.getToken());
 		} else {
 			clipboardURL = null;
 		}
+		logger.info("URL generated: {}", clipboardURL);
 	}
 
+	/**
+	 * Creates a new Token.
+	 */
 	public void createToken() {
 		selectedToken = tokenService.createToken(name);
 		init();
-
+		logger.info("Token created: {}", selectedToken.toString());
 	}
 
+	/**
+	 * Sets the state of the selected Token to invalid.
+	 */
 	public void invalidateToken() {
 		tokenService.invalidateToken(selectedToken);
 		init();
+		logger.info("Token invalidated: {}", selectedToken.toString());
 	}
 
+	/**
+	 * Deletes a Token.
+	 */
 	public void deleteToken() {
 		tokenService.deleteToken(selectedToken);
 		init();
+		logger.info("Token deleted: {}", selectedToken.toString());
 	}
-
 }

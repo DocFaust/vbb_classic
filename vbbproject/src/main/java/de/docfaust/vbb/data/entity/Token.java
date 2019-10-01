@@ -15,6 +15,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Entity for the Token.
+ * @author wfa339
+ *
+ */
 @Getter
 @Setter
 @ToString
