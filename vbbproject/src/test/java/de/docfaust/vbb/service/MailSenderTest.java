@@ -2,18 +2,13 @@ package de.docfaust.vbb.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.mockito.Matchers;
-
-import static org.mockito.Mockito.mock;
-
 import java.util.Properties;
 
-import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Mail;
 import de.docfaust.vbb.data.entity.Spiel;
