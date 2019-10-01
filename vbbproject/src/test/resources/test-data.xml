@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dataset PUBLIC "//UNKNOWN/" "dataset.dtd">
 <dataset>
-	<TOKEN id="1" name="TOKEN0" token="1" state="VALID"/>
+	<TOKEN id="1" name="VALIDTOKEN" token="1" state="VALID"/>
+	<TOKEN id="2" name="INVALIDTOKEN" token="2" state="INVALID"/>
 
 	<SEASON ID="1" DESCRIPTION="Saison 1" STARTDATE="2014-01-01" ENDDATE="2014-01-02" PRICE="9" />
 	<SEASON ID="2" DESCRIPTION="Saison 2" STARTDATE="2014-01-05" ENDDATE="2014-02-06" PRICE="10" />

@@ -9,6 +9,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Config;
 import de.docfaust.vbb.data.entity.Token;
@@ -60,8 +61,11 @@ public class TokenServiceImpl implements TokenService {
 	 * Constructor with a given Tokenfacade for JUnit usage.
 	 * @param tf Token facade
 	 */
-	public TokenServiceImpl(final TokenFacade tf) {
+	public TokenServiceImpl(final TokenFacade tf, ConfigFacade cf) {
 		tokenFacade = tf; 
+		configFacade = cf;
+		logger = LoggerFactory.getLogger(getClass());
+
 	}
 	
 	@Override
