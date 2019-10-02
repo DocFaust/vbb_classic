@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.messages.annotations.JAXBMessages;
@@ -23,20 +22,16 @@ public abstract class AbstractJSFBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -7390205631588081273L;
 	@Inject
-	private VBBServices services;
-	@Inject
 	@JAXBMessages
 	private UIMessages uiMessages;
 
-	
 	/**
 	 * Konstruktor ohne EJB Kontext.
-	 * @param services VBBServices
+	 * 
 	 * @param uiMessages UIMessages
 	 */
-	public AbstractJSFBean(final VBBServices services, final UIMessages uiMessages) {
+	public AbstractJSFBean(final UIMessages uiMessages) {
 		super();
-		this.services = services;
 		this.uiMessages = uiMessages;
 	}
 
@@ -47,10 +42,6 @@ public abstract class AbstractJSFBean implements Serializable {
 		super();
 	}
 
-	public VBBServices getServices() {
-		return services;
-	}
-
 	private UIMessages getUiMessages() {
 		return uiMessages;
 	}
@@ -58,8 +49,7 @@ public abstract class AbstractJSFBean implements Serializable {
 	/**
 	 * Zeigt eine Nachricht im Growl.
 	 * 
-	 * @param code
-	 *            Code der nachricht
+	 * @param code Code der nachricht
 	 */
 	public void showUIMessage(final MessageConstants code) {
 		getUiMessages().showMessage(code);
@@ -68,10 +58,8 @@ public abstract class AbstractJSFBean implements Serializable {
 	/**
 	 * Zeigt eine Nachricht im Growl.
 	 * 
-	 * @param summary
-	 *            Zusammenfassung
-	 * @param detail
-	 *            Detailnachricht
+	 * @param summary Zusammenfassung
+	 * @param detail  Detailnachricht
 	 * 
 	 */
 	public void showUIMessage(final String summary, final String detail) {
@@ -81,10 +69,8 @@ public abstract class AbstractJSFBean implements Serializable {
 	/**
 	 * Zeigt eine Message im Growl.
 	 * 
-	 * @param code
-	 *            Message Code
-	 * @param message
-	 *            Message
+	 * @param code    Message Code
+	 * @param message Message
 	 */
 	public void showUIMessage(final MessageConstants code, final Object... message) {
 		getUiMessages().showMessage(code, message);
@@ -93,8 +79,7 @@ public abstract class AbstractJSFBean implements Serializable {
 	/**
 	 * Macht aus einer Statusliste Messages, die per faces angezeigt werden.
 	 * 
-	 * @param statusliste
-	 *            Statusliste mit Meldungen
+	 * @param statusliste Statusliste mit Meldungen
 	 */
 	public void showMessages(final Statusliste statusliste) {
 		for (Status status : statusliste) {

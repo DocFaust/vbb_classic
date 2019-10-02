@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.UserService;
 import de.docfaust.vbb.util.RegistrationState;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
@@ -32,17 +32,18 @@ public class LoginBean extends AbstractJSFBean {
 	private String userid;
 	private String password;
 	private User loggedInUser = null;
+	@Inject
+	private UserService userService;
+
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public LoginBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public LoginBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -69,7 +70,7 @@ public class LoginBean extends AbstractJSFBean {
 		logger.info("Melde User " + userid + " an");
 		if (userid != null && password != null) {
 
-			User user = getServices().login(userid, password);
+			User user = userService.login(userid, password);
 			if (user != null) {
 				if (user.getState().equals(RegistrationState.PROOFED)) {
 					logger.info("Anmeldung erfolgreich");

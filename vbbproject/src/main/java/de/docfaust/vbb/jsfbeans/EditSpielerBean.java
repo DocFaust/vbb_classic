@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Spieler;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.SpielerService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
@@ -28,20 +28,21 @@ public class EditSpielerBean extends AbstractJSFBean {
 	private static final long serialVersionUID = 7172540684751844438L;
 	@Inject
 	private Logger logger;
-
+	
+	@Inject 
+	private SpielerService spielerService;
+	
 	private Spieler selectedSpieler = null;
 	private List<Spieler> spieler = null;
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditSpielerBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public EditSpielerBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -58,7 +59,7 @@ public class EditSpielerBean extends AbstractJSFBean {
 	 */
 	@PostConstruct
 	public void init() {
-		setSpieler(getServices().getSpieler());
+		setSpieler(spielerService.getSpieler());
 		if (spieler != null && spieler.size() > 0) {
 			setSelectedSpieler(spieler.get(0));
 		}
@@ -75,7 +76,7 @@ public class EditSpielerBean extends AbstractJSFBean {
 	 * Speichert den ausgewählten Spieler.
 	 */
 	public void saveSpieler() {
-		getServices().saveSpieler(selectedSpieler);
+		spielerService.saveSpieler(selectedSpieler);
 		logger.info(selectedSpieler.getName() + " wurde erfolgreich gespeichert");
 		showUIMessage(MessageConstants.PLAYER_SAVED);
 		spieler.add(selectedSpieler);
@@ -90,7 +91,7 @@ public class EditSpielerBean extends AbstractJSFBean {
 			return;
 		}
 		int idx = spieler.indexOf(selectedSpieler);
-		Statusliste statusliste = getServices().deleteSpieler(selectedSpieler);
+		Statusliste statusliste = spielerService.deleteSpieler(selectedSpieler);
 		if (statusliste.booleanValue()) {
 			spieler.remove(selectedSpieler);
 			if (spieler != null && spieler.size() > 0) {

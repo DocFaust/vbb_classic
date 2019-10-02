@@ -10,7 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.MailService;
+import de.docfaust.vbb.service.UserService;
 import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.RegistrationState;
 import de.docfaust.vbb.util.messages.MessageConstants;
@@ -36,17 +37,19 @@ public class RegisterBean extends AbstractJSFBean {
 	private String email;
 	private String password;
 	private String passwordrepeat;
+	@Inject
+	private UserService userService;
+
+	@Inject
+	private MailService mailService;
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages UIMessages
 	 */
-	public RegisterBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public RegisterBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -57,7 +60,6 @@ public class RegisterBean extends AbstractJSFBean {
 	public RegisterBean() {
 		super();
 	}
-
 
 	public String getUserid() {
 		return userid;
@@ -114,12 +116,13 @@ public class RegisterBean extends AbstractJSFBean {
 		user.setPassword(PasswordUtil.encryptPassword(getPassword()));
 		user.setState(RegistrationState.OPEN);
 		user.setRegid(UUID.randomUUID().toString());
-		Statusliste statusliste = getServices().register(user);
+		Statusliste statusliste = userService.register(user);
 		if (!statusliste.booleanValue()) {
 			this.showMessages(statusliste);
 		} else {
 			showUIMessage(MessageConstants.REGISTER_SUCCESSFUL);
-			getServices().sendRegistrationMail(user);
+			// TODO MailService
+			mailService.sendRegistrationMail(user);
 			return "/registered";
 		}
 		return "";

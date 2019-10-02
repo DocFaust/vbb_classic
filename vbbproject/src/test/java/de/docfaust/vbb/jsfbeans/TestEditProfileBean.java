@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -49,7 +48,7 @@ public class TestEditProfileBean extends JpaBaseRolledBackTestCase {
 	}
 	
 	private EditProfileBean initBean() {
-		EditProfileBean bean = new EditProfileBean(new VBBServices(em), new UIMessagesTestImpl());
+		EditProfileBean bean = new EditProfileBean(new UIMessagesTestImpl());
 		bean.init();
 		
 		// User muss gesetzt werden, da keine angemeldet sein kann

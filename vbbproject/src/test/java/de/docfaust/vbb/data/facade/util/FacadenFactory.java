@@ -10,6 +10,7 @@ import de.docfaust.vbb.data.facades.MailFacade;
 import de.docfaust.vbb.data.facades.SeasonFacade;
 import de.docfaust.vbb.data.facades.SpielFacade;
 import de.docfaust.vbb.data.facades.SpielerFacade;
+import de.docfaust.vbb.data.facades.TokenFacade;
 import de.docfaust.vbb.data.facades.UserFacade;
 
 public class FacadenFactory {
@@ -22,7 +23,7 @@ public class FacadenFactory {
 	private MailFacade mailFacade;
 	private GroupFacade groupFacade;
 	private JournalFacade journalFacade;
-
+	private TokenFacade tokenFacade;
 	public FacadenFactory(final EntityManager em) {
 		buchungFacade = createBuchungFacade(em);
 		spielerFacade = createSpielerFacade(em);
@@ -33,6 +34,11 @@ public class FacadenFactory {
 		mailFacade = createMailFacade(em);
 		groupFacade = createGroupFacade(em);
 		journalFacade = createJournalFacade(em);
+		tokenFacade = createTokenFacade(em);
+	}
+
+	private TokenFacade createTokenFacade(EntityManager em) {
+		return new TokenFacade(em);
 	}
 
 	private JournalFacade createJournalFacade(EntityManager em) {
@@ -105,5 +111,9 @@ public class FacadenFactory {
 
 	public JournalFacade getJournalFacade() {
 		return journalFacade;
+	}
+
+	public TokenFacade getTokenFacade() {
+		return tokenFacade;
 	}
 }

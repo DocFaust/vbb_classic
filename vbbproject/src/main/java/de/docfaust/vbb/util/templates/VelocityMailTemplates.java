@@ -1,19 +1,19 @@
 package de.docfaust.vbb.util.templates;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.enterprise.context.Dependent;
 
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.User;
+import de.docfaust.vbb.model.SaldoModel;
+import de.docfaust.vbb.model.SpielerSaldo;
 
 /**
  * Erstellt die Mails als HTML Strings über das TemplateTool Velocity.
@@ -29,20 +29,19 @@ public class VelocityMailTemplates implements MailTemplates {
 	private final DecimalFormat format = new DecimalFormat("###,###.##");
 
 	@Override
-	public String getSaldoMail(final Spiel spiel, final String name, final List<Entry<String, BigDecimal>> salden,
-			final BigDecimal completesaldo) {
+	public String getSaldoMail(final Spiel spiel, final String name, final SaldoModel salden) {
 		Map<String, Object> values = new HashMap<String, Object>();
 
 		values.put("name", name);
 		values.put("datum", new SimpleDateFormat("dd.MM.yyyy").format(spiel.getDatum()));
-		values.put("completesaldo", format.format(completesaldo));
+		values.put("completesaldo", format.format(salden.getCompleteSaldo()));
 
 		// Salden aufbauen
 		List<Map<String, Object>> saldoList = new ArrayList<Map<String, Object>>();
-		for (Entry<String, BigDecimal> saldo : salden) {
+		for (SpielerSaldo saldo : salden.getSpielersaldi()) {
 			Map<String, Object> saldoMap = new HashMap<String, Object>();
-			saldoMap.put("name", saldo.getKey());
-			saldoMap.put("betrag", format.format(saldo.getValue()));
+			saldoMap.put("name", saldo.getSpielerName());
+			saldoMap.put("betrag", format.format(saldo.getSaldo()));
 			saldoList.add(saldoMap);
 		}
 		values.put("saldo", saldoList);
@@ -61,7 +60,6 @@ public class VelocityMailTemplates implements MailTemplates {
 		return VelocityBuilder.getInstance().buildMessage(SALDO_MAIL, values);
 
 	}
-
 	@Override
 	public String getRegisterMail(final User user, final String domain) {
 		Map<String, Object> values = new HashMap<String, Object>();

@@ -1,7 +1,9 @@
 package de.docfaust.vbb.service;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
+import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.model.SaldoModel;
 
 /**
@@ -16,5 +18,11 @@ public interface SaldoService extends Serializable {
 	 * @return SaldoModel.
 	 */
 	SaldoModel getSaldo();
+
+	BigDecimal getCompleteSaldo();
+
+	BigDecimal getSpielSaldo(final Spiel spiel);
+
+	boolean isSpielSaldoZero(final Spiel spiel);
 
 }

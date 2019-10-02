@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.BuchungService;
+import de.docfaust.vbb.service.SpielService;
+import de.docfaust.vbb.service.SpielerService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
@@ -54,16 +56,22 @@ public class SearchSpielBean extends AbstractJSFBean {
 	 */
 	private Buchung selectedBuchung;
 
+	@Inject
+	private SpielerService spielerService;
+
+	@Inject
+	private SpielService spielService;
+
+	@Inject
+	private BuchungService buchungService;
+
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages UIMessages
 	 */
-	public SearchSpielBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public SearchSpielBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -81,8 +89,8 @@ public class SearchSpielBean extends AbstractJSFBean {
 	@PostConstruct
 	public void init() {
 		logger.debug("init called");
-		spiele = getServices().getSpiele();
-		spieler = getServices().getSpieler();
+		spiele = spielService.getSpiele();
+		spieler = spielerService.getSpieler();
 		if (spiele.size() > 0) {
 			selectedSpiel = spiele.get(0);
 			List<Buchung> buchungen = selectedSpiel.getBuchungen();
@@ -131,7 +139,7 @@ public class SearchSpielBean extends AbstractJSFBean {
 		logger.debug("Speichere Buchung: " + ToStringBuilder.reflectionToString(selectedBuchung));
 		if (selectedBuchung.getDescription() != null && selectedBuchung.getSpieler() != null
 				&& selectedBuchung.getPrice() != null) {
-			getServices().saveBuchung(selectedBuchung);
+			buchungService.saveBuchung(selectedBuchung);
 			showUIMessage(MessageConstants.ENTRY_SAVED);
 		} else {
 			logger.warn("Keine Auswahl getätigt");
@@ -145,7 +153,7 @@ public class SearchSpielBean extends AbstractJSFBean {
 	public void deleteSpiel() {
 		if (selectedSpiel != null) {
 			logger.info("Lösche: " + selectedSpiel.toString());
-			Statusliste statusliste = getServices().deleteSpiel(selectedSpiel);
+			Statusliste statusliste = spielService.deleteSpiel(selectedSpiel);
 
 			if (!statusliste.booleanValue()) {
 				this.showMessages(statusliste);
@@ -182,7 +190,8 @@ public class SearchSpielBean extends AbstractJSFBean {
 		logger.info("Lösche ausgewählte Buchung: " + selectedBuchung);
 		if (selectedBuchung != null) {
 			selectedSpiel.getBuchungen().remove(selectedBuchung);
-			getServices().deleteBuchung(selectedBuchung);
+			// TODO Buchungservice
+			buchungService.deleteBuchung(selectedBuchung);
 			selectedBuchung = selectedSpiel.getBuchungen().get(0);
 		} else {
 			logger.warn("Keine Buchung ausgewählt");
@@ -210,6 +219,7 @@ public class SearchSpielBean extends AbstractJSFBean {
 
 	/**
 	 * Just for meeting conventions.
+	 * 
 	 * @param newGameDisabled nix
 	 */
 	public void setNewGameDisabled(final boolean newGameDisabled) {

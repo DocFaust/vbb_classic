@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Season;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.SeasonService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
@@ -32,17 +32,17 @@ public class EditSeasonBean extends AbstractJSFBean {
 
 	private List<Season> seasons = null;
 	private Season selectedSeason;
+	@Inject
+	private SeasonService seasonService;
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditSeasonBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public EditSeasonBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -60,7 +60,7 @@ public class EditSeasonBean extends AbstractJSFBean {
 	@PostConstruct
 	public void init() {
 		logger.debug("Hole Seasons");
-		setSeasons(getServices().getSeasons());
+		setSeasons(seasonService.getSeasons());
 		if (seasons != null && seasons.size() > 0) {
 			setSelectedSeason(seasons.get(0));
 		}
@@ -88,7 +88,7 @@ public class EditSeasonBean extends AbstractJSFBean {
 	public void delete() {
 		if (selectedSeason != null) {
 			logger.info(selectedSeason.getDescription());
-			Statusliste statusliste = getServices().deleteSaison(selectedSeason);
+			Statusliste statusliste = seasonService.deleteSaison(selectedSeason);
 			showMessages(statusliste);
 
 		} else {
@@ -114,7 +114,7 @@ public class EditSeasonBean extends AbstractJSFBean {
 		logger.debug("Speichere Saison: " + ToStringBuilder.reflectionToString(selectedSeason));
 		if (selectedSeason.getStartdate() != null && selectedSeason.getEnddate() != null
 				&& selectedSeason.getPrice() != null) {
-			getServices().saveSeason(selectedSeason);
+			seasonService.saveSeason(selectedSeason);
 			logger.info("Saison gespeichert");
 			showUIMessage(MessageConstants.SEASON_SAVED);
 		} else {

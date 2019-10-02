@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Group;
 import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.GroupService;
+import de.docfaust.vbb.service.UserService;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
@@ -33,17 +34,20 @@ public class EditUserBean extends AbstractJSFBean {
 	private User selectedUser;
 	private List<Group> groups = null;
 	private Group selectedGroup = null;
+	@Inject
+	private UserService userService;
+
+	@Inject
+	private GroupService groupService;
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditUserBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public EditUserBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 		init();
 	}
@@ -62,12 +66,12 @@ public class EditUserBean extends AbstractJSFBean {
 	@PostConstruct
 	public void init() {
 		logger.debug("Hole Users");
-		setUsers(getServices().getUsers());
+		setUsers(userService.getUsers());
 		if (users != null && users.size() > 0) {
 			setSelectedUser(users.get(0));
 			setSelectedGroup(selectedUser.getGroup());
 		}
-		setGroups(getServices().getGroups());
+		setGroups(groupService.getGroups());
 
 	}
 
@@ -91,7 +95,7 @@ public class EditUserBean extends AbstractJSFBean {
 	 * Löscht die ausgewählte Saison.
 	 */
 	public void delete() {
-		getServices().deleteUser(getSelectedUser());
+		userService.deleteUser(getSelectedUser());
 		init();
 	}
 
@@ -107,7 +111,7 @@ public class EditUserBean extends AbstractJSFBean {
 	 * Speichert den ausgewählten User.
 	 */
 	public void saveUser() {
-		Statusliste statusliste = getServices().saveUser(getSelectedUser());
+		Statusliste statusliste = userService.saveUser(getSelectedUser());
 		showMessages(statusliste);
 	}
 

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.UserService;
 import de.docfaust.vbb.util.FacesHelper;
 import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.messages.MessageConstants;
@@ -38,16 +38,17 @@ public class EditProfileBean extends AbstractJSFBean {
 	private String password;
 	private String passwordrepeat;
 
+	@Inject
+	private UserService userService;
+
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditProfileBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public EditProfileBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -66,7 +67,7 @@ public class EditProfileBean extends AbstractJSFBean {
 	public void init() {
 		String userid = FacesHelper.getCurrentUserID();
 		if (userid != null) {
-			user = getServices().getLoggedInUser(userid);
+			user = userService.getLoggedInUser(userid);
 		}
 	}
 
@@ -99,7 +100,7 @@ public class EditProfileBean extends AbstractJSFBean {
 	 */
 	public void save() {
 		logger.info("Speichere " + user.toString());
-		Statusliste statusliste = getServices().saveUser(user);
+		Statusliste statusliste = userService.saveUser(user);
 
 		showMessages(statusliste);
 	}

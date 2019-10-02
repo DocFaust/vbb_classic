@@ -6,13 +6,13 @@
 		<h:form>
 			<p:panel id="saldopnl" header="Saldo">
 				<div id="saldodiv">
-				<p:dataTable id="saldo" value="#{spielBean.saldo }" var="s" scrollable="true">
+				<p:dataTable id="saldo" value="#{saldoBean.saldoModel.spielersaldi }" var="s" scrollable="true">
 
 					<p:column id="namen" headerText="#{msg['saldo.name'] }" width="20%">
-						<p:outputLabel value="#{s.key }" />
+						<p:outputLabel value="#{s.spielerName }" />
 					</p:column>
 					<p:column id="salden" headerText="#{msg['saldo.saldo'] }" width="15%">
-						<p:outputLabel value="#{s.value }" style="float:right">
+						<p:outputLabel value="#{s.saldo }" style="float:right">
 							<f:convertNumber currencyCode="EUR" type="currency" locale="de_DE"/>
 						</p:outputLabel>
 					</p:column>
@@ -21,7 +21,7 @@
 				<p:separator/>
 				<h:panelGrid border="0" columns="2">
 					<p:outputLabel value="#{msg['checksumme.cs'] }" />
-					<p:outputLabel value="#{spielBean.completeSaldo }">
+					<p:outputLabel value="#{saldoBean.saldoModel.completeSaldo }">
 						<f:convertNumber currencyCode="EUR" type="currency" locale="de_DE"/>
 					</p:outputLabel>
 				</h:panelGrid>

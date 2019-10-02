@@ -16,7 +16,11 @@ import org.slf4j.LoggerFactory;
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.BuchungService;
+import de.docfaust.vbb.service.SaldoService;
+import de.docfaust.vbb.service.SeasonService;
+import de.docfaust.vbb.service.SpielService;
+import de.docfaust.vbb.service.SpielerService;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
@@ -38,23 +42,46 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 	@Inject
 	private Logger logger;
 
-	// private List<Buchung> buchungen = new ArrayList<>();
 	private Buchung selectedBuchung = null;
 	private List<Spieler> alleSpieler = new ArrayList<>();
 	private BigDecimal saldo;
 	private BigDecimal completeSaldo;
 	private Spiel selectedSpiel;
 
+	@Inject
+	private SpielerService spielerService;
+	
+	@Inject
+	private SpielService spielService;
+
+	@Inject
+	private SeasonService seasonService;
+
+	@Inject
+	private BuchungService buchungService;
+
+	@Inject
+	private SaldoService saldoService;
+
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages     from JUnit
+	 * @param spielerService from JUnit
+	 * @param spielService   from JUnit
+	 * @param seasonService  from JUnit
+	 * @param buchungService from JUnit
+	 * @param saldoService   from JUnit
 	 */
-	public CreateIndividualBookingBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public CreateIndividualBookingBean(final UIMessages uiMessages, final SpielerService spielerService,
+			final SpielService spielService, final SeasonService seasonService, final BuchungService buchungService,
+			final SaldoService saldoService) {
+		super(uiMessages);
+		this.spielerService = spielerService;
+		this.spielService = spielService;
+		this.seasonService = seasonService;
+		this.buchungService = buchungService;
+		this.saldoService = saldoService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -71,11 +98,11 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 	 */
 	@PostConstruct
 	public void init() {
-		setAlleSpieler(getServices().getSpieler());
-		setCompleteSaldo(getServices().getCompleteSaldo());
+		setAlleSpieler(spielerService.getSpieler());
+		setCompleteSaldo(saldoService.getCompleteSaldo());
 		setSelectedSpiel(new Spiel());
 		setSelectedDate(new Date());
-		selectedSpiel.setSeason(getServices().getSeason(selectedSpiel.getDatum()));
+		selectedSpiel.setSeason(seasonService.getSeason(selectedSpiel.getDatum()));
 
 	}
 
@@ -87,10 +114,10 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 		if (getSelectedSpiel() == null) {
 			setSelectedSpiel(new Spiel());
 		}
-		Statusliste statusliste = getServices().saveSpiel(selectedSpiel);
-		selectedSpiel.getBuchungen().forEach(buchung -> getServices().saveBuchung(buchung));
+		Statusliste statusliste = spielService.saveSpiel(selectedSpiel);
+		selectedSpiel.getBuchungen().forEach(buchung -> buchungService.saveBuchung(buchung));
 		showMessages(statusliste);
-		completeSaldo = getServices().getCompleteSaldo();
+		completeSaldo = saldoService.getCompleteSaldo();
 		saldo = getSaldo();
 	}
 
@@ -113,7 +140,6 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 		selectedSpiel.addBuchung(selectedBuchung);
 	}
 
-
 	public Buchung getSelectedBuchung() {
 		return selectedBuchung;
 	}
@@ -128,6 +154,7 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 
 	/**
 	 * Setzt das Selektierte Datum in das ausgewählte Spiel.
+	 * 
 	 * @param selectedDate Datum
 	 */
 	public void setSelectedDate(final Date selectedDate) {
@@ -143,7 +170,8 @@ public class CreateIndividualBookingBean extends AbstractJSFBean {
 	}
 
 	/**
-	 * Berechnet des Saldo des ausgewählten Spiels und gibt ihn zurück. 
+	 * Berechnet des Saldo des ausgewählten Spiels und gibt ihn zurück.
+	 * 
 	 * @return Saldo des ausgewählten Spiels
 	 */
 	public BigDecimal getSaldo() {

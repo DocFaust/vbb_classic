@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 import de.docfaust.vbb.rest.model.RestSpiel;
 import de.docfaust.vbb.rest.model.RestSpieler;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.SpielerService;
 
 /**
  * Rest Implementation.
@@ -16,13 +16,12 @@ import de.docfaust.vbb.service.VBBServices;
  *
  */
 public class VBBRestImpl implements VBBRestInterface {
- 
 	@Inject
-	private VBBServices services;
-
+	private SpielerService spielerService;
+	
 	@Override
 	public Collection<RestSpieler> getSpieler() {
-		return services.getSpieler().stream().map(p -> new RestSpieler(p.getName())).collect(Collectors.toList());
+		return spielerService.getSpieler().stream().map(p -> new RestSpieler(p.getName())).collect(Collectors.toList());
 	}
 
 	@Override

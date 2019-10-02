@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.SpielerServiceImpl;
 import de.docfaust.vbb.util.EntityFactory;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -138,7 +138,7 @@ public class TestCreateBookingBean extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testCallSetters() {
-		CreateIndividualBookingBean bean = new CreateIndividualBookingBean(new VBBServices(em), new UIMessagesTestImpl());
+		CreateIndividualBookingBean bean = initBean();
 		bean.init();
 //		bean.setSelectedBuchung(selectedBuchung);
 //		bean.setSelectedDate(selectedDate);
@@ -147,7 +147,8 @@ public class TestCreateBookingBean extends JpaBaseRolledBackTestCase {
 	}
 
 	private CreateIndividualBookingBean initBean() {
-		CreateIndividualBookingBean bean = new CreateIndividualBookingBean(new VBBServices(em), new UIMessagesTestImpl());
+		CreateIndividualBookingBean bean = new CreateIndividualBookingBean(new UIMessagesTestImpl(), new SpielerServiceImpl(new SpielerServiceImpl(em))) {
+		};
 		bean.init();
 		assertThat(bean.getAlleSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpiel().getId(), equalTo(0));

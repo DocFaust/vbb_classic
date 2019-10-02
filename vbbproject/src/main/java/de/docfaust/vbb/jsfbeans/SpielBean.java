@@ -1,11 +1,9 @@
 package de.docfaust.vbb.jsfbeans;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -16,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Spieler;
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.SpielService;
+import de.docfaust.vbb.service.SpielerService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
@@ -42,16 +41,19 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 
 	private List<Spieler> spielerList = new ArrayList<>();
 
+	@Inject
+	private SpielerService spielerService;
+
+	@Inject
+	private SpielService spielService;
+
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages UIMessages
 	 */
-	public SpielBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public SpielBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 		init();
 	}
@@ -64,13 +66,12 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 		super();
 	}
 
-
 	/**
 	 * Befüllt die Spielerliste.
 	 */
 	@PostConstruct
 	public void init() {
-		this.setSpielerList(getServices().getSpielerModelList());
+		this.setSpielerList(spielerService.getSpieler());
 	}
 
 	public Date getDatum() {
@@ -97,9 +98,9 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 
 	private boolean checkSpielerList() {
 		logger.info(spielerList.toString());
-		
+
 		long count = spielerList.stream().filter(Spieler::isBezahlt).count();
-		
+
 		if (count > 1) {
 			logger.warn("Mehr als ein bezahlender Spieler");
 			showUIMessage(MessageConstants.GAME_MORE_PAYERS);
@@ -119,20 +120,12 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	public void saveSpiel() {
 		logger.info("Das Spiel wird gespeichert");
 		if (checkSpielerList()) {
-			Statusliste statusliste = getServices().saveSpiel(this.spielerList, getDatum());
+			Statusliste statusliste = spielService.saveSpiel(this.spielerList, getDatum());
 			if (!statusliste.booleanValue()) {
 				statusliste.forEach(status -> showUIMessage(status.getCode()));
 			} else {
 				showUIMessage(MessageConstants.GAME_SAVED);
 			}
 		}
-	}
-
-	public List<Entry<String, BigDecimal>> getSaldo() {
-		return getServices().getSaldo();
-	}
-
-	public BigDecimal getCompleteSaldo() {
-		return getServices().getCompleteSaldo();
 	}
 }

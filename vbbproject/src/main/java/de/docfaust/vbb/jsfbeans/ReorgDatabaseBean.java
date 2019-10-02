@@ -9,7 +9,7 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.CutOffService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 
@@ -28,6 +28,9 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	private static final long serialVersionUID = -5112060097524596736L;
 
 	@Inject
+	private CutOffService cutOffService;
+
+	@Inject
 	private Logger logger;
 
 	private Date selectedDatum = new Date();
@@ -35,16 +38,13 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages UIMessages
 	 */
-	public ReorgDatabaseBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public ReorgDatabaseBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
-	
+
 	/**
 	 * Konstruktor mit EJB Kontext.
 	 * 
@@ -60,7 +60,7 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	public void starteBuchungsschnitt() {
 		logger.debug("Starte den Buchungsschnitt");
 		try {
-			getServices().starteBuchungsschnitt(getSelectedDatum());
+			cutOffService.starteBuchungsschnitt(getSelectedDatum());
 			showUIMessage(MessageConstants.REORG_SUCCESSFUL, getSelectedDatum());
 		} catch (Exception e) {
 			logger.error("Es ist ein Fehler beim Buchungsschnitt aufgetreten", e);
@@ -75,5 +75,5 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	public void setSelectedDatum(final Date selectedDatum) {
 		this.selectedDatum = selectedDatum;
 	}
-	
+
 }

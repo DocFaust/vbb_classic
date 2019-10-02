@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Buchung;
+import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.facades.BuchungFacade;
 import de.docfaust.vbb.data.facades.SpielerFacade;
@@ -26,26 +27,6 @@ import de.docfaust.vbb.model.SpielerSaldo;
  */
 @Dependent
 public class SaldoServiceImpl implements SaldoService {
-
-	/**
-	 * CDI Usage.
-	 */
-	public SaldoServiceImpl() {
-
-	}
-
-	/**
-	 * JUnit usage.
-	 * 
-	 * @param buchungFacade buchungFacade
-	 * @param spielerFacade spielerFacade
-	 */
-	public SaldoServiceImpl(final BuchungFacade buchungFacade, final SpielerFacade spielerFacade) {
-		super();
-		this.buchungFacade = buchungFacade;
-		this.spielerFacade = spielerFacade;
-		logger = LoggerFactory.getLogger(getClass());
-	}
 
 	/**
 	 * 
@@ -70,6 +51,26 @@ public class SaldoServiceImpl implements SaldoService {
 	@Inject
 	private Logger logger;
 
+	/**
+	 * CDI Usage.
+	 */
+	public SaldoServiceImpl() {
+		
+	}
+	
+	/**
+	 * JUnit usage.
+	 * 
+	 * @param buchungFacade buchungFacade
+	 * @param spielerFacade spielerFacade
+	 */
+	public SaldoServiceImpl(final BuchungFacade buchungFacade, final SpielerFacade spielerFacade) {
+		super();
+		this.buchungFacade = buchungFacade;
+		this.spielerFacade = spielerFacade;
+		logger = LoggerFactory.getLogger(getClass());
+	}
+	
 	@Override
 	public final SaldoModel getSaldo() {
 		logger.debug("calculating Saldo");
@@ -90,11 +91,83 @@ public class SaldoServiceImpl implements SaldoService {
 	 * 
 	 * @return Saldo
 	 */
-	private BigDecimal getCompleteSaldo() {
+	@Override
+	public BigDecimal getCompleteSaldo() {
 		BigDecimal completeSaldo = buchungFacade.findAll().stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO,
 				BigDecimal::add);
 		logger.debug("Komplettes Saldo: " + completeSaldo);
 		return completeSaldo;
 	}
+
+	
+	/**
+	 * Zeigt an, ob der Saldo eines Spieles 0 ist.
+	 * 
+	 * @param spiel
+	 *            zu prüfendes Spiel.
+	 * @return true, wenn Saldo ausgeglichen
+	 */
+	@Override
+	public boolean isSpielSaldoZero(final Spiel spiel) {
+		boolean isSumZero;
+		BigDecimal saldo = getSpielSaldo(spiel);
+		if (saldo.compareTo(BigDecimal.ZERO) != 0) {
+			logger.warn("Saldo Spiel " + spiel.toString() + " ist nicht Null");
+			isSumZero = false;
+		} else {
+			isSumZero = true;
+		}
+		return isSumZero;
+	}
+
+	/**
+	 * Liefert das Saldo eines Spieles.
+	 * 
+	 * @param spiel
+	 *            , dessen Saldo gewollt ist.
+	 * @return Saldo
+	 */
+	@Override
+	public BigDecimal getSpielSaldo(final Spiel spiel) {
+		List<Buchung> buchungen = spiel.getBuchungen();
+		BigDecimal sum = buchungen.stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+		logger.info("Saldo: " + sum);
+		return sum;
+	}
+
+
+//	/**
+//	 * Liefert eine Key Value Liste von Spielern mit deren Saldo.
+//	 * 
+//	 * @return Liats evon Saldi
+//	 */
+//	public final List<Entry<String, BigDecimal>> getSaldo() {
+//		List<Spieler> names = spielerService.getSpieler();
+//		Map<String, BigDecimal> saldi = new Hashtable<String, BigDecimal>();
+//		
+//		names.stream()
+//			.sorted((s1, s2) -> s1.getActivityLevel() - s2.getActivityLevel())
+//			.forEach(spieler -> {
+//			BigDecimal saldo =  spieler.getBuchungen().stream()
+//					.map(Buchung::getPrice)
+//					.reduce(BigDecimal.ZERO, BigDecimal::add)
+//					.setScale(2, RoundingMode.HALF_UP);
+//
+//			saldi.put(spieler.getName(), saldo);
+//		});
+//		
+//		logger.info(saldi.toString());
+//		
+////		for (Spieler spieler : names) {
+////
+////			List<Buchung> buchungen = spieler.getBuchungen();
+////			BigDecimal saldo =  buchungen.stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+////			saldo.setScale(2, RoundingMode.HALF_UP);
+////
+////			saldi.put(spieler.getName(), saldo);
+////		}
+//		List<Entry<String, BigDecimal>> entries = new ArrayList<Entry<String, BigDecimal>>(saldi.entrySet());
+//		return entries;
+//	}
 
 }

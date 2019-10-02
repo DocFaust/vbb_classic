@@ -13,8 +13,6 @@ import static org.junit.Assert.fail;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -26,7 +24,6 @@ import de.docfaust.vbb.data.entity.Group;
 import de.docfaust.vbb.data.entity.Mail;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.entity.Spiel;
-import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.facades.UserFacade;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
@@ -47,87 +44,87 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 	private static final String INES_IGNORANT = "Ines Ignorant";
 	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
 
-	@Test
-	public void testStartBuchungssschnitt() {
-		VBBServices services = new VBBServices(em);
+//	@Test
+//	public void testStartBuchungssschnitt() {
+//		VBBServices services = new VBBServices(em);
+//
+//		
+//		services.starteBuchungsschnitt(new Date());
+//		
+//
+//		printDatabaseContent();
+//
+//		List<Buchung> allBuchungen = services.getBuchungen();
+//		assertEquals(10, allBuchungen.size());
+//		for (Buchung buchung : allBuchungen) {
+//			if (ALFRED_ALTMANN.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-7, buchung.getPrice().intValue());
+//			}
+//			if (BERND_BROT.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-7, buchung.getPrice().intValue());
+//			}
+//			if (CLAUS_CASPAR.equals(buchung.getSpieler().getName())) {
+//				assertThat(buchung.getPrice().floatValue(), equalTo(1.5F));
+//			}
+//			if (DOREEN_DURSTIG.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-4, buchung.getPrice().intValue());
+//			}
+//			if (ERICH_EHRLICH.equals(buchung.getSpieler().getName())) {
+//				assertEquals(8, buchung.getPrice().intValue());
+//			}
+//			if (FRANZ_FROEHLICH.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-2, buchung.getPrice().intValue());
+//			}
+//			if (GRETCHEN_GROEHL.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-2, buchung.getPrice().intValue());
+//			}
+//			if (HANS_HOHLBIRNE.equals(buchung.getSpieler().getName())) {
+//				assertEquals(-2, buchung.getPrice().intValue());
+//			}
+//			if (INES_IGNORANT.equals(buchung.getSpieler().getName())) {
+//				assertEquals(7, buchung.getPrice().intValue());
+//			}
+//			if (JOHANN_JOCHBEIN.equals(buchung.getSpieler().getName())) {
+//				assertEquals(9, buchung.getPrice().intValue());
+//			}
+//		}
+//
+//		List<Season> allSeasons = services.getSeasons();
+//		assertThat(allSeasons.size(), equalTo(1));
+//
+//		List<Spiel> allSpiele = services.getSpiele();
+//		assertEquals(1, allSpiele.size());
+//
+//	}
 
-		
-		services.starteBuchungsschnitt(new Date());
-		
-
-		printDatabaseContent();
-
-		List<Buchung> allBuchungen = services.getBuchungen();
-		assertEquals(10, allBuchungen.size());
-		for (Buchung buchung : allBuchungen) {
-			if (ALFRED_ALTMANN.equals(buchung.getSpieler().getName())) {
-				assertEquals(-7, buchung.getPrice().intValue());
-			}
-			if (BERND_BROT.equals(buchung.getSpieler().getName())) {
-				assertEquals(-7, buchung.getPrice().intValue());
-			}
-			if (CLAUS_CASPAR.equals(buchung.getSpieler().getName())) {
-				assertThat(buchung.getPrice().floatValue(), equalTo(1.5F));
-			}
-			if (DOREEN_DURSTIG.equals(buchung.getSpieler().getName())) {
-				assertEquals(-4, buchung.getPrice().intValue());
-			}
-			if (ERICH_EHRLICH.equals(buchung.getSpieler().getName())) {
-				assertEquals(8, buchung.getPrice().intValue());
-			}
-			if (FRANZ_FROEHLICH.equals(buchung.getSpieler().getName())) {
-				assertEquals(-2, buchung.getPrice().intValue());
-			}
-			if (GRETCHEN_GROEHL.equals(buchung.getSpieler().getName())) {
-				assertEquals(-2, buchung.getPrice().intValue());
-			}
-			if (HANS_HOHLBIRNE.equals(buchung.getSpieler().getName())) {
-				assertEquals(-2, buchung.getPrice().intValue());
-			}
-			if (INES_IGNORANT.equals(buchung.getSpieler().getName())) {
-				assertEquals(7, buchung.getPrice().intValue());
-			}
-			if (JOHANN_JOCHBEIN.equals(buchung.getSpieler().getName())) {
-				assertEquals(9, buchung.getPrice().intValue());
-			}
-		}
-
-		List<Season> allSeasons = services.getSeasons();
-		assertThat(allSeasons.size(), equalTo(1));
-
-		List<Spiel> allSpiele = services.getSpiele();
-		assertEquals(1, allSpiele.size());
-
-	}
-
-	@Test
-	public void testSaveSpiel() {
-		VBBServices services = new VBBServices(em);
-		Date date = new Date();
-		Season season = EntityFactory.createSeason(EntityFactory.getActualDateAddDays(0), EntityFactory.getActualDateAddDays(2), BigDecimal.TEN,
-				"Aktuelle Saison");
-
-		services.saveSeason(season);
-		
-		List<Spieler> spielerList = new ArrayList<Spieler>();
-		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
-		spieler1.setAnwesend(true);
-		spieler1.setBezahlt(true);
-		spielerList.add(spieler1);
-
-		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
-		spieler2.setAnwesend(true);
-		spieler2.setBezahlt(false);
-		spielerList.add(spieler2);
-
-		services.saveSpiel(spielerList, date);
-
-		List<Spiel> allSpiele = services.getSpiele();
-		assertThat(allSpiele.size(), equalTo(5));
-		printDatabaseContent();
-		List<Buchung> allBuchungen = services.getBuchungen();
-		assertEquals(34, allBuchungen.size());
-	}
+//	@Test
+//	public void testSaveSpiel() {
+//		VBBServices services = new VBBServices(em);
+//		Date date = new Date();
+//		Season season = EntityFactory.createSeason(EntityFactory.getActualDateAddDays(0), EntityFactory.getActualDateAddDays(2), BigDecimal.TEN,
+//				"Aktuelle Saison");
+//
+//		services.saveSeason(season);
+//		
+//		List<Spieler> spielerList = new ArrayList<Spieler>();
+//		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+//		spieler1.setAnwesend(true);
+//		spieler1.setBezahlt(true);
+//		spielerList.add(spieler1);
+//
+//		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
+//		spieler2.setAnwesend(true);
+//		spieler2.setBezahlt(false);
+//		spielerList.add(spieler2);
+//
+//		services.saveSpiel(spielerList, date);
+//
+//		List<Spiel> allSpiele = services.getSpiele();
+//		assertThat(allSpiele.size(), equalTo(5));
+//		printDatabaseContent();
+//		List<Buchung> allBuchungen = services.getBuchungen();
+//		assertEquals(34, allBuchungen.size());
+//	}
 
 	@Test
 	public void testGetSaldo() {
@@ -195,13 +192,6 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 	}
 
 	@Test
-	public void testGetSpielerModelList() {
-		VBBServices services = new VBBServices(em);
-		List<Spieler> spielerModelList = services.getSpielerModelList();
-		assertEquals(10, spielerModelList.size());
-	}
-
-	@Test
 	public void testIsSpielSaldoZeroTrue() {
 		VBBServices services = new VBBServices(em);
 		List<Spiel> spiele = services.getSpiele();
@@ -242,13 +232,13 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 		}
 	}
 
-	@Test
-	public void testGetSpielerNames() {
-		VBBServices services = new VBBServices(em);
-		List<String> spielerModelList = services.getSpielerNames();
-		assertEquals(10, spielerModelList.size());
-	}
-	
+//	@Test
+//	public void testGetSpielerNames() {
+//		VBBServices services = new VBBServices(em);
+//		List<String> spielerModelList = services.getSpielerNames();
+//		assertEquals(10, spielerModelList.size());
+//	}
+//	
 	@Test
 	public void testSendSpiel() {
 		int count = facadenFactory.getMailFacade().count();
@@ -263,16 +253,16 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 		assertThat(facadenFactory.getMailFacade().count(), equalTo(count + spiel.getBuchungen().size()-1));
 	}
 	
-	@Test
-	public void testDeleteSaison()
-	{
-		VBBServices services = new VBBServices(em);
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		Season season = facadenFactory.getSeasonFacade().find(3);
-		Statusliste statusliste = services.deleteSaison(season);
-		assertTrue(statusliste.booleanValue());
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(2));
-	}
+//	@Test
+//	public void testDeleteSaison()
+//	{
+//		VBBServices services = new VBBServices(em);
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		Season season = facadenFactory.getSeasonFacade().find(3);
+//		Statusliste statusliste = services.deleteSaison(season);
+//		assertTrue(statusliste.booleanValue());
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(2));
+//	}
 	
 	@Test
 	public void testRegister()
@@ -418,65 +408,65 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 	}
 	
 	
-	@Test
-	public void testSaveSpieler(){
-		VBBServices services = new VBBServices(em);
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-		
-		Spieler spieler = EntityFactory.createSpieler(false, "Theodor Test", "ttest@test.de", false);
-		
-		services.saveSpieler(spieler);
-		
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(11));
-	}
-	
-	@Test
-	public void testDeleteSpielerNichtMöglich(){
-		VBBServices services = new VBBServices(em);
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-		
-		Spieler spieler = facadenFactory.getSpielerFacade().find(1);
-		
-		Statusliste liste = services.deleteSpieler(spieler);
-		
-		assertFalse(liste.booleanValue());
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-	}
-	
-	@Test
-	public void testDeleteSpielerOhneBuchungen(){
-		VBBServices services = new VBBServices(em);
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-		
-		Spieler spieler = facadenFactory.getSpielerFacade().find(1);
-		
-		spieler.getBuchungen().forEach(buchung -> facadenFactory.getBuchungFacade().remove(buchung));
-		spieler.getBuchungen().clear();
-		
-		Statusliste liste = services.deleteSpieler(spieler);
-		
-		assertTrue(liste.booleanValue());
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(27));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(9));
-	}
-
+//	@Test
+//	public void testSaveSpieler(){
+//		VBBServices services = new VBBServices(em);
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
+//		
+//		Spieler spieler = EntityFactory.createSpieler(false, "Theodor Test", "ttest@test.de", false);
+//		
+//		services.saveSpieler(spieler);
+//		
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(11));
+//	}
+//	
+//	@Test
+//	public void testDeleteSpielerNichtMöglich(){
+//		VBBServices services = new VBBServices(em);
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
+//		
+//		Spieler spieler = facadenFactory.getSpielerFacade().find(1);
+//		
+//		Statusliste liste = services.deleteSpieler(spieler);
+//		
+//		assertFalse(liste.booleanValue());
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
+//	}
+//	
+//	@Test
+//	public void testDeleteSpielerOhneBuchungen(){
+//		VBBServices services = new VBBServices(em);
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
+//		
+//		Spieler spieler = facadenFactory.getSpielerFacade().find(1);
+//		
+//		spieler.getBuchungen().forEach(buchung -> facadenFactory.getBuchungFacade().remove(buchung));
+//		spieler.getBuchungen().clear();
+//		
+//		Statusliste liste = services.deleteSpieler(spieler);
+//		
+//		assertTrue(liste.booleanValue());
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(27));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(9));
+//	}
+//
 	
 	@Test
 	public void testDeleteBuchung(){
@@ -601,22 +591,22 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 		
 	}
 	
-	@Test
-	public void testgetSpieler(){
-		VBBServices services = new VBBServices(em);
-		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-		assertThat(facadenFactory.getGroupFacade().count(), equalTo(3));
-		assertThat(facadenFactory.getUserFacade().count(), equalTo(2));
-
-		List<Spieler> spieler = services.getSpieler();
-		
-		assertThat(spieler.size(), equalTo(10));
-		assertThat(spieler, equalTo(facadenFactory.getSpielerFacade().findAll()));
-	}
-	
+//	@Test
+//	public void testgetSpieler(){
+//		VBBServices services = new VBBServices(em);
+//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
+//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
+//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
+//		assertThat(facadenFactory.getGroupFacade().count(), equalTo(3));
+//		assertThat(facadenFactory.getUserFacade().count(), equalTo(2));
+//
+//		List<Spieler> spieler = services.getSpieler();
+//		
+//		assertThat(spieler.size(), equalTo(10));
+//		assertThat(spieler, equalTo(facadenFactory.getSpielerFacade().findAll()));
+//	}
+//	
 	@Test
 	public void testProcessRegistrationYetRegistered(){
 		VBBServices services = new VBBServices(em);

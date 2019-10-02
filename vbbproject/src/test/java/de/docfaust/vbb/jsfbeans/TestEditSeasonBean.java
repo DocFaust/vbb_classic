@@ -11,7 +11,6 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
 public class TestEditSeasonBean extends JpaBaseRolledBackTestCase {
@@ -191,7 +190,7 @@ public class TestEditSeasonBean extends JpaBaseRolledBackTestCase {
 
 	
 	private EditSeasonBean initBean() {
-		EditSeasonBean bean = new EditSeasonBean(new VBBServices(em), new UIMessagesTestImpl());
+		EditSeasonBean bean = new EditSeasonBean(new UIMessagesTestImpl());
 		bean.init();
 		assertThat(bean.getSeasons().size(), equalTo(3));
 		assertThat(bean.getSelectedSeason().getDescription(), equalTo("Saison 1"));

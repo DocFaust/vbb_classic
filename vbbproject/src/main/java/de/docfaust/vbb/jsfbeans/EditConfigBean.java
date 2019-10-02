@@ -8,7 +8,7 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.ConfigService;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
 
@@ -30,6 +30,9 @@ public class EditConfigBean extends AbstractJSFBean {
 	@Inject
 	private Logger logger;
 	
+	@Inject
+	private ConfigService configService;
+
 	private String domain;
 	private String subject;
 	private String from;
@@ -37,13 +40,11 @@ public class EditConfigBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param services
-	 *            Services
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditConfigBean(final VBBServices services, final UIMessages uiMessages) {
-		super(services, uiMessages);
+	public EditConfigBean(final UIMessages uiMessages) {
+		super(uiMessages);
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -60,9 +61,9 @@ public class EditConfigBean extends AbstractJSFBean {
 	 */
 	@PostConstruct
 	public void init() {
-		domain = getServices().getMailConfig().getDomain();
-		subject = getServices().getMailConfig().getRegistrationSubject();
-		from = getServices().getMailConfig().getSenderAddress();
+		domain = configService.getMailConfig().getDomain();
+		subject = configService.getMailConfig().getRegistrationSubject();
+		from = configService.getMailConfig().getSenderAddress();
 	}
 
 	/**
@@ -78,9 +79,9 @@ public class EditConfigBean extends AbstractJSFBean {
 	 */
 	public void save() {
 		logger.debug("Speichere Werte.");
-		getServices().getMailConfig().setDomain(domain);
-		getServices().getMailConfig().setRegistrationSubject(subject);
-		getServices().getMailConfig().setSenderaddress(from);
+		configService.getMailConfig().setDomain(domain);
+		configService.getMailConfig().setRegistrationSubject(subject);
+		configService.getMailConfig().setSenderaddress(from);
 		showUIMessage(MessageConstants.CONFIG_SAVED);
 	}
 	

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.docfaust.vbb.service.VBBServices;
+import de.docfaust.vbb.service.RegisterService;
 
 /**
  * Servlet implementation class JSONServlet.
@@ -29,16 +29,15 @@ public class RegisterServlet extends HttpServlet {
 	private Logger logger;
 
 	@Inject
-	private VBBServices services;
+	private RegisterService registerService;
 
 	/**
 	 * Konstruktor für Testzwecke.
+	 * @param registerService RegisterService from JUnit
 	 * 
-	 * @param services
-	 *            services Instanz
 	 */
-	public RegisterServlet(final VBBServices services) {
-		this.services = services;
+	public RegisterServlet(final RegisterService registerService) {
+		this.registerService = registerService;
 		this.logger = LoggerFactory.getLogger(getClass());
 	}
 
@@ -66,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String regid = request.getParameter(REGID);
 		String userid = request.getParameter(USERID);
-		String serverResponse = services.processRegistration(regid, userid);
+		String serverResponse = registerService.processRegistration(regid, userid);
 		logger.info("Antwort: " + serverResponse);
 		response.setContentType("text/html");
 		response.setCharacterEncoding(request.getCharacterEncoding());

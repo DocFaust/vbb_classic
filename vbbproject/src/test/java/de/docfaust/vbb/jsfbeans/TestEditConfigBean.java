@@ -5,11 +5,9 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-
 import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
 public class TestEditConfigBean extends JpaBaseRolledBackTestCase {
@@ -55,7 +53,7 @@ public class TestEditConfigBean extends JpaBaseRolledBackTestCase {
 
 
 	private EditConfigBean initBean() {
-		EditConfigBean bean = new EditConfigBean(new VBBServices(em), new UIMessagesTestImpl());
+		EditConfigBean bean = new EditConfigBean(new UIMessagesTestImpl());
 		bean.init();
 		assertThat(bean.getDomain(), equalTo("http://localhost:8080/vbb"));
 		assertThat(bean.getFrom(), equalTo("wfaust@localhost.net"));
