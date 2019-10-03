@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.SpielerServiceImpl;
 import de.docfaust.vbb.util.EntityFactory;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -147,8 +147,8 @@ public class TestCreateBookingBean extends JpaBaseRolledBackTestCase {
 	}
 
 	private CreateIndividualBookingBean initBean() {
-		CreateIndividualBookingBean bean = new CreateIndividualBookingBean(new UIMessagesTestImpl(), new SpielerServiceImpl(new SpielerServiceImpl(em))) {
-		};
+		ServiceCreator sc = new ServiceCreator(em);
+		CreateIndividualBookingBean bean = new CreateIndividualBookingBean(new UIMessagesTestImpl(), sc.getSpielerService(), sc.getSpielService(),sc.getSeasonService(),sc.getBuchungService(),sc.getSaldoService());
 		bean.init();
 		assertThat(bean.getAlleSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpiel().getId(), equalTo(0));

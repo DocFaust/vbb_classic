@@ -43,11 +43,12 @@ public class EditUserBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages UIMessages
 	 */
-	public EditUserBean(final UIMessages uiMessages) {
+	public EditUserBean(final UIMessages uiMessages, final UserService userService, final GroupService groupService) {
 		super(uiMessages);
+		this.userService = userService;
+		this.groupService = groupService;
 		logger = LoggerFactory.getLogger(getClass());
 		init();
 	}

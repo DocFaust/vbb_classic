@@ -48,9 +48,13 @@ public class RegisterBean extends AbstractJSFBean {
 	 * 
 	 * @param uiMessages UIMessages
 	 */
-	public RegisterBean(final UIMessages uiMessages) {
+	public RegisterBean(final UIMessages uiMessages, final UserService userService, final MailService mailService) {
+
 		super(uiMessages);
+		this.userService = userService;
+		this.mailService = mailService;
 		logger = LoggerFactory.getLogger(getClass());
+
 	}
 
 	/**

@@ -9,9 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -24,7 +24,7 @@ public class TestEditUserBean extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testSaveUser() {
-		EditUserBean bean = new EditUserBean(new VBBServices(em), new UIMessagesTestImpl());
+		EditUserBean bean = initBean();
 		List<User> users = bean.getUsers();
 		bean.setSelectedUser(users.get(0));
 		User user = bean.getSelectedUser();
@@ -36,10 +36,16 @@ public class TestEditUserBean extends JpaBaseRolledBackTestCase {
 		assertThat(name.getUsername(), equalTo("Neuer Name"));
 	}
 
+	private EditUserBean initBean() {
+		ServiceCreator sc = new ServiceCreator(em);
+		EditUserBean bean = new EditUserBean( new UIMessagesTestImpl(), sc.getUserService(), sc.getGroupService());
+		return bean;
+	}
+
 	@Test
 	public void testDeleteUser() {
+		EditUserBean bean = initBean();
 		int userCount = facadenFactory.getUserFacade().count();
-		EditUserBean bean = new EditUserBean(new VBBServices(em), new UIMessagesTestImpl());
 		List<User> users = bean.getUsers();
 		bean.setSelectedUser(users.get(0));
 		bean.delete();
@@ -50,7 +56,7 @@ public class TestEditUserBean extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testAddUser() {
 		int userCount = facadenFactory.getUserFacade().count();
-		EditUserBean bean = new EditUserBean(new VBBServices(em), new UIMessagesTestImpl());
+		EditUserBean bean = initBean();
 		bean.addUser();
 		
 		User user = bean.getSelectedUser();

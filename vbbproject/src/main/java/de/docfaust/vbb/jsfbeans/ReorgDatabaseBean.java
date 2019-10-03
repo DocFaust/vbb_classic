@@ -40,8 +40,9 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	 * 
 	 * @param uiMessages UIMessages
 	 */
-	public ReorgDatabaseBean(final UIMessages uiMessages) {
+	public ReorgDatabaseBean(final UIMessages uiMessages, final CutOffService cutOffService) {
 		super(uiMessages);
+		this.cutOffService = cutOffService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

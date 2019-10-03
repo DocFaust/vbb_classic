@@ -41,8 +41,9 @@ public class EditSpielerBean extends AbstractJSFBean {
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditSpielerBean(final UIMessages uiMessages) {
+	public EditSpielerBean(final UIMessages uiMessages, final SpielerService spielerService) {
 		super(uiMessages);
+		this.spielerService = spielerService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

@@ -7,8 +7,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
 public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
@@ -19,16 +19,20 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	}
 	@Test
 	public void testInit() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+	}
+	private EditSpielerBean initBean() {
+		ServiceCreator sc = new ServiceCreator(em);
+		EditSpielerBean bean = new EditSpielerBean(new UIMessagesTestImpl(), sc.getSpielerService());
+		bean.init();
+		return bean;
 	}
 
 	@Test
 	public void testAddSpieler() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
 		
@@ -41,8 +45,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testSaveSpieler() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
 		
@@ -65,8 +68,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testDeleteSpieler() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
 		
@@ -94,8 +96,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	}
 	@Test
 	public void testDeleteSpielerError() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
 		
@@ -109,8 +110,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	}
 	@Test
 	public void testDeleteSpielerNoneSelected() {
-		EditSpielerBean bean = new EditSpielerBean(new VBBServices(em), new UIMessagesTestImpl());
-		bean.init();
+		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
 		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
 		

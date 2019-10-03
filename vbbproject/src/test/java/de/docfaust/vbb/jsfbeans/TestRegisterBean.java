@@ -1,13 +1,15 @@
 package de.docfaust.vbb.jsfbeans;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.RegistrationState;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -21,7 +23,7 @@ public class TestRegisterBean extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testRegister() {
 		int oldUserCount = facadenFactory.getUserFacade().count();
-		RegisterBean bean = new RegisterBean(new VBBServices(em), new UIMessagesTestImpl());
+		RegisterBean bean = initBean();
 		
 		String email = "hhuegel@got.wr";
 		String password = "12345678";
@@ -43,10 +45,16 @@ public class TestRegisterBean extends JpaBaseRolledBackTestCase {
 		assertThat(user.getState(), equalTo(RegistrationState.OPEN));
 		assertThat(user.getRegid(), not(nullValue()));
 	}
+
+	private RegisterBean initBean() {
+		ServiceCreator sc = new ServiceCreator(em);
+		RegisterBean bean = new RegisterBean(new UIMessagesTestImpl(), sc.getUserService(), sc.getMailService());
+		return bean;
+	}
 	@Test
 	public void testRegisterExists() {
 		int oldUserCount = facadenFactory.getUserFacade().count();
-		RegisterBean bean = new RegisterBean(new VBBServices(em), new UIMessagesTestImpl());
+		RegisterBean bean = initBean();
 		
 		String email = "hhuegel@got.wr";
 		String password = "12345678";

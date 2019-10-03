@@ -37,21 +37,20 @@ import lombok.Getter;
 public class ServiceCreator {
 
 	private FacadenFactory ff;
-	
-	private final BuchungService buchungService;
-	private final SpielService spielService;
-	private final SpielerService spielerService;
-	private final SeasonService seasonService;
-	private final ConfigService configService;
-	private final MailService mailService;
-	private final CutOffService cutOffService;
-	private final GroupService groupService;
-	private final UserService userService;
-	private final RegisterService registerService;
-	private final TokenService tokenService;
-	private final SaldoService saldoService;
-	
-	
+
+	private BuchungService buchungService;
+	private SpielService spielService;
+	private SpielerService spielerService;
+	private SeasonService seasonService;
+	private ConfigService configService;
+	private MailService mailService;
+	private CutOffService cutOffService;
+	private GroupService groupService;
+	private UserService userService;
+	private RegisterService registerService;
+	private TokenService tokenService;
+	private SaldoService saldoService;
+
 	public ServiceCreator(final EntityManager em) {
 		this.ff = new FacadenFactory(em);
 		this.buchungService = new BuchungServiceImpl(ff.getBuchungFacade());
@@ -60,17 +59,19 @@ public class ServiceCreator {
 		this.configService = new ConfigServiceImpl(new MailConfigurationDBImpl(em));
 		this.groupService = new GroupServiceImpl(ff.getGroupFacade());
 		this.userService = new UserServiceImpl(ff.getUserFacade());
-		
-		this.registerService = new RegisterServiceImpl(ff.getMailFacade(), userService, configService, groupService, new VelocityRegisterTemplates());
-		this.mailService = new MailServiceImpl(ff.getMailFacade(), saldoService, configService, new VelocityMailTemplates());
+
+		this.registerService = new RegisterServiceImpl(ff.getMailFacade(), userService, configService, groupService,
+				new VelocityRegisterTemplates());
+		this.mailService = new MailServiceImpl(ff.getMailFacade(), saldoService, configService,
+				new VelocityMailTemplates());
 		this.cutOffService = new CutOffServiceImpl(buchungService, spielService, spielerService, seasonService);
-		this.spielService = new SpielServiceImpl(ff.getSpielFacade(), buchungService, spielerService, seasonService, mailService, new JournalDBWriter(ff.getJournalFacade()));
+		this.spielService = new SpielServiceImpl(ff.getSpielFacade(), buchungService, spielerService, seasonService,
+				mailService, new JournalDBWriter(ff.getJournalFacade()));
 
 		// FIXME only one facade per service
 		this.tokenService = new TokenServiceImpl(ff.getTokenFacade(), ff.getConfigFacade());
 		// FIXME only one facade per service
 		this.saldoService = new SaldoServiceImpl(ff.getBuchungFacade(), ff.getSpielerFacade());
-		
+
 	}
 }
-
