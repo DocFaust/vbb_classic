@@ -15,7 +15,6 @@ import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.facades.BuchungFacade;
-import de.docfaust.vbb.data.facades.SpielerFacade;
 import de.docfaust.vbb.model.SaldoModel;
 import de.docfaust.vbb.model.SpielerSaldo;
 
@@ -43,7 +42,7 @@ public class SaldoServiceImpl implements SaldoService {
 	 * DB-Zugriff für Spieler.
 	 */
 	@EJB
-	private SpielerFacade spielerFacade;
+	private SpielerService spielerService;
 
 	/**
 	 * Logger.
@@ -55,27 +54,27 @@ public class SaldoServiceImpl implements SaldoService {
 	 * CDI Usage.
 	 */
 	public SaldoServiceImpl() {
-		
+
 	}
-	
+
 	/**
 	 * JUnit usage.
 	 * 
-	 * @param buchungFacade buchungFacade
-	 * @param spielerFacade spielerFacade
+	 * @param buchungFacade  buchungFacade
+	 * @param spielerService spielerService
 	 */
-	public SaldoServiceImpl(final BuchungFacade buchungFacade, final SpielerFacade spielerFacade) {
+	public SaldoServiceImpl(final BuchungFacade buchungFacade, final SpielerService spielerService) {
 		super();
 		this.buchungFacade = buchungFacade;
-		this.spielerFacade = spielerFacade;
+		this.spielerService = spielerService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
-	
+
 	@Override
 	public final SaldoModel getSaldo() {
 		logger.debug("calculating Saldo");
 		SaldoModel model = new SaldoModel();
-		List<Spieler> names = spielerFacade.findSpieler();
+		List<Spieler> names = spielerService.getSpieler();
 		names.stream().forEach(spieler -> {
 			BigDecimal saldo = spieler.getBuchungen().stream().map(Buchung::getPrice)
 					.reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP);
@@ -99,12 +98,10 @@ public class SaldoServiceImpl implements SaldoService {
 		return completeSaldo;
 	}
 
-	
 	/**
 	 * Zeigt an, ob der Saldo eines Spieles 0 ist.
 	 * 
-	 * @param spiel
-	 *            zu prüfendes Spiel.
+	 * @param spiel zu prüfendes Spiel.
 	 * @return true, wenn Saldo ausgeglichen
 	 */
 	@Override
@@ -123,8 +120,7 @@ public class SaldoServiceImpl implements SaldoService {
 	/**
 	 * Liefert das Saldo eines Spieles.
 	 * 
-	 * @param spiel
-	 *            , dessen Saldo gewollt ist.
+	 * @param spiel , dessen Saldo gewollt ist.
 	 * @return Saldo
 	 */
 	@Override

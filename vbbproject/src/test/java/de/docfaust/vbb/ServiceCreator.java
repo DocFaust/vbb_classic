@@ -62,8 +62,7 @@ public class ServiceCreator {
 
 		this.registerService = new RegisterServiceImpl(ff.getMailFacade(), userService, configService, groupService,
 				new VelocityRegisterTemplates());
-		// FIXME only one facade per service
-		this.saldoService = new SaldoServiceImpl(ff.getBuchungFacade(), ff.getSpielerFacade());
+		this.saldoService = new SaldoServiceImpl(ff.getBuchungFacade(), spielerService);
 		this.mailService = new MailServiceImpl(ff.getMailFacade(), saldoService, configService,
 				new VelocityMailTemplates());
 		this.spielService = new SpielServiceImpl(ff.getSpielFacade(), buchungService, spielerService, seasonService,
