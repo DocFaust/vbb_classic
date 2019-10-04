@@ -26,6 +26,11 @@ import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 import de.docfaust.vbb.validation.ValidationFactory;
 
+/**
+ * Implementation of SpielService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class SpielServiceImpl implements SpielService {
 	/**

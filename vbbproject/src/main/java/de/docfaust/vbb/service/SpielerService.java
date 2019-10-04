@@ -6,8 +6,17 @@ import java.util.List;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Service for Entity Spieler.
+ * @author wfa339
+ *
+ */
 public interface SpielerService extends Serializable {
 
+	/**
+	 * Returns List of all Spieler.
+	 * @return List of all Spieler
+	 */
 	List<Spieler> getSpieler();
 
 	/**
@@ -34,6 +43,10 @@ public interface SpielerService extends Serializable {
 	 */
 	Statusliste deleteSpieler(Spieler spieler);
 
+	/**
+	 * Increments the activitylevel of a given Spieler.
+	 * @param spieler Spieler
+	 */
 	void incrementActivityLevel(Spieler spieler);
 
 }

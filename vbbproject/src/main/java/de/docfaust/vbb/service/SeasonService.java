@@ -7,6 +7,11 @@ import java.util.List;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Service for the Entity Season.
+ * @author wfa339
+ *
+ */
 public interface SeasonService extends Serializable {
 
 	/**
@@ -34,6 +39,10 @@ public interface SeasonService extends Serializable {
 	 */
 	Statusliste deleteSaison(Season season);
 
+	/**
+	 * Returns all Seasons.
+	 * @return List with Seasons
+	 */
 	List<Season> getSeasons();
 
 	/**

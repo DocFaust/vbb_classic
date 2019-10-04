@@ -19,10 +19,24 @@ public interface SaldoService extends Serializable {
 	 */
 	SaldoModel getSaldo();
 
+	/**
+	 * Calculates overall saldo.
+	 * @return Saldo
+	 */
 	BigDecimal getCompleteSaldo();
 
-	BigDecimal getSpielSaldo(final Spiel spiel);
+	/**
+	 * Calculates the Saldo for a Spiel.
+	 * @param spiel Game
+	 * @return Saldo
+	 */
+	BigDecimal getSpielSaldo(Spiel spiel);
 
-	boolean isSpielSaldoZero(final Spiel spiel);
+	/**
+	 * Returns if Saldo for Spiel is 0.
+	 * @param spiel Spiel
+	 * @return true if 0
+	 */
+	boolean isSpielSaldoZero(Spiel spiel);
 
 }

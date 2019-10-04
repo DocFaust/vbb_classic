@@ -6,6 +6,11 @@ import java.util.List;
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Service for Entity User.
+ * @author wfa339
+ *
+ */
 public interface UserService extends Serializable {
 
 	/**
@@ -42,12 +47,33 @@ public interface UserService extends Serializable {
 	 */
 	User getLoggedInUser(String userid);
 
-	User login(final String userid, final String password);
+	/**
+	 * Login with User and password.
+	 * @param userid UserID
+	 * @param password Password
+	 * @return User
+	 */
+	User login(String userid, String password);
 
-	User login(final User user);
+	/**
+	 * Login with User.
+	 * @param user User
+	 * @return Logged in user
+	 */
+	User login(User user);
 
-	Statusliste register(final User user);
+	/**
+	 * registers a User.
+	 * @param user User
+	 * @return status
+	 */
+	Statusliste register(User user);
 
+	/**
+	 * Finds a User by Name.
+	 * @param userid id
+	 * @return User.
+	 */
 	User findByUserName(String userid);
 
 }

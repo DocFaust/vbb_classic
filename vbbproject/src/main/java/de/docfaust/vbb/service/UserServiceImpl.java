@@ -15,6 +15,11 @@ import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Implementation of UserService
+ * @author wfa339
+ *
+ */
 @Dependent
 public class UserServiceImpl implements UserService {
 

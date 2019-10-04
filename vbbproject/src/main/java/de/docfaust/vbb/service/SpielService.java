@@ -8,6 +8,11 @@ import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Services for Entity Spiel.
+ * @author wfa339
+ *
+ */
 public interface SpielService extends Serializable {
 
 	/**
@@ -60,10 +65,23 @@ public interface SpielService extends Serializable {
 	 */
 	Statusliste saveSpiel(Spiel spiel);
 
-	Statusliste deleteSpiel(final Spiel spiel);
+	/**
+	 * Deletes a Spiel.
+	 * @param spiel Spiel
+	 * @return Status list
+	 */
+	Statusliste deleteSpiel(Spiel spiel);
 
+	/**
+	 * Returns List of Spiele.
+	 * @return Spiele
+	 */
 	List<Spiel> getSpiele();
 
-	void removeOldSpiele(final Date date);
+	/**
+	 * Deletes Spiele before a date.
+	 * @param date Datum
+	 */
+	void removeOldSpiele(Date date);
 
 }

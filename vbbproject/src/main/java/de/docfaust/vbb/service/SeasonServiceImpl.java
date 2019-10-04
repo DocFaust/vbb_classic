@@ -14,6 +14,11 @@ import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.facades.SeasonFacade;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Implementation of SeasonService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class SeasonServiceImpl implements SeasonService {
 

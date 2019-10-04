@@ -15,6 +15,11 @@ import de.docfaust.vbb.data.facades.SpielerFacade;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
+/**
+ * Implementation of SpielerService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class SpielerServiceImpl implements SpielerService {
 	/**
