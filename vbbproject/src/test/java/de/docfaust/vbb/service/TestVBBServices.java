@@ -43,137 +43,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 	private static final String ALFRED_ALTMANN = "Alfred Altmann";
 	private static final String INES_IGNORANT = "Ines Ignorant";
 	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
-// FIXME Write new
-//	@Test
-//	public void testStartBuchungssschnitt() {
-//		VBBServices services = new VBBServices(em);
-//
-//		
-//		services.starteBuchungsschnitt(new Date());
-//		
-//
-//		printDatabaseContent();
-//
-//		List<Buchung> allBuchungen = services.getBuchungen();
-//		assertEquals(10, allBuchungen.size());
-//		for (Buchung buchung : allBuchungen) {
-//			if (ALFRED_ALTMANN.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-7, buchung.getPrice().intValue());
-//			}
-//			if (BERND_BROT.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-7, buchung.getPrice().intValue());
-//			}
-//			if (CLAUS_CASPAR.equals(buchung.getSpieler().getName())) {
-//				assertThat(buchung.getPrice().floatValue(), equalTo(1.5F));
-//			}
-//			if (DOREEN_DURSTIG.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-4, buchung.getPrice().intValue());
-//			}
-//			if (ERICH_EHRLICH.equals(buchung.getSpieler().getName())) {
-//				assertEquals(8, buchung.getPrice().intValue());
-//			}
-//			if (FRANZ_FROEHLICH.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-2, buchung.getPrice().intValue());
-//			}
-//			if (GRETCHEN_GROEHL.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-2, buchung.getPrice().intValue());
-//			}
-//			if (HANS_HOHLBIRNE.equals(buchung.getSpieler().getName())) {
-//				assertEquals(-2, buchung.getPrice().intValue());
-//			}
-//			if (INES_IGNORANT.equals(buchung.getSpieler().getName())) {
-//				assertEquals(7, buchung.getPrice().intValue());
-//			}
-//			if (JOHANN_JOCHBEIN.equals(buchung.getSpieler().getName())) {
-//				assertEquals(9, buchung.getPrice().intValue());
-//			}
-//		}
-//
-//		List<Season> allSeasons = services.getSeasons();
-//		assertThat(allSeasons.size(), equalTo(1));
-//
-//		List<Spiel> allSpiele = services.getSpiele();
-//		assertEquals(1, allSpiele.size());
-//
-//	}
-
-//	@Test
-//	public void testSaveSpiel() {
-//		VBBServices services = new VBBServices(em);
-//		Date date = new Date();
-//		Season season = EntityFactory.createSeason(EntityFactory.getActualDateAddDays(0), EntityFactory.getActualDateAddDays(2), BigDecimal.TEN,
-//				"Aktuelle Saison");
-//
-//		services.saveSeason(season);
-//		
-//		List<Spieler> spielerList = new ArrayList<Spieler>();
-//		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
-//		spieler1.setAnwesend(true);
-//		spieler1.setBezahlt(true);
-//		spielerList.add(spieler1);
-//
-//		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
-//		spieler2.setAnwesend(true);
-//		spieler2.setBezahlt(false);
-//		spielerList.add(spieler2);
-//
-//		services.saveSpiel(spielerList, date);
-//
-//		List<Spiel> allSpiele = services.getSpiele();
-//		assertThat(allSpiele.size(), equalTo(5));
-//		printDatabaseContent();
-//		List<Buchung> allBuchungen = services.getBuchungen();
-//		assertEquals(34, allBuchungen.size());
-//	}
-
-//	@Test
-//	public void testGetSaldo() {
-//		VBBServices services = new VBBServices(em);
-//		List<Entry<String, BigDecimal>> saldos = services.getSaldo();
-//		for (Entry<String, BigDecimal> entry : saldos) {
-//			String name = entry.getKey();
-//			BigDecimal saldo = entry.getValue();
-//			logger.info(String.format("%1$22s %2$6.2f", name, saldo));
-//			if (name.equals(ALFRED_ALTMANN)) {
-//				assertEquals(-7, saldo.intValue());
-//			}
-//			if (name.equals(BERND_BROT)) {
-//				assertEquals(-7, saldo.intValue());
-//			}
-//			if (name.equals(CLAUS_CASPAR)) {
-//				assertThat(saldo.floatValue(), equalTo(1.5F));
-//			}
-//			if (name.equals(DOREEN_DURSTIG)) {
-//				assertEquals(-4, saldo.intValue());
-//			}
-//			if (name.equals(ERICH_EHRLICH)) {
-//				assertEquals(8, saldo.intValue());
-//			}
-//			if (name.equals(FRANZ_FROEHLICH)) {
-//				assertEquals(-2, saldo.intValue());
-//			}
-//			if (name.equals(GRETCHEN_GROEHL)) {
-//				assertEquals(-2, saldo.intValue());
-//			}
-//			if (name.equals(HANS_HOHLBIRNE)) {
-//				assertEquals(-2, saldo.intValue());
-//			}
-//			if (name.equals(INES_IGNORANT)) {
-//				assertEquals(7, saldo.intValue());
-//			}
-//			if (name.equals(JOHANN_JOCHBEIN)) {
-//				assertEquals(9, saldo.intValue());
-//			}
-//		}
-//	}
-//
-//	@Test
-//	public void testGetCompleteSaldo() {
-//		VBBServices services = new VBBServices(em);
-//		BigDecimal completeSaldo = services.getCompleteSaldo();
-//		assertEquals(0, completeSaldo.intValue());
-//	}
-//
+	// FIXME Write new
 //	@Test
 //	public void testSendRegistrationMail() {
 //		VBBServices services = new VBBServices(em);
@@ -191,6 +61,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		}
 //	}
 //
+	// FIXME Write new
 //	@Test
 //	public void testIsSpielSaldoZeroTrue() {
 //		VBBServices services = new VBBServices(em);
@@ -200,6 +71,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		}
 //	}
 //
+	// FIXME Write new
 //	@Test
 //	public void testIsSpielSaldoZeroFalse() throws ParseException {
 //		VBBServices services = new VBBServices(em);
@@ -222,6 +94,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		logger.info(services.getSpielSaldo(spiel).toString());
 //		assertFalse(services.isSpielSaldoZero(spiel));
 //	}
+	// FIXME Write new
 //
 //	@Test
 //	public void testGetSpielSaldo() {
@@ -232,13 +105,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		}
 //	}
 //
-////	@Test
-////	public void testGetSpielerNames() {
-////		VBBServices services = new VBBServices(em);
-////		List<String> spielerModelList = services.getSpielerNames();
-////		assertEquals(10, spielerModelList.size());
-////	}
-////	
+	// FIXME Write new
 //	@Test
 //	public void testSendSpiel() {
 //		int count = facadenFactory.getMailFacade().count();
@@ -253,6 +120,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(facadenFactory.getMailFacade().count(), equalTo(count + spiel.getBuchungen().size()-1));
 //	}
 //	
+	// FIXME Write new
 ////	@Test
 ////	public void testDeleteSaison()
 ////	{
@@ -264,6 +132,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 ////		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(2));
 ////	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testRegister()
 //	{
@@ -281,6 +150,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(facadenFactory.getUserFacade().count(), equalTo(3));
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testRegisterExisting()
 //	{
@@ -298,6 +168,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(facadenFactory.getUserFacade().count(), equalTo(2));
 //	}
 //
+	// FIXME Write new
 //	@Test
 //	public void testLogin()
 //	{
@@ -322,6 +193,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(lu.getState(), equalTo(state));
 //	}
 //
+	// FIXME Write new
 //	@Test
 //	public void testLoginUnsuccessful()
 //	{
@@ -342,6 +214,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		User lu = services.login(user2);
 //		assertThat(lu, nullValue());
 //	}
+	// FIXME Write new
 //	@Test
 //	public void testLogin2()
 //	{
@@ -365,6 +238,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(lu.getState(), equalTo(state));
 //	}
 //
+	// FIXME Write new
 //	@Test
 //	public void testLogin2Unsuccessful()
 //	{
@@ -384,30 +258,12 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		User lu = services.login(userid, "falsches PW");
 //		assertThat(lu, nullValue());
 //	}
-//	@Test
-//	public void testDeleteSpiel()
-//	{
-//		VBBServices services = new VBBServices(em);
-//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-//
-//		Spiel spiel = facadenFactory.getSpielFacade().find(1);
-//		
-//		services.deleteSpiel(spiel);
-//		
-//		assertThat(facadenFactory.getSpielFacade().count(), equalTo(3));
-//		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(27));
-//		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-//		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-//	}
-//
 //	private User createUser(final String userid, final String passwort) {
 //		return EntityFactory.createUser(userid, null, null, passwort, null, null);
 //	}
 //	
 //	
+	// FIXME Write new
 ////	@Test
 ////	public void testSaveSpieler(){
 ////		VBBServices services = new VBBServices(em);
@@ -426,6 +282,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 ////		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(11));
 ////	}
 ////	
+	// FIXME Write new
 ////	@Test
 ////	public void testDeleteSpielerNichtMöglich(){
 ////		VBBServices services = new VBBServices(em);
@@ -445,6 +302,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 ////		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
 ////	}
 ////	
+	// FIXME Write new
 ////	@Test
 ////	public void testDeleteSpielerOhneBuchungen(){
 ////		VBBServices services = new VBBServices(em);
@@ -468,6 +326,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 ////	}
 ////
 //	
+	// FIXME Write new
 //	@Test
 //	public void testDeleteBuchung(){
 //		VBBServices services = new VBBServices(em);
@@ -486,6 +345,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testGetGroups(){
 //		VBBServices services = new VBBServices(em);
@@ -499,6 +359,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(groups.size(), equalTo(facadenFactory.getGroupFacade().count()));
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testGetUsers(){
 //		VBBServices services = new VBBServices(em);
@@ -513,6 +374,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(users.size(), equalTo(facadenFactory.getUserFacade().count()));
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testDeleteUser(){
 //		VBBServices services = new VBBServices(em);
@@ -535,6 +397,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testSaveUser(){
 //		VBBServices services = new VBBServices(em);
@@ -576,6 +439,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(facadenFactory.getUserFacade().count(), equalTo(3));
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testGetLoggedInUser(){
 //		VBBServices services = new VBBServices(em);
@@ -591,22 +455,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		
 //	}
 //	
-////	@Test
-////	public void testgetSpieler(){
-////		VBBServices services = new VBBServices(em);
-////		assertThat(facadenFactory.getSpielFacade().count(), equalTo(4));
-////		assertThat(facadenFactory.getBuchungFacade().count(), equalTo(31));
-////		assertThat(facadenFactory.getSeasonFacade().count(), equalTo(3));
-////		assertThat(facadenFactory.getSpielerFacade().count(), equalTo(10));
-////		assertThat(facadenFactory.getGroupFacade().count(), equalTo(3));
-////		assertThat(facadenFactory.getUserFacade().count(), equalTo(2));
-////
-////		List<Spieler> spieler = services.getSpieler();
-////		
-////		assertThat(spieler.size(), equalTo(10));
-////		assertThat(spieler, equalTo(facadenFactory.getSpielerFacade().findAll()));
-////	}
-////	
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationYetRegistered(){
 //		VBBServices services = new VBBServices(em);
@@ -621,6 +470,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		LoggerFactory.getLogger(getClass()).info(registration);
 //		assertThat(registration, containsString("Bereits registriert"));
 //	}
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationWrongRegid(){
 //		VBBServices services = new VBBServices(em);
@@ -635,6 +485,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		LoggerFactory.getLogger(getClass()).info(registration);
 //		assertThat(registration, containsString("Falsche ID"));
 //	}
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationOk(){
 //		VBBServices services = new VBBServices(em);
@@ -661,6 +512,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		assertThat(registration, containsString("Registrierung erfolgreich"));
 //	}
 //	
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationNoUser(){
 //		VBBServices services = new VBBServices(em);
@@ -675,6 +527,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		LoggerFactory.getLogger(getClass()).info(registration);
 //		assertThat(registration, containsString("Nicht registriert"));
 //	}
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationWrongRequest(){
 //		VBBServices services = new VBBServices(em);
@@ -689,6 +542,7 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		LoggerFactory.getLogger(getClass()).info(registration);
 //		assertThat(registration, containsString("Registrierungsfehler"));
 //	}
+	// FIXME Write new
 //	@Test
 //	public void testProcessRegistrationWrongRegID(){
 //		VBBServices services = new VBBServices(em);
@@ -702,9 +556,5 @@ public class TestVBBServices extends JpaBaseRolledBackTestCase {
 //		String registration = services.processRegistration(null, "aaltmann");
 //		LoggerFactory.getLogger(getClass()).info(registration);
 //		assertThat(registration, containsString("Falsche ID"));
-//	}
-//	@Test
-//	public void test(){
-//		assertThat(new VBBServices(), not(nullValue()));
 //	}
 }

@@ -134,40 +134,4 @@ public class SaldoServiceImpl implements SaldoService {
 		logger.info("Saldo: " + sum);
 		return sum;
 	}
-
-
-//	/**
-//	 * Liefert eine Key Value Liste von Spielern mit deren Saldo.
-//	 * 
-//	 * @return Liats evon Saldi
-//	 */
-//	public final List<Entry<String, BigDecimal>> getSaldo() {
-//		List<Spieler> names = spielerService.getSpieler();
-//		Map<String, BigDecimal> saldi = new Hashtable<String, BigDecimal>();
-//		
-//		names.stream()
-//			.sorted((s1, s2) -> s1.getActivityLevel() - s2.getActivityLevel())
-//			.forEach(spieler -> {
-//			BigDecimal saldo =  spieler.getBuchungen().stream()
-//					.map(Buchung::getPrice)
-//					.reduce(BigDecimal.ZERO, BigDecimal::add)
-//					.setScale(2, RoundingMode.HALF_UP);
-//
-//			saldi.put(spieler.getName(), saldo);
-//		});
-//		
-//		logger.info(saldi.toString());
-//		
-////		for (Spieler spieler : names) {
-////
-////			List<Buchung> buchungen = spieler.getBuchungen();
-////			BigDecimal saldo =  buchungen.stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-////			saldo.setScale(2, RoundingMode.HALF_UP);
-////
-////			saldi.put(spieler.getName(), saldo);
-////		}
-//		List<Entry<String, BigDecimal>> entries = new ArrayList<Entry<String, BigDecimal>>(saldi.entrySet());
-//		return entries;
-//	}
-
 }
