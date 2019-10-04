@@ -1,48 +1,18 @@
 package de.docfaust.vbb.service;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map.Entry;
-
-import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import de.docfaust.vbb.data.entity.Buchung;
-import de.docfaust.vbb.data.entity.Group;
-import de.docfaust.vbb.data.entity.Mail;
-import de.docfaust.vbb.data.entity.Season;
-import de.docfaust.vbb.data.entity.Spiel;
-import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.data.facades.UserFacade;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.util.EntityFactory;
-import de.docfaust.vbb.util.PasswordUtil;
-import de.docfaust.vbb.util.RegistrationState;
-import de.docfaust.vbb.util.statusliste.Statusliste;
 
 public class TestVBBServices extends JpaBaseRolledBackTestCase {
-	private static final String HANS_HOHLBIRNE = "Hans Hohlbirne";
-	private static final String GRETCHEN_GROEHL = "Gretchen Gröhl";
-	private static final String FRANZ_FROEHLICH = "Franz Fröhlich";
-	private static final String ERICH_EHRLICH = "Erich Ehrlich";
-	private static final String DOREEN_DURSTIG = "Doreen Durstig";
-	private static final String CLAUS_CASPAR = "Claus Caspar";
-	private static final String BERND_BROT = "Bernd Brot";
-	private static final String ALFRED_ALTMANN = "Alfred Altmann";
-	private static final String INES_IGNORANT = "Ines Ignorant";
-	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
+//	private static final String HANS_HOHLBIRNE = "Hans Hohlbirne";
+//	private static final String GRETCHEN_GROEHL = "Gretchen Gröhl";
+//	private static final String FRANZ_FROEHLICH = "Franz Fröhlich";
+//	private static final String ERICH_EHRLICH = "Erich Ehrlich";
+//	private static final String DOREEN_DURSTIG = "Doreen Durstig";
+//	private static final String CLAUS_CASPAR = "Claus Caspar";
+//	private static final String BERND_BROT = "Bernd Brot";
+//	private static final String ALFRED_ALTMANN = "Alfred Altmann";
+//	private static final String INES_IGNORANT = "Ines Ignorant";
+//	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
 	// FIXME Write new
 //	@Test
 //	public void testSendRegistrationMail() {

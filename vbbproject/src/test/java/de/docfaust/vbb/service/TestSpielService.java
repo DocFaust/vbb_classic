@@ -1,7 +1,6 @@
 package de.docfaust.vbb.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,12 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.ServiceCreator;
-import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;

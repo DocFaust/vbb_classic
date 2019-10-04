@@ -26,13 +26,11 @@ public class VBBRestImpl implements VBBRestInterface {
 
 	@Override
 	public Collection<RestSpieler> getSaldo() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Response createSpiel(final RestSpiel spiel) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

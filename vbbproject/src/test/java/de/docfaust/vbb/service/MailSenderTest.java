@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.data.entity.Mail;
-import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.facades.MailFacade;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 

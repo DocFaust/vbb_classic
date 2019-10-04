@@ -46,7 +46,6 @@ public class SeasonServiceImpl implements SeasonService {
 	 */
 	public SeasonServiceImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Liefert die Saison zu einem Datum.

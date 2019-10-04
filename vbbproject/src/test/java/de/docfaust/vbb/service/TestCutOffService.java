@@ -1,10 +1,7 @@
 package de.docfaust.vbb.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.Buchung;
-import de.docfaust.vbb.data.entity.Season;
-import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 
 public class TestCutOffService extends JpaBaseRolledBackTestCase {

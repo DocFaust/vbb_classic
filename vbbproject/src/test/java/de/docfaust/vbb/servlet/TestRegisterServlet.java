@@ -1,31 +1,12 @@
 package de.docfaust.vbb.servlet;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-import java.io.File;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
-import de.docfaust.vbb.data.entity.Group;
-import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.util.PasswordUtil;
-import de.docfaust.vbb.util.RegistrationState;
 
 public class TestRegisterServlet extends JpaBaseRolledBackTestCase {
 

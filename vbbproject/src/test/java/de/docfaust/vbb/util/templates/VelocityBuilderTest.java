@@ -4,22 +4,10 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import de.docfaust.vbb.data.entity.Buchung;
-import de.docfaust.vbb.data.entity.Spiel;
-import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.entity.User;
-import de.docfaust.vbb.util.EntityFactory;
 
 public class VelocityBuilderTest {
 	private RegisterTemplates registerTemplates = new VelocityRegisterTemplates();

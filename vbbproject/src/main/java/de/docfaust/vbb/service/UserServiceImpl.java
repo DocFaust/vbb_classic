@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
 	 */
 	public UserServiceImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

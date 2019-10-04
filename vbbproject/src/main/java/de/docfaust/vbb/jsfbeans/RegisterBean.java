@@ -127,7 +127,6 @@ public class RegisterBean extends AbstractJSFBean {
 			this.showMessages(statusliste);
 		} else {
 			showUIMessage(MessageConstants.REGISTER_SUCCESSFUL);
-			// TODO MailService
 			mailService.sendRegistrationMail(user);
 			return "/registered";
 		}

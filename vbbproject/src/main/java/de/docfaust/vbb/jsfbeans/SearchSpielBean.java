@@ -196,7 +196,6 @@ public class SearchSpielBean extends AbstractJSFBean {
 		logger.info("Lösche ausgewählte Buchung: " + selectedBuchung);
 		if (selectedBuchung != null) {
 			selectedSpiel.getBuchungen().remove(selectedBuchung);
-			// TODO Buchungservice
 			buchungService.deleteBuchung(selectedBuchung);
 			selectedBuchung = selectedSpiel.getBuchungen().get(0);
 		} else {
