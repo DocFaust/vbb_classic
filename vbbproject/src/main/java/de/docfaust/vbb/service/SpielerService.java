@@ -34,6 +34,6 @@ public interface SpielerService extends Serializable {
 	 */
 	Statusliste deleteSpieler(Spieler spieler);
 
-	void incrementActivityLevel(final Spieler spieler);
+	void incrementActivityLevel(Spieler spieler);
 
 }
