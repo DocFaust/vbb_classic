@@ -69,8 +69,7 @@ public class ServiceCreator {
 				mailService, new JournalDBWriter(ff.getJournalFacade()));
 		this.cutOffService = new CutOffServiceImpl(buchungService, spielService, spielerService, seasonService);
 
-		// FIXME only one facade per service
-		this.tokenService = new TokenServiceImpl(ff.getTokenFacade(), ff.getConfigFacade());
+		this.tokenService = new TokenServiceImpl(ff.getTokenFacade(), configService);
 
 	}
 }

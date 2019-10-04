@@ -11,10 +11,8 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.docfaust.vbb.data.entity.Config;
 import de.docfaust.vbb.data.entity.Token;
 import de.docfaust.vbb.data.entity.ValidityState;
-import de.docfaust.vbb.data.facades.ConfigFacade;
 import de.docfaust.vbb.data.facades.TokenFacade;
 
 /**
@@ -42,7 +40,7 @@ public class TokenServiceImpl implements TokenService {
 	 * DB-Zugriff für Tokens.
 	 */
 	@EJB
-	private ConfigFacade configFacade;
+	private ConfigService configService;
 
 	/**
 	 * Logger.
@@ -60,11 +58,11 @@ public class TokenServiceImpl implements TokenService {
 	/**
 	 * Constructor with a given Tokenfacade for JUnit usage.
 	 * @param tf Token facade
-	 * @param cf Config Facade
+	 * @param configService configService
 	 */
-	public TokenServiceImpl(final TokenFacade tf, final ConfigFacade cf) {
-		tokenFacade = tf; 
-		configFacade = cf;
+	public TokenServiceImpl(final TokenFacade tf, final ConfigService configService) {
+		this.tokenFacade = tf; 
+		this.configService = configService;
 		logger = LoggerFactory.getLogger(getClass());
 
 	}
@@ -111,17 +109,11 @@ public class TokenServiceImpl implements TokenService {
 	
 	@Override
 	public String generateTokenURL(final String token) {
-		String domain = getDomain();
+		String domain = configService.getMailConfig().getDomain();
 		StringBuffer buf = new StringBuffer();
 		buf.append(domain);
 		buf.append(SALDO_PATH).append(token);
 		String url = buf.toString();
 		return url;
-	}
-
-	private String getDomain() {
-		Config domainConfig = configFacade.findByKey(DOMAIN);
-		String domain = domainConfig.getConfigvalue();
-		return domain;
 	}
 }
