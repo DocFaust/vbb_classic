@@ -16,7 +16,7 @@ import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
 /**
- * Implementation of UserService
+ * Implementation of UserService.
  * @author wfa339
  *
  */

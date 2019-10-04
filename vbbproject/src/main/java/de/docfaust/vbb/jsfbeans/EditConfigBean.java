@@ -29,7 +29,7 @@ public class EditConfigBean extends AbstractJSFBean {
 
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	private ConfigService configService;
 
@@ -40,8 +40,8 @@ public class EditConfigBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages    UIMessages
+	 * @param configService for JUnit
 	 */
 	public EditConfigBean(final UIMessages uiMessages, final ConfigService configService) {
 		super(uiMessages);
@@ -85,7 +85,7 @@ public class EditConfigBean extends AbstractJSFBean {
 		configService.getMailConfig().setSenderaddress(from);
 		showUIMessage(MessageConstants.CONFIG_SAVED);
 	}
-	
+
 	public String getDomain() {
 		return domain;
 	}

@@ -8,6 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * SaldoModel.
+ * @author wfa339
+ *
+ */
 @Getter
 @Setter
 @ToString

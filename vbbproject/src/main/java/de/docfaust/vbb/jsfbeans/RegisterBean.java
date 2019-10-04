@@ -47,6 +47,8 @@ public class RegisterBean extends AbstractJSFBean {
 	 * Konstruktor ohne EJB Kontext.
 	 * 
 	 * @param uiMessages UIMessages
+	 * @param userService for JUnit
+	 * @param mailService for JUnit
 	 */
 	public RegisterBean(final UIMessages uiMessages, final UserService userService, final MailService mailService) {
 

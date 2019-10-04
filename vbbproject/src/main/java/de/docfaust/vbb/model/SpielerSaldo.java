@@ -9,6 +9,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * SpielerSaldo Model.
+ * @author wfa339
+ *
+ */
 @Getter
 @Setter
 @ToString

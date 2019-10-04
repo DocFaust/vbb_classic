@@ -38,8 +38,8 @@ public class EditSeasonBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages    UIMessages
+	 * @param seasonService for JUnit
 	 */
 	public EditSeasonBean(final UIMessages uiMessages, final SeasonService seasonService) {
 		super(uiMessages);

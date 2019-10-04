@@ -44,10 +44,11 @@ public class EditProfileBean extends AbstractJSFBean {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages  UIMessages
+	 * @param userService for JUnit
+	 * 
 	 */
-	public EditProfileBean(final UIMessages uiMessages, final UserService userService ) {
+	public EditProfileBean(final UIMessages uiMessages, final UserService userService) {
 		super(uiMessages);
 		this.userService = userService;
 		logger = LoggerFactory.getLogger(getClass());

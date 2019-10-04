@@ -50,9 +50,12 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages UIMessages
+	 * @param uiMessages     UIMessages
+	 * @param spielerService for JUnit
+	 * @param spielService   for JUnit
 	 */
-	public SpielBean(final UIMessages uiMessages, final SpielerService spielerService, final SpielService spielService) {
+	public SpielBean(final UIMessages uiMessages, final SpielerService spielerService,
+			final SpielService spielService) {
 		super(uiMessages);
 		this.spielerService = spielerService;
 		this.spielService = spielService;

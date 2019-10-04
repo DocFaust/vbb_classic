@@ -39,6 +39,7 @@ public class ReorgDatabaseBean extends AbstractJSFBean {
 	 * Konstruktor ohne EJB Kontext.
 	 * 
 	 * @param uiMessages UIMessages
+	 * @param cutOffService for JUnit
 	 */
 	public ReorgDatabaseBean(final UIMessages uiMessages, final CutOffService cutOffService) {
 		super(uiMessages);

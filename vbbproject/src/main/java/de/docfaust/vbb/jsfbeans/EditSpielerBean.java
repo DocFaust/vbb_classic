@@ -28,18 +28,18 @@ public class EditSpielerBean extends AbstractJSFBean {
 	private static final long serialVersionUID = 7172540684751844438L;
 	@Inject
 	private Logger logger;
-	
-	@Inject 
+
+	@Inject
 	private SpielerService spielerService;
-	
+
 	private Spieler selectedSpieler = null;
 	private List<Spieler> spieler = null;
 
 	/**
 	 * Konstruktor ohne EJB Kontext.
 	 * 
-	 * @param uiMessages
-	 *            UIMessages
+	 * @param uiMessages     UIMessages
+	 * @param spielerService for JUnit
 	 */
 	public EditSpielerBean(final UIMessages uiMessages, final SpielerService spielerService) {
 		super(uiMessages);
@@ -96,9 +96,9 @@ public class EditSpielerBean extends AbstractJSFBean {
 		if (statusliste.booleanValue()) {
 			spieler.remove(selectedSpieler);
 			if (spieler != null && spieler.size() > 0) {
-				//CHECKSTYLE.OFF: AvoidInlineConditionals
+				// CHECKSTYLE.OFF: AvoidInlineConditionals
 				selectedSpieler = spieler.get((--idx < 0 ? 0 : idx));
-				//CHECKSTYLE.OFF
+				// CHECKSTYLE.OFF
 			}
 		} else {
 			showMessages(statusliste);

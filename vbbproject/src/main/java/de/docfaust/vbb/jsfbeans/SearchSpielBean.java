@@ -69,6 +69,9 @@ public class SearchSpielBean extends AbstractJSFBean {
 	 * Konstruktor ohne EJB Kontext.
 	 * 
 	 * @param uiMessages UIMessages
+	 * @param spielerService for JUnit
+	 * @param spielService for JUnit
+	 * @param buchungService for JUnit
 	 */
 	public SearchSpielBean(final UIMessages uiMessages, final SpielerService spielerService, final SpielService spielService, final BuchungService buchungService) {
 		super(uiMessages);

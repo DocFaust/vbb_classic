@@ -44,6 +44,8 @@ public class EditUserBean extends AbstractJSFBean {
 	 * Konstruktor ohne EJB Kontext.
 	 * 
 	 * @param uiMessages UIMessages
+	 * @param userService for JUnit
+	 * @param groupService for JUnit
 	 */
 	public EditUserBean(final UIMessages uiMessages, final UserService userService, final GroupService groupService) {
 		super(uiMessages);
