@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
@@ -53,7 +54,8 @@ public class TestEditConfigBean extends JpaBaseRolledBackTestCase {
 
 
 	private EditConfigBean initBean() {
-		EditConfigBean bean = new EditConfigBean(new UIMessagesTestImpl());
+		ServiceCreator sc = new ServiceCreator(em);
+		EditConfigBean bean = new EditConfigBean(new UIMessagesTestImpl(),sc.getConfigService());
 		bean.init();
 		assertThat(bean.getDomain(), equalTo("http://localhost:8080/vbb"));
 		assertThat(bean.getFrom(), equalTo("wfaust@localhost.net"));

@@ -52,8 +52,10 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	 * 
 	 * @param uiMessages UIMessages
 	 */
-	public SpielBean(final UIMessages uiMessages) {
+	public SpielBean(final UIMessages uiMessages, final SpielerService spielerService, final SpielService spielService) {
 		super(uiMessages);
+		this.spielerService = spielerService;
+		this.spielService = spielService;
 		logger = LoggerFactory.getLogger(getClass());
 		init();
 	}

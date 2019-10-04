@@ -41,8 +41,9 @@ public class EditSeasonBean extends AbstractJSFBean {
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditSeasonBean(final UIMessages uiMessages) {
+	public EditSeasonBean(final UIMessages uiMessages, final SeasonService seasonService) {
 		super(uiMessages);
+		this.seasonService = seasonService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

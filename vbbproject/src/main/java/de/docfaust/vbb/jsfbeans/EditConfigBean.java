@@ -43,8 +43,9 @@ public class EditConfigBean extends AbstractJSFBean {
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditConfigBean(final UIMessages uiMessages) {
+	public EditConfigBean(final UIMessages uiMessages, final ConfigService configService) {
 		super(uiMessages);
+		this.configService = configService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

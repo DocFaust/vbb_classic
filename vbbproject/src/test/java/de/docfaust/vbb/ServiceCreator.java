@@ -62,16 +62,16 @@ public class ServiceCreator {
 
 		this.registerService = new RegisterServiceImpl(ff.getMailFacade(), userService, configService, groupService,
 				new VelocityRegisterTemplates());
+		// FIXME only one facade per service
+		this.saldoService = new SaldoServiceImpl(ff.getBuchungFacade(), ff.getSpielerFacade());
 		this.mailService = new MailServiceImpl(ff.getMailFacade(), saldoService, configService,
 				new VelocityMailTemplates());
-		this.cutOffService = new CutOffServiceImpl(buchungService, spielService, spielerService, seasonService);
 		this.spielService = new SpielServiceImpl(ff.getSpielFacade(), buchungService, spielerService, seasonService,
 				mailService, new JournalDBWriter(ff.getJournalFacade()));
+		this.cutOffService = new CutOffServiceImpl(buchungService, spielService, spielerService, seasonService);
 
 		// FIXME only one facade per service
 		this.tokenService = new TokenServiceImpl(ff.getTokenFacade(), ff.getConfigFacade());
-		// FIXME only one facade per service
-		this.saldoService = new SaldoServiceImpl(ff.getBuchungFacade(), ff.getSpielerFacade());
 
 	}
 }

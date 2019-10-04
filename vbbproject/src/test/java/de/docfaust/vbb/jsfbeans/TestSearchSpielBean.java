@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.entity.Spieler;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
-import de.docfaust.vbb.service.VBBServices;
 import de.docfaust.vbb.util.UIMessagesTestImpl;
 
 public class TestSearchSpielBean extends JpaBaseRolledBackTestCase {
@@ -270,7 +270,8 @@ public class TestSearchSpielBean extends JpaBaseRolledBackTestCase {
 	}
 
 	private SearchSpielBean initBean() {
-		SearchSpielBean bean = new SearchSpielBean(new VBBServices(em), new UIMessagesTestImpl());
+		ServiceCreator sc = new ServiceCreator(em);
+		SearchSpielBean bean = new SearchSpielBean(new UIMessagesTestImpl(), sc.getSpielerService(), sc.getSpielService(), sc.getBuchungService());
 		bean.init();
 		assertThat(bean.getSpiele().size(), equalTo(4));
 		assertThat(bean.getSelectedSpiel().getId(), equalTo(1));

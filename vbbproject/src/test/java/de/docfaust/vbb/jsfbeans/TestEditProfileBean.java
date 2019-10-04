@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import de.docfaust.vbb.ServiceCreator;
 import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 import de.docfaust.vbb.util.PasswordUtil;
@@ -48,7 +49,8 @@ public class TestEditProfileBean extends JpaBaseRolledBackTestCase {
 	}
 	
 	private EditProfileBean initBean() {
-		EditProfileBean bean = new EditProfileBean(new UIMessagesTestImpl());
+		ServiceCreator sc = new ServiceCreator(em);
+		EditProfileBean bean = new EditProfileBean(new UIMessagesTestImpl(), sc.getUserService());
 		bean.init();
 		
 		// User muss gesetzt werden, da keine angemeldet sein kann

@@ -70,8 +70,11 @@ public class SearchSpielBean extends AbstractJSFBean {
 	 * 
 	 * @param uiMessages UIMessages
 	 */
-	public SearchSpielBean(final UIMessages uiMessages) {
+	public SearchSpielBean(final UIMessages uiMessages, final SpielerService spielerService, final SpielService spielService, final BuchungService buchungService) {
 		super(uiMessages);
+		this.spielerService = spielerService;
+		this.spielService = spielService;
+		this.buchungService = buchungService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

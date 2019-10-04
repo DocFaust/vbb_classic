@@ -47,8 +47,9 @@ public class EditProfileBean extends AbstractJSFBean {
 	 * @param uiMessages
 	 *            UIMessages
 	 */
-	public EditProfileBean(final UIMessages uiMessages) {
+	public EditProfileBean(final UIMessages uiMessages, final UserService userService ) {
 		super(uiMessages);
+		this.userService = userService;
 		logger = LoggerFactory.getLogger(getClass());
 	}
 
