@@ -2,6 +2,11 @@ package de.docfaust.vbb.service;
 
 import java.io.Serializable;
 
+/**
+ * Registrationservice.
+ * @author wfa339
+ *
+ */
 public interface RegisterService extends Serializable {
 
 	/**

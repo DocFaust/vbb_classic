@@ -14,7 +14,7 @@ import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.facades.BuchungFacade;
 
 /**
- * Implementation for the BuchnungService
+ * Implementation for the BuchnungService.
  * 
  * @author wfa339
  *

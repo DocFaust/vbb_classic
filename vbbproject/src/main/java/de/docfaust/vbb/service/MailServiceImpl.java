@@ -22,6 +22,11 @@ import de.docfaust.vbb.data.facades.MailFacade;
 import de.docfaust.vbb.util.templates.MailTemplates;
 import de.docfaust.vbb.util.templates.VelocityMailTemplate;
 
+/**
+ * Implementation of the MailService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class MailServiceImpl implements MailService {
 
@@ -67,7 +72,6 @@ public class MailServiceImpl implements MailService {
 	 */
 	public MailServiceImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

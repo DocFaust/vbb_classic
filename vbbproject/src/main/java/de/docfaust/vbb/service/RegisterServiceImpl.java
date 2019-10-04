@@ -13,6 +13,11 @@ import de.docfaust.vbb.util.RegistrationState;
 import de.docfaust.vbb.util.templates.RegisterTemplates;
 import de.docfaust.vbb.util.templates.VelocityRegisterTemplate;
 
+/**
+ * Implementation of the RegisterService.
+ * @author wfa339
+ *
+ */
 public class RegisterServiceImpl implements RegisterService {
 	/**
 	 * 
@@ -69,14 +74,17 @@ public class RegisterServiceImpl implements RegisterService {
 	public String processRegistration(final String regid, final String userid) {
 		String serverResponse = null;
 		if (userid != null) {
+			logger.info("Registering user: {}", userid);
 			User user = userService.findByUserName(userid);
 
 			if (user == null) {
 				// Keine Registrierung
 				serverResponse = templates.getNotRegistered(userid);
+				logger.warn("No corresponding user found");
 			} else if (user.getRegid() == null || !user.getRegid().equals(regid)) {
 				// Falsche Registrierung
 				serverResponse = templates.getWrongID(user.getUserid());
+				logger.warn("No, or incorrect RegID: {}", user.getRegid());
 			} else {
 				// Registrierung gefunden
 				if (RegistrationState.PROOFED != user.getState() && user.getGroup() == null) {
@@ -85,17 +93,20 @@ public class RegisterServiceImpl implements RegisterService {
 					user.setGroup(group);
 					String domain = configService.getMailConfig().getDomain();
 					serverResponse = templates.getOk(user.getUserid(), domain);
+					logger.info("User wurde registriert");
 				} else {
 					// User bereits registriert
 					serverResponse = templates.getYetRegistered(user.getUserid());
+					logger.info("User war bereits registriert");
 				}
 				user.setState(RegistrationState.PROOFED);
 				userService.saveUser(user);
+				logger.info("Registrierung erfolgreich.");
 			}
 		} else {
 			serverResponse = templates.getWrongRequest();
+			logger.info("Erforderliche Parameter fehlen.");
 		}
 		return serverResponse;
 	}
-
 }
