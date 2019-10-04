@@ -6,6 +6,12 @@ import java.util.List;
 
 import de.docfaust.vbb.data.entity.Buchung;
 
+/**
+ * Services for the Buchung Entity.
+ * 
+ * @author wfa339
+ *
+ */
 public interface BuchungService extends Serializable {
 
 	/**
@@ -18,21 +24,29 @@ public interface BuchungService extends Serializable {
 	/**
 	 * Löscht eine Buchung.
 	 * 
-	 * @param buchung
-	 *            zu Löschende Buchung.
+	 * @param buchung zu Löschende Buchung.
 	 */
 	void deleteBuchung(Buchung buchung);
 
 	/**
 	 * Speichert eine Buchung.
 	 * 
-	 * @param buchung
-	 *            Zu speichernde Buchung
+	 * @param buchung Zu speichernde Buchung
 	 */
 	void saveBuchung(Buchung buchung);
 
+	/**
+	 * Finds Buchungen before the given Date.
+	 * 
+	 * @param datum Date
+	 * @return List of Buchungen
+	 */
 	List<Buchung> getBuchungenBeforeDate(Date datum);
 
-	void removeOldBuchungen(final Date datum);
+	/**
+	 * Removes all Buchungen before the given date.
+	 * @param datum Date
+	 */
+	void removeOldBuchungen(Date datum);
 
 }

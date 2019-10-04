@@ -18,6 +18,11 @@ import de.docfaust.vbb.data.factories.BuchungFactory;
 import de.docfaust.vbb.data.factories.SeasonFactory;
 import de.docfaust.vbb.data.factories.SpielFactory;
 
+/**
+ * Implementation of the CutOffService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class CutOffServiceImpl implements CutOffService {
 	/**
@@ -36,10 +41,10 @@ public class CutOffServiceImpl implements CutOffService {
 	private SeasonService seasonService;
 
 	/**
-	 * @param buchungService
-	 * @param spielService
-	 * @param spielerService
-	 * @param seasonService
+	 * @param buchungService for JUnit
+	 * @param spielService for JUnit
+	 * @param spielerService for JUnit
+	 * @param seasonService for JUnit
 	 */
 	public CutOffServiceImpl(final BuchungService buchungService, final SpielService spielService,
 			final SpielerService spielerService, final SeasonService seasonService) {

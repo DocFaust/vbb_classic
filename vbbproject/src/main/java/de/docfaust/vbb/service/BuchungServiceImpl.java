@@ -13,6 +13,12 @@ import org.slf4j.LoggerFactory;
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.facades.BuchungFacade;
 
+/**
+ * Implementation for the BuchnungService
+ * 
+ * @author wfa339
+ *
+ */
 @Dependent
 public class BuchungServiceImpl implements BuchungService {
 	/**
@@ -29,14 +35,19 @@ public class BuchungServiceImpl implements BuchungService {
 	@EJB
 	private BuchungFacade buchungFacade;
 
-	
-	
+	/**
+	 * 
+	 * @param buchungFacade for JUnit
+	 */
 	public BuchungServiceImpl(final BuchungFacade buchungFacade) {
 		super();
 		this.buchungFacade = buchungFacade;
 		this.logger = LoggerFactory.getLogger(getClass());
 	}
 
+	/**
+	 * EJB Usage.
+	 */
 	public BuchungServiceImpl() {
 		super();
 	}
@@ -75,14 +86,13 @@ public class BuchungServiceImpl implements BuchungService {
 
 	@Override
 	public List<Buchung> getBuchungenBeforeDate(final Date date) {
-		return buchungFacade.getBuchungenBeforeDate(date); 
+		return buchungFacade.getBuchungenBeforeDate(date);
 	}
-	
+
 	/**
 	 * Löscht alle Buchungen vor einem Datum.
 	 * 
-	 * @param datum
-	 *            Datum
+	 * @param datum Datum
 	 */
 	@Override
 	public void removeOldBuchungen(final Date datum) {
@@ -94,6 +104,5 @@ public class BuchungServiceImpl implements BuchungService {
 			deleteBuchung(buchung);
 		}
 	}
-
 
 }

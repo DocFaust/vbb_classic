@@ -3,6 +3,11 @@ package de.docfaust.vbb.service;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * CutOff Services.
+ * @author wfa339
+ *
+ */
 public interface CutOffService extends Serializable {
 
 	/**

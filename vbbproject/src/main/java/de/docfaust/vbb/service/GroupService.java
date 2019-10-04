@@ -5,6 +5,11 @@ import java.util.List;
 
 import de.docfaust.vbb.data.entity.Group;
 
+/**
+ * Services for the Group Entity.
+ * @author wfa339
+ *
+ */
 public interface GroupService extends Serializable {
 
 	/**
@@ -14,6 +19,11 @@ public interface GroupService extends Serializable {
 	 */
 	List<Group> getGroups();
 
-	Group findByName(String string);
+	/**
+	 * finds a Group by the Name.
+	 * @param name name
+	 * @return Group
+	 */
+	Group findByName(String name);
 
 }

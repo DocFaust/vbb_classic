@@ -9,6 +9,11 @@ import org.slf4j.LoggerFactory;
 import de.docfaust.vbb.util.configuration.MailConfiguration;
 import de.docfaust.vbb.util.configuration.MailConfigurationDB;
 
+/**
+ * Implementation for the ConfigService.
+ * @author wfa339
+ *
+ */
 @Dependent
 public class ConfigServiceImpl implements ConfigService {
 
@@ -24,18 +29,26 @@ public class ConfigServiceImpl implements ConfigService {
 	@Inject
 	private Logger logger;
 	
+	/**
+	 * 
+	 * @param mailConfig JUnit 
+	 */
 	public ConfigServiceImpl(final MailConfiguration mailConfig) {
 		super();
 		this.mailConfig = mailConfig;
 		this.logger = LoggerFactory.getLogger(getClass());
 	}
 
+	/**
+	 * EJB USage.
+	 */
 	public ConfigServiceImpl() {
 		super();
 	}
 
 	@Override
 	public MailConfiguration getMailConfig() {
+		logger.info(mailConfig.toString());
 		return mailConfig;
 	}
 }
