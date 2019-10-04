@@ -32,6 +32,7 @@ public class TestSaldoBean extends JpaBaseRolledBackTestCase {
 	void testInit() {
 		ServiceCreator sc = new ServiceCreator(em);
 		SaldoBean b = new SaldoBean(sc.getSaldoService(), sc.getTokenService());
+		b.init();
 		SaldoModel saldoModel = b.getSaldoModel();
 		
 		assertThat(saldoModel).isNotNull();
