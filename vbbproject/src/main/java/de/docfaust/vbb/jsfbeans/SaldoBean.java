@@ -50,6 +50,24 @@ public class SaldoBean implements Serializable {
 	@Setter
 	private boolean tokenValid;
 
+	
+	/**
+	 * @param saldoService for JUnit
+	 * @param tokenService for JUnit
+	 */
+	public SaldoBean(final SaldoService saldoService, final TokenService tokenService) {
+		super();
+		this.saldoService = saldoService;
+		this.tokenService = tokenService;
+	}
+
+	/**
+	 * EJB Usage.
+	 */
+	public SaldoBean() {
+		super();
+	}
+
 	/**
 	 * Initializes the bean.
 	 */
