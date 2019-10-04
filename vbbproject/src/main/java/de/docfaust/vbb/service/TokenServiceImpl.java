@@ -26,7 +26,6 @@ public class TokenServiceImpl implements TokenService {
 	 * 
 	 */
 	private static final long serialVersionUID = -6119422102311375556L;
-	private static final String DOMAIN = "domain";
 	private static final String SALDO_PATH = "/faces/saldo.xhtml?token=";
 	private static final String CHARMAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	private static final short TOKEN_SIZE = 12;
