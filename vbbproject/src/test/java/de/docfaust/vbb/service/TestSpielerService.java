@@ -111,5 +111,4 @@ class TestSpielerService extends JpaBaseRolledBackTestCase {
 		assertThat(spieler2).isNotNull();
 		assertThat(spieler2.getActivityLevel()).isEqualTo(++inititialActivityLevel);
 	}
-	
 }
