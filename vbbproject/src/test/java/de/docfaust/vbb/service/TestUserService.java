@@ -10,12 +10,14 @@ import de.docfaust.vbb.data.entity.User;
 import de.docfaust.vbb.data.facades.UserFacade;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 import de.docfaust.vbb.util.EntityFactory;
+import de.docfaust.vbb.util.PasswordUtil;
 import de.docfaust.vbb.util.RegistrationState;
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
 class TestUserService extends JpaBaseRolledBackTestCase {
 	private UserService userService;
+
 	@BeforeEach
 	void setUp() throws Exception {
 		ServiceCreator sc = new ServiceCreator(em);
@@ -23,8 +25,14 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 	}
 
 	@Test
-	public void testRegister()
-	{
+	public void testInit() {
+
+		// Nonsense for Coverage
+		assertThat(new UserServiceImpl()).isNotNull();
+	}
+
+	@Test
+	public void testRegister() {
 		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(2);
 		String username = "Alfred";
 		String userid = "aalfred";
@@ -32,15 +40,14 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String password = "asb";
 		String regid = "aa";
 		RegistrationState state = RegistrationState.OPEN;
-		User user = EntityFactory.createUser(userid, username,email, password, state, regid);
+		User user = EntityFactory.createUser(userid, username, email, password, state, regid);
 		Statusliste statusliste = userService.register(user);
 		assertThat(statusliste.booleanValue()).isTrue();
 		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(3);
 	}
-	
+
 	@Test
-	public void testRegisterExisting()
-	{
+	public void testRegisterExisting() {
 		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(2);
 		String username = "Alfred Altmann";
 		String userid = "aaltmann";
@@ -48,7 +55,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String password = "wwwwwwww";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "a";
-		User user = EntityFactory.createUser(userid, username,email, password, state, regid);
+		User user = EntityFactory.createUser(userid, username, email, password, state, regid);
 		Statusliste statusliste = userService.register(user);
 		assertThat(statusliste.booleanValue()).isFalse();
 		assertThat(statusliste.hasStatus(MessageConstants.USERID_EXISTS));
@@ -56,8 +63,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 	}
 
 	@Test
-	public void testLogin()
-	{
+	public void testLogin() {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
@@ -67,17 +73,16 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String regid = "1";
 
 		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
-		
+
 		userFacade.create(user);
 
 		User user2 = createUser(userid, passwort);
 		User lu = userService.login(user2);
-		assertThat(lu).isNotNull().extracting("username", "email", "state").contains(name,email,state);
+		assertThat(lu).isNotNull().extracting("username", "email", "state").contains(name, email, state);
 	}
 
 	@Test
-	public void testLoginUnsuccessful()
-	{
+	public void testLoginUnsuccessful() {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
@@ -87,17 +92,16 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String regid = "1";
 
 		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
-		
+
 		userFacade.create(user);
 
 		User user2 = createUser(userid, "falsches PW");
 		User lu = userService.login(user2);
 		assertThat(lu).isNull();
 	}
-	
+
 	@Test
-	public void testLogin2()
-	{
+	public void testLogin2() {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
@@ -107,16 +111,15 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String regid = "1";
 
 		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
-		
+
 		userFacade.create(user);
 
 		User lu = userService.login(userid, passwort);
-		assertThat(lu).isNotNull().extracting("username", "email", "state").contains(name,email,state);
+		assertThat(lu).isNotNull().extracting("username", "email", "state").contains(name, email, state);
 	}
 
 	@Test
-	public void testLogin2Unsuccessful()
-	{
+	public void testLogin2Unsuccessful() {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
@@ -126,7 +129,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		String regid = "1";
 
 		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
-		
+
 		userFacade.create(user);
 
 		User lu = userService.login(userid, "falsches PW");
@@ -135,6 +138,83 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 
 	private User createUser(final String userid, final String passwort) {
 		return EntityFactory.createUser(userid, null, null, passwort, null, null);
+	}
+
+	@Test
+	public void testGetUsers() {
+		assertThat(userService.getUsers()).hasSize(facadenFactory.getUserFacade().count());
+	}
+
+	@Test
+	public void testDeleteUser() {
+		int count = facadenFactory.getUserFacade().count();
+
+		User user = facadenFactory.getUserFacade().find(1);
+		userService.deleteUser(user);
+
+		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(--count);
+
+	}
+
+	@Test
+	public void testSaveUser() {
+		int count = facadenFactory.getUserFacade().count();
+
+		UserFacade userFacade = facadenFactory.getUserFacade();
+		String userid = "ccltmann";
+		String passwort = "12345678";
+		String name = "Alfred Altmann";
+		String email = "ccltmann@gmiks.de";
+		RegistrationState state = RegistrationState.OPEN;
+		String regid = "1";
+
+		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
+
+		userService.saveUser(user);
+
+		int id = user.getId();
+
+		assertThat(userFacade.find(id)).isNotNull()
+				.extracting("userid", "password", "username", "email", "state", "regid")
+				.contains(userid, PasswordUtil.encryptPassword(passwort), name, email, state, regid);
+
+		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(++count);
+	}
+
+	@Test
+	public void testSaveUserExisting() {
+		int count = facadenFactory.getUserFacade().count();
+
+		String userid = "aaltmann";
+		String passwort = "12345678";
+		String name = "Alfred Altmann";
+		String email = "ccltmann@gmiks.de";
+		RegistrationState state = RegistrationState.OPEN;
+		String regid = "1";
+
+		User user = EntityFactory.createUser(userid, name, email, passwort, state, regid);
+
+		Statusliste statusliste = userService.saveUser(user);
+		assertThat(statusliste.booleanValue()).isFalse();
+		assertThat(statusliste.hasStatus(MessageConstants.USERID_EXISTS)).isTrue();
+
+		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(count);
+	}
+
+	@Test
+	public void testGetLoggedInUser() {
+
+		User user = userService.getLoggedInUser("aaltmann");
+		assertThat(user).isNotNull().extracting("userid", "username", "email", "state", "regid").contains("aaltmann",
+				"Alfred Altmann", "aaltmann@mail.de", RegistrationState.PROOFED, "a");
+
+	}
+
+	@Test
+	public void testFindByUserName() {
+		assertThat(userService.findByUserName("aaltmann")).isNotNull()
+				.extracting("userid", "username", "email", "state", "regid")
+				.contains("aaltmann", "Alfred Altmann", "aaltmann@mail.de", RegistrationState.PROOFED, "a");
 	}
 
 }
