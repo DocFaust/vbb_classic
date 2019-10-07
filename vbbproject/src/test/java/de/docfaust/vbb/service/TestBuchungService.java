@@ -27,4 +27,17 @@ public class TestBuchungService extends JpaBaseRolledBackTestCase {
 		
 		assertThat(facadenFactory.getBuchungFacade().count()).isEqualTo(--count);
 	}
+	
+	@Test
+	void testGetBuchungen() {
+		assertThat(services.getBuchungen()).isNotNull().hasSize(facadenFactory.getBuchungFacade().count());
+	}
+	@Test
+	void testSaveBuchung() {
+		
+	}
+	@Test
+	void testRemoveOldBuchungenBuchung() {
+		
+	}
 }
