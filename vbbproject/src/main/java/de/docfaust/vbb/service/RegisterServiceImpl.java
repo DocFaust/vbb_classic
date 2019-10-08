@@ -1,6 +1,7 @@
 package de.docfaust.vbb.service;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import de.docfaust.vbb.util.templates.VelocityRegisterTemplate;
  * @author wfa339
  *
  */
+@Dependent
 public class RegisterServiceImpl implements RegisterService {
 	/**
 	 * 

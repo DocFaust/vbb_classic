@@ -4,7 +4,7 @@
 	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
 	<ui:define name="content">
 		<h:form>
-			<p:panel id="saldopnl" header="Saldo" rendered="#{saldoBean.tokenValid}" >
+			<p:panel id="saldopnl" header="Saldo" rendered="#{saldoBean.showSaldo}" >
 				<div id="saldodiv">
 				<p:dataTable id="saldo" value="#{saldoBean.saldoModel.spielersaldi }" var="s" scrollable="true">
 
@@ -26,7 +26,7 @@
 					</p:outputLabel>
 				</h:panelGrid>
 			</p:panel>
-			<p:panel id="Fehler" header="Ungültiger Key" rendered="#{!saldoBean.tokenValid}" >
+			<p:panel id="Fehler" header="Ungültiger Key" rendered="#{!saldoBean.showSaldo}" >
 				Sie benutzen einen falschen Zugangskey. Bitte benutzen Sie ausschließlich den zugesandten Link. 
 			</p:panel>
 		</h:form>

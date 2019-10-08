@@ -41,7 +41,7 @@ public class SaldoServiceImpl implements SaldoService {
 	/**
 	 * DB-Zugriff für Spieler.
 	 */
-	@EJB
+	@Inject
 	private SpielerService spielerService;
 
 	/**

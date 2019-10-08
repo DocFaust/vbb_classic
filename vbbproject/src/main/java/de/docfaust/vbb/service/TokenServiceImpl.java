@@ -38,7 +38,7 @@ public class TokenServiceImpl implements TokenService {
 	/**
 	 * DB-Zugriff für Tokens.
 	 */
-	@EJB
+	@Inject
 	private ConfigService configService;
 
 	/**

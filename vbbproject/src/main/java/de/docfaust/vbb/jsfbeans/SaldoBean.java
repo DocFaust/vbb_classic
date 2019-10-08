@@ -51,7 +51,7 @@ public class SaldoBean implements Serializable {
 
 	@Getter
 	@Setter
-	private boolean tokenValid;
+	private boolean showSaldo;
 
 	/**
 	 * @param saldoService for JUnit
@@ -78,17 +78,34 @@ public class SaldoBean implements Serializable {
 	public void init() {
 		saldoModel = saldoService.getSaldo();
 		logger.debug("Saldomodel: {}", saldoModel.toString());
+		checkShowSaldo();
+	}
 
-		Optional<String> token = getToken();
-		if (token.isPresent()) {
-			tokenValid = tokenService.validateToken(token.get());
+	private void checkShowSaldo() {
+		// check Facescontext or Unit
+		FacesContext fc = FacesContext.getCurrentInstance();
+		if (fc != null) {
+			// FacesContext
+			if (fc.getExternalContext().getUserPrincipal() != null) {
+				// User islogged in
+				logger.info("Saldo User is logged in");
+				showSaldo = true;
+			} else {
+				//Saldo without User
+				Optional<String> token = getToken();
+				if (token.isPresent()) {
+					showSaldo = tokenService.validateToken(token.get());
+				} else {
+					showSaldo = false;
+				}
+				logger.info("Saldo with Token ");
+			}
 		} else {
-			tokenValid = true;
-			// FIXME Do better
-			logger.warn("Token granted, due to no facescontext");
+			logger.info("Saldo JUnit Context");
+			// JUnitContext
+			showSaldo = false;
 		}
-
-		logger.info("isTokenValid: ", String.valueOf(tokenValid));
+		logger.info("Saldo shown: {}", String.valueOf(showSaldo));
 	}
 
 	private Optional<String> getToken() {
@@ -97,9 +114,10 @@ public class SaldoBean implements Serializable {
 			Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
 			String tokenParam = params.get(PARAM_TOKEN);
 			logger.debug("Token: {}", tokenParam);
-			return Optional.of(tokenParam);
-		} else {
-			return Optional.empty();
+			if (tokenParam != null) {
+				return Optional.of(tokenParam);
+			}
 		}
+		return Optional.empty();
 	}
 }
