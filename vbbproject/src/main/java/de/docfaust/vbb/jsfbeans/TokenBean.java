@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.docfaust.vbb.data.entity.Token;
 import de.docfaust.vbb.service.TokenService;
@@ -18,6 +19,7 @@ import lombok.Setter;
 
 /**
  * JSF Bean for Token administration.
+ * 
  * @author wfa339
  *
  */
@@ -52,12 +54,30 @@ public class TokenBean implements Serializable {
 	private String clipboardURL;
 
 	/**
+	 * @param tokenService for JUnit
+	 */
+	public TokenBean(final TokenService tokenService) {
+		super();
+		this.tokenService = tokenService;
+		logger = LoggerFactory.getLogger(getClass());
+	}
+
+	/**
+	 * 
+	 */
+	public TokenBean() {
+		super();
+	}
+
+	/**
 	 * Initializes the Bean.
 	 */
 	@PostConstruct
 	public void init() {
 		tokenList = tokenService.getTokens();
-		if (tokenList.size() > 0) {
+		if (tokenList.isEmpty()) {
+			selectedToken = null;
+		} else if (selectedToken == null) {
 			selectedToken = tokenList.get(0);
 		}
 	}
