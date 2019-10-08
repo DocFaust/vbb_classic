@@ -42,7 +42,7 @@ class TestSaldoService extends JpaBaseRolledBackTestCase {
 	}
 
 	@Test
-	public void testGetSaldo() {
+	void testGetSaldo() {
 		SaldoModel saldoModel = service.getSaldo();
 		assertThat(saldoModel).isNotNull();
 		logger.info("SaldoModel: ", saldoModel.toString());
