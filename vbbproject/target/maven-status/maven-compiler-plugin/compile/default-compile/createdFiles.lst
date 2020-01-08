@@ -17,11 +17,9 @@ de\docfaust\vbb\util\templates\VelocityMailTemplates.class
 de\docfaust\vbb\data\entity\AbstractEntity.class
 de\docfaust\vbb\jsfbeans\TokenBean.class
 de\docfaust\vbb\model\SpielerSaldo.class
-de\docfaust\vbb\rest\model\RestSpieler.class
 de\docfaust\vbb\service\SpielerService.class
 de\docfaust\vbb\data\factories\BuchungFactory.class
 de\docfaust\vbb\data\entity\Season_.class
-de\docfaust\vbb\rest\MyApplication.class
 de\docfaust\vbb\util\configuration\MailConfigurationDBImpl.class
 de\docfaust\vbb\data\facades\ConfigFacade.class
 de\docfaust\vbb\data\entity\JournalEntry.class
@@ -31,7 +29,6 @@ de\docfaust\vbb\service\TokenServiceImpl.class
 de\docfaust\vbb\jsfbeans\validation\PasswordRepetitionValidator.class
 de\docfaust\vbb\util\messages\impl\MessageUtilJAXB.class
 de\docfaust\vbb\servlet\RegisterServlet.class
-de\docfaust\vbb\rest\model\RestSpiel.class
 de\docfaust\vbb\data\facades\AbstractFacade.class
 de\docfaust\vbb\service\TokenService.class
 de\docfaust\vbb\data\entity\Buchung_.class
@@ -81,11 +78,9 @@ de\docfaust\vbb\util\xml\Messages.class
 de\docfaust\vbb\data\entity\IEntity.class
 de\docfaust\vbb\service\UserService.class
 de\docfaust\vbb\data\entity\Group_.class
-de\docfaust\vbb\rest\CharsetResponseFilter.class
 de\docfaust\vbb\util\MD5Util.class
 de\docfaust\vbb\service\GroupServiceImpl.class
 de\docfaust\vbb\service\ConfigService.class
-de\docfaust\vbb\rest\VBBRestImpl.class
 de\docfaust\vbb\data\facades\UserFacade.class
 de\docfaust\vbb\util\templates\VelocityMailTemplate.class
 de\docfaust\vbb\util\templates\MailTemplates.class
@@ -99,7 +94,6 @@ de\docfaust\vbb\service\SeasonServiceImpl.class
 de\docfaust\vbb\data\facades\JournalFacade.class
 de\docfaust\vbb\data\entity\Token.class
 de\docfaust\vbb\util\messages\impl\AbstractMessageUtil.class
-de\docfaust\vbb\rest\VBBRestInterface.class
 de\docfaust\vbb\data\entity\Mail.class
 de\docfaust\vbb\service\ConfigServiceImpl.class
 de\docfaust\vbb\data\factories\SpielerFactory.class

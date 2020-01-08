@@ -9,7 +9,7 @@
   		border-collapse: collapse;
   		font-size: 18px;
   	}
-  	td{  		
+  	td {  		
 		text-align: left;
   		padding: 0.2em 0.5em;
   	}
