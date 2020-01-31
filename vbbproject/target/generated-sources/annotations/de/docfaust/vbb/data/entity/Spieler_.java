@@ -15,5 +15,11 @@ public abstract class Spieler_ {
 	public static volatile SingularAttribute<Spieler, Integer> activityLevel;
 	public static volatile ListAttribute<Spieler, Buchung> buchungen;
 
+	public static final String NAME = "name";
+	public static final String ID = "id";
+	public static final String EMAIL = "email";
+	public static final String ACTIVITY_LEVEL = "activityLevel";
+	public static final String BUCHUNGEN = "buchungen";
+
 }
 

@@ -1,17 +1,4 @@
 <root>
-  <facet id="jpt.jaxb">
-    <node name="libprov">
-      <attribute name="provider-id" value="runtime-library-provider"/>
-    </node>
-    <node name="platform">
-      <attribute name="platform-id" value="generic_2_2"/>
-    </node>
-    <node name="schemas">
-      <node name="schema-1">
-        <attribute name="location" value="platform:/resource/vbbproject/src/main/resources/messages.xsd"/>
-      </node>
-    </node>
-  </facet>
   <facet id="jpt.jpa">
     <node name="libprov">
       <attribute name="provider-id" value="jpa-no-op-library-provider"/>

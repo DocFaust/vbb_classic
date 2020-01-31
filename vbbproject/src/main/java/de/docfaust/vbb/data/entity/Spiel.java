@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "SPIEL", indexes = { 
-		@Index(unique = false, name = "datum_idx", columnList = "datum")
+		@Index(unique = false, name = "spiel_datum_idx", columnList = "datum")
 		})
 @NamedQuery(name = "Spiel.findAll", query = "SELECT s FROM Spiel s")
 public class Spiel extends AbstractEntity {

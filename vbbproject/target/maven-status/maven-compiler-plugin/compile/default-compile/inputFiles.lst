@@ -4,7 +4,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\configuration\MailConfiguration.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\ReorgDatabaseBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\Slf4jLogChute.java
-C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SpielerService.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\TokenServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\facades\TokenFacade.java
@@ -24,13 +23,13 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\packa
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\EditProfileBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\SaldoBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\EditUserBean.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\model\Message.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\configuration\MailConfigurationDBImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\validation\ValidationFactory.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\VelocityMailTemplates.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\validation\DateRangeValidator.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\ValidityState.java
-C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\annotations\JAXBMessages.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SaldoService.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\configuration\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\journal\impl\JournalDBWriter.java
@@ -40,9 +39,11 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\Registra
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\Mail.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\MailSender.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\ConfigServiceImpl.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\model\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SeasonService.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\validation\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\MailService.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\MessageUtilJackson.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\RegisterBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\GroupServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SpielerServiceImpl.java
@@ -65,7 +66,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factorie
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\LoginBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\VelocityRegisterTemplates.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\validation\PasswordValidator.java
-C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\ObjectFactory.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\RegisterService.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SpielServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\statusliste\package-info.java
@@ -73,6 +73,7 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\package-
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\UIMessages.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\journal\Journal.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factories\BuchungFactory.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\model\Messages.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\servlet\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\statusliste\Status.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SeasonServiceImpl.java
@@ -83,7 +84,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\Buchu
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\FacesHelper.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\templates\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\validation\Validator.java
-C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\Messages.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\BusinessCase.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\facades\SeasonFacade.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\AbstractJSFBean.java
@@ -98,6 +98,7 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\vali
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\EditConfigBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\CreateIndividualBookingBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\LoggerProducer.java
+C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\annotations\JacksonMessages.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\model\SaldoModel.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\Config.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factories\SeasonFactory.java
@@ -108,7 +109,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\Regis
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\UserServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\AbstractEntity.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\factories\SpielFactory.java
-C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\MessageUtilJAXB.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\journal\annotations\JournalWriter.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\filter\package-info.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\EditSpielerBean.java
@@ -119,7 +119,6 @@ C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\template
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\util\messages\impl\MessageData.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\jsfbeans\TokenBean.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\filter\CharacterEncodingFilter.java
-C:\dev\github\vbb_classic\vbbproject\target\generated-sources\xjc\de\docfaust\vbb\util\xml\Message.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\data\entity\Spiel.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\service\SaldoServiceImpl.java
 C:\dev\github\vbb_classic\vbbproject\src\main\java\de\docfaust\vbb\model\SpielerSaldo.java

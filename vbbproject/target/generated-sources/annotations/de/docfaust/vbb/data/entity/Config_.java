@@ -12,5 +12,9 @@ public abstract class Config_ {
 	public static volatile SingularAttribute<Config, String> configvalue;
 	public static volatile SingularAttribute<Config, Integer> id;
 
+	public static final String CONFIGKEY = "configkey";
+	public static final String CONFIGVALUE = "configvalue";
+	public static final String ID = "id";
+
 }
 

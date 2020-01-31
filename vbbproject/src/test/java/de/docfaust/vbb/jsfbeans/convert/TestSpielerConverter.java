@@ -47,11 +47,6 @@ public class TestSpielerConverter extends JpaBaseRolledBackTestCase {
 		assertThat(con.getAsString(null, null, facadenFactory.getSpielerFacade().find(1)), equalTo("1"));
 	}
  	@Test
-	public void testGetAsStringWrongObject() {
-		SpielerConverter con = new SpielerConverter(facadenFactory.getSpielerFacade());
-		assertThat(con.getAsString(null, null, "Hulabasti"), nullValue());
-	}
- 	@Test
 	public void testGetAsStringNull() {
 		SpielerConverter con = new SpielerConverter(facadenFactory.getSpielerFacade());
 		assertThat(con.getAsString(null, null, null), nullValue());

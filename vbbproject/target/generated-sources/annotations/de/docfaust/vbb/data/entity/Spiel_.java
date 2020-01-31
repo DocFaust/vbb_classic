@@ -15,5 +15,10 @@ public abstract class Spiel_ {
 	public static volatile SingularAttribute<Spiel, Integer> id;
 	public static volatile ListAttribute<Spiel, Buchung> buchungen;
 
+	public static final String DATUM = "datum";
+	public static final String SEASON = "season";
+	public static final String ID = "id";
+	public static final String BUCHUNGEN = "buchungen";
+
 }
 

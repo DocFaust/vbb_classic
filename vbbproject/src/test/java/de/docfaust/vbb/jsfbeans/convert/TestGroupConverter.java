@@ -49,9 +49,4 @@ public class TestGroupConverter extends JpaBaseRolledBackTestCase {
 		GroupConverter con = new GroupConverter(facadenFactory.getGroupFacade());
 		assertThat(con.getAsString(null, null, null), nullValue());
 	}
-	@Test
-	public void testGetAsStringWrongObject() {
-		GroupConverter con = new GroupConverter(facadenFactory.getGroupFacade());
-		assertThat(con.getAsString(null, null, "Bifzibafzi"), nullValue());
-	}
 }

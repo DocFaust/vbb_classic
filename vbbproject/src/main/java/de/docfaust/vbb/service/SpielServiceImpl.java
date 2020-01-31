@@ -1,6 +1,7 @@
 package de.docfaust.vbb.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -177,8 +178,9 @@ public class SpielServiceImpl implements SpielService {
 
 				// Preis durch Anzahl anwesende Spieler, Auf 2 Nachkommastellen
 				// aufrunden
-				BigDecimal regularprice = seasonprice.divide(new BigDecimal(anwesendeSpieler), 2,
-						BigDecimal.ROUND_CEILING);
+//				BigDecimal regularprice = seasonprice.divide(new BigDecimal(anwesendeSpieler), 2,
+//						BigDecimal.ROUND_CEILING);
+				BigDecimal regularprice = seasonprice.divide(new BigDecimal(anwesendeSpieler), 2, RoundingMode.CEILING);
 				BigDecimal sum = regularprice.multiply(new BigDecimal(anwesendeSpieler));
 				BigDecimal diff = sum.subtract(seasonprice);
 				BigDecimal priceForZahler = regularprice.subtract(diff);

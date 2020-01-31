@@ -12,5 +12,9 @@ public abstract class Group_ {
 	public static volatile SingularAttribute<Group, String> description;
 	public static volatile SingularAttribute<Group, Integer> id;
 
+	public static final String NAME = "name";
+	public static final String DESCRIPTION = "description";
+	public static final String ID = "id";
+
 }
 

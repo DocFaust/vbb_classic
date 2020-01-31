@@ -18,5 +18,14 @@ public abstract class User_ {
 	public static volatile SingularAttribute<User, String> username;
 	public static volatile SingularAttribute<User, Group> group;
 
+	public static final String PASSWORD = "password";
+	public static final String REGID = "regid";
+	public static final String ID = "id";
+	public static final String STATE = "state";
+	public static final String USERID = "userid";
+	public static final String EMAIL = "email";
+	public static final String USERNAME = "username";
+	public static final String GROUP = "group";
+
 }
 

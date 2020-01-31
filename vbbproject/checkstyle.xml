@@ -5,6 +5,9 @@
 	editor -->
 <!-- Checkstyle-Configuration: Own Description: none -->
 <module name="Checker">
+		<module name="LineLength">
+			<property name="max" value="256" />
+		</module>
 
 	<module name="TreeWalker">
 		<property name="severity" value="warning" />
@@ -19,8 +22,6 @@
 
 		<property name="tabWidth" value="4" />
 		<module name="JavadocMethod">
-			<property name="suppressLoadErrors" value="true" />
-			<property name="allowMissingPropertyJavadoc" value="true" />
 			<property name="scope" value="protected" />
 		</module>
 		<module name="JavadocType" />
@@ -43,9 +44,6 @@
 		<module name="IllegalImport" />
 		<module name="RedundantImport" />
 		<module name="UnusedImports" />
-		<module name="LineLength">
-			<property name="max" value="200" />
-		</module>
 		<module name="MethodLength" />
 		<module name="ParameterNumber" />
 		<module name="EmptyForIteratorPad" />

@@ -1,24 +1,17 @@
 connect 127.0.0.1
 
-set dbuser=${dbuser}
-set dbpassword=${dbpassword}
-set mailusername=${docfaust.mail.username} 
-set mailpassword=${docfaust.mail.password}
-set driverpath=/C:\Users\wfa339\.m2\repository\mysql\mysql-connector-java\5.1.43\mysql-connector-java-5.1.43.jar
-set dburl=jdbc:mysql://localhost:3306/clitest
+set dbuser=vbb_prod
+set dbpassword=vbb_prod
+set driverpath="/C:/Users/wfa339/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"
+set dburl=jdbc:mysql://localhost:3306/vbb
 
 
 batch
- 
+
 module add --name=com.mysql --resources=$driverpath --dependencies=javax.api,javax.transaction.api
-  
+
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql)
- 
-data-source add --jndi-name=java:/jdbc/MySQLDS --name=MySQLPool --connection-url=$dburl --driver-name=mysql --user-name=$dbuser --password=$dbpassword 
- 
-/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp/:add(host=smtp.gmail.com, port=465)
-/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-imap/:add(host=imap.gmail.com, port=993)
-/subsystem=mail/mail-session=docfaust/:add(jndi-name=java:/mail/DocFaust, from=$mailusername)
-/subsystem=mail/mail-session=docfaust/server=smtp/:add(outbound-socket-binding-ref=docfaust-mail-smtp, ssl=true, username=$mailusername, password=$mailpassword)
-/subsystem=mail/mail-session=docfaust/custom=imap/:add(outbound-socket-binding-ref=docfaust-mail-imap, ssl=true, username=$mailusername, password=$mailpassword, properties={"connectiontimeout" => "30000", "timeout" => "30000"}) 
+
+data-source add --jndi-name=java:/jdbc/vbb2 --name=MySQLPool --connection-url=$dburl --driver-name=mysql --user-name=$dbuser --password=$dbpassword
+
 run-batch

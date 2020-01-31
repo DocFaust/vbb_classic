@@ -12,59 +12,12 @@
 		<system>Jenkins</system>
 		<url>https://jenkins.docfaust.de</url>
 	</ciManagement>
-	<organization>
-		<name>Werner Faust</name>
-		<url>http://www.docfaust.de</url>
-	</organization>
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-			<id>wfaust</id>
-			<name>Werner Faust</name>
-			<email>wfaust@gmx.de</email>
-			<url>http://www.docfaust.de</url>
-			<timezone>+1</timezone>
-			<roles>
-				<role>Developer</role>
-			</roles>
-		</developer>
-	</developers>
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
-		<hibernate.version>5.0.1.Final</hibernate.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<hibernate.version>5.4.10.Final</hibernate.version>
+		<maven.compiler.source>13</maven.compiler.source>
+		<maven.compiler.target>13</maven.compiler.target>
 	</properties>
-	<scm>
-		<url>https://svn.docfaust.de/svn/private/branches/vbb/VBB_WILDFLY_10/vbbproject</url>
-		<connection>scm:svn:https://svn.docfaust.de/svn/private/branches/vbb/VBB_WILDFLY_10/vbbproject</connection>
-		<developerConnection>scm:svn:https://svn.docfaust.de/svn/private/branches/vbb/VBB_WILDFLY_10/vbbproject</developerConnection>
-	</scm>
-	<distributionManagement>
-		<site>
-			<id>projectsite</id>
-			<url>file:///var/www/projects/${project.artifactId}</url>
-		</site>
-		<!-- use the following if you're not using a snapshot version. -->
-		<repository>
-			<id>artifactory</id>
-			<name>Nexus Release</name>
-			<url>https://artifactory.docfaust.de/artifactory/all/</url>
-		</repository>
-		<!-- use the following if you ARE using a snapshot version. -->
-		<snapshotRepository>
-			<id>artifactory</id>
-			<name>Nexus Snapshot</name>
-			<url>https://artifactory.docfaust.de/artifactory/libs-snapshot/</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
@@ -79,12 +32,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>3.1.0</version>
 					<dependencies>
 						<dependency>
 							<groupId>com.puppycrawl.tools</groupId>
 							<artifactId>checkstyle</artifactId>
-							<version>8.20</version>
+							<version>8.28</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -93,40 +46,17 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.13.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<generatePackage>de.docfaust.vbb.util.xml</generatePackage>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.8.2</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.2.3</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.7</version>
+				<version>3.0.0</version>
 				<configuration>
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
@@ -134,32 +64,11 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.0</version>
+				<version>3.0.0-M4</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.22.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<formats>
-						<format>xml</format>
-					</formats>
-					<instrumentation>
-						<ignores>
-							<ignore>de.docfaust.*.jsfbeans.*</ignore>
-							<ignore>de.docfaust.*.util.xml.*</ignore>
-						</ignores>
-						<excludes>
-							<!-- exclude>de/docfaust/**/jsfbeans/**/*.class</exclude -->
-							<exclude>de/docfaust/**/util/xml/**/*.class</exclude>
-							<exclude>de/docfaust/**/*_.class</exclude>
-						</excludes>
-					</instrumentation>
-				</configuration>
+				<version>3.0.0-M4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
@@ -189,30 +98,30 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>3.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.30</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.4.2</version>
+			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-runner</artifactId>
-			<version>1.4.2</version>
+			<version>1.5.2</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
+			<version>8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -227,7 +136,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.13</version>
+			<version>8.0.15</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -315,33 +224,41 @@
 			<version>1.18.10</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.9.8</version>
+		</dependency>
+<!-- API, java.xml.bind module -->
+<dependency>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jakarta.xml.bind-api</artifactId>
+    <version>2.3.2</version>
+</dependency>
 
+<!-- Runtime, com.sun.xml.bind module -->
+<dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>2.3.2</version>
+</dependency>
 	</dependencies>
 	<reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.0.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.17</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
-				<configuration>
-					<excludes>**/Test*</excludes>
-					<additionalparam>-Xdoclint:none</additionalparam>
-				</configuration>
+				<version>3.0.0-M4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.7</version>
+				<version>3.0.0</version>
 				<configuration>
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
@@ -350,7 +267,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 					<configLocation>checkstyle.xml</configLocation>
 				</configuration>

@@ -19,5 +19,14 @@ public abstract class Buchung_ {
 	public static volatile SingularAttribute<Buchung, Spiel> spiel;
 	public static volatile SingularAttribute<Buchung, Integer> id;
 
+	public static final String DATUM = "datum";
+	public static final String SPIELER = "spieler";
+	public static final String PRICE = "price";
+	public static final String LAST_UPDATE = "lastUpdate";
+	public static final String DESCRIPTION = "description";
+	public static final String INSERT_TIMESTAMP = "insertTimestamp";
+	public static final String SPIEL = "spiel";
+	public static final String ID = "id";
+
 }
 

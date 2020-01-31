@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.messages.UIMessages;
-import de.docfaust.vbb.util.messages.annotations.JAXBMessages;
+import de.docfaust.vbb.util.messages.annotations.JacksonMessages;
 import de.docfaust.vbb.util.statusliste.Status;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
@@ -22,7 +22,7 @@ public abstract class AbstractJSFBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -7390205631588081273L;
 	@Inject
-	@JAXBMessages
+	@JacksonMessages
 	private UIMessages uiMessages;
 
 	/**

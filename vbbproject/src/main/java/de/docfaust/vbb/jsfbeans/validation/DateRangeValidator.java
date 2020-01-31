@@ -18,10 +18,10 @@ import javax.faces.validator.ValidatorException;
  *
  */
 @FacesValidator("dateRangeValidator")
-public class DateRangeValidator implements Validator {
+public class DateRangeValidator implements Validator<Date> {
 
 	@Override
-	public void validate(final FacesContext context, final UIComponent component, final Object value) {
+	public void validate(final FacesContext context, final UIComponent component, final Date value) {
 		if (value == null) {
 			return; // Let required="true" handle.
 		}
@@ -33,9 +33,8 @@ public class DateRangeValidator implements Validator {
 
 		System.out.println(startDateObject.toString());
 		Date startDate = (Date) startDateObject;
-		Date endDate = (Date) value;
 
-		if (startDate.after(endDate)) {
+		if (startDate.after(value)) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Datum falsch", "Endedatum darf nicht vor dem Anfangsdatum sein"));
 		}
 	}

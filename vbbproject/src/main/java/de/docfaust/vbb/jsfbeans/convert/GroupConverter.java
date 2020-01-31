@@ -1,13 +1,13 @@
 package de.docfaust.vbb.jsfbeans.convert;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +22,9 @@ import de.docfaust.vbb.data.facades.GroupFacade;
  *
  */
 //@FacesConverter("groupConverter")
-@ManagedBean
+@Named
 @RequestScoped
-public class GroupConverter implements Converter {
+public class GroupConverter implements Converter<Group> {
 
 	@EJB
 	private GroupFacade groupFacade;
@@ -58,7 +58,7 @@ public class GroupConverter implements Converter {
 	 * @return Group objekt
 	 */
 	@Override
-	public Object getAsObject(final FacesContext fc, final UIComponent uic, final String value) {
+	public Group getAsObject(final FacesContext fc, final UIComponent uic, final String value) {
 		if (value != null && value.trim().length() > 0) {
 			try {
 				Group group = groupFacade.find(Integer.parseInt(value));
@@ -79,13 +79,12 @@ public class GroupConverter implements Converter {
 	 *            Faces Context.
 	 * @param uic
 	 *            Komponente
-	 * @param object
+	 * @param group
 	 *            Gruppenobjekt
 	 * @return ID als String
 	 */
-	public String getAsString(final FacesContext fc, final UIComponent uic, final Object object) {
-		if (object != null && object instanceof Group) {
-			Group group = (Group) object;
+	public String getAsString(final FacesContext fc, final UIComponent uic, final Group group) {
+		if (group != null) {
 			String id = String.valueOf(group.getId());
 			logger.debug("Konvertiere Gruppe: " + group.getDescription() + " in ID: " + id);
 			return id;

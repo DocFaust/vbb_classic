@@ -13,6 +13,7 @@ import javax.validation.Validation;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Season;
@@ -157,42 +158,40 @@ public class TestSeasonFacade extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testRemoveSpiel() {
 		logger.info("Spiele vorher:");
-		for (Spiel spiel2 : facadenFactory.getSpielFacade().findAll()) {
-			logger.info(spiel2.toString());
-		}
+		facadenFactory.getSpielFacade().findAll().stream().forEach(obj -> logger.info(obj.toString()));
 
 		logger.info("Seasons vorher:");
-		for (Season season2 : facadenFactory.getSeasonFacade().findAll()) {
-			logger.info(season2.toString());
-		}
-
+		facadenFactory.getSeasonFacade().findAll().stream().forEach(obj -> logger.info(obj.toString()));
+		
+		assertThat(facadenFactory.getSpielFacade().count()).isEqualTo(4);
+		assertThat(facadenFactory.getSeasonFacade().count()).isEqualTo(3);
+		
+		
 		logger.info("Spiele zu Saison:");
 		Season season = facadenFactory.getSeasonFacade().find(1);
+		season.getSpiele().stream().forEach(obj -> logger.info(obj.toString()));
 		for (Spiel spiel3 : season.getSpiele()) {
 			logger.info(spiel3.toString());
 		}
 		Spiel spiel = season.getSpiele().get(0);
-		assertThat(facadenFactory.getSeasonFacade().find(1).getSpiele().size()).isEqualTo(2);
+		
+		
+		assertThat(facadenFactory.getSeasonFacade().find(1).getSpiele()).hasSize(2);
 		season.removeSpiel(spiel);
 		
-		for (Buchung buchung : spiel.getBuchungen()) {
-			buchung.setSpiel(null);
-			facadenFactory.getBuchungFacade().remove(buchung);
-		}
+//		for (Buchung buchung : spiel.getBuchungen()) {
+//			buchung.setSpiel(null);
+//			facadenFactory.getBuchungFacade().remove(buchung);
+//		}
 		facadenFactory.getSpielFacade().remove(spiel);
 		facadenFactory.getSeasonFacade().edit(season);
 		
-		assertThat(facadenFactory.getSeasonFacade().find(1).getSpiele().size()).isEqualTo(1);
+		assertThat(facadenFactory.getSeasonFacade().find(1).getSpiele()).hasSize(1);
 		logger.info("Spiele nachher:");
-		for (Spiel spiel2 : facadenFactory.getSpielFacade().findAll()) {
-			logger.info(spiel2.toString());
-		}
+		facadenFactory.getSpielFacade().findAll().stream().forEach(obj -> logger.info(obj.toString()));
 
 		logger.info("Seasons nachher:");
-		for (Season season2 : facadenFactory.getSeasonFacade().findAll()) {
-			logger.info(season2.toString());
-		}
-
+		facadenFactory.getSeasonFacade().findAll().stream().forEach(obj -> logger.info(obj.toString()));
 	}
 
 	private boolean isBetween(final Date datum, final Date start, final Date end) {

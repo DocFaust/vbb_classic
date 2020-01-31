@@ -17,10 +17,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 @FacesValidator("passwordRepetitionValidator")
-public class PasswordRepetitionValidator implements Validator {
+public class PasswordRepetitionValidator implements Validator<String> {
 	@Override
-	public void validate(final FacesContext context, final UIComponent component, final Object value) {
-		String password = (String) value;
+	public void validate(final FacesContext context, final UIComponent component, final String password) {
 		String confirm = (String) component.getAttributes().get("confirm");
 
 		if (password == null || confirm == null) {

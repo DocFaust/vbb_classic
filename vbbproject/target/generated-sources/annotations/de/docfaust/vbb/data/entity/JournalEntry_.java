@@ -15,5 +15,11 @@ public abstract class JournalEntry_ {
 	public static volatile SingularAttribute<JournalEntry, String> userId;
 	public static volatile SingularAttribute<JournalEntry, BusinessCase> businessCase;
 
+	public static final String DESCRIPTION = "description";
+	public static final String ID = "id";
+	public static final String TMS = "tms";
+	public static final String USER_ID = "userId";
+	public static final String BUSINESS_CASE = "businessCase";
+
 }
 

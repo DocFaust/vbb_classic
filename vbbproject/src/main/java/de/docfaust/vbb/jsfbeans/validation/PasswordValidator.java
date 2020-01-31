@@ -14,7 +14,7 @@ import javax.faces.validator.ValidatorException;
  *
  */
 @FacesValidator("passwordValidator")
-public class PasswordValidator implements Validator {
+public class PasswordValidator implements Validator<String> {
 
 	/**
 	 * Minimale Passwort Länge.
@@ -22,12 +22,11 @@ public class PasswordValidator implements Validator {
 	private static final int MIN_PASSWORD_LENGTH = 8;
 
 	@Override
-	public void validate(final FacesContext context, final UIComponent component, final Object value) {
-		if (value == null) {
+	public void validate(final FacesContext context, final UIComponent component, final String password) {
+		if (password == null) {
 			return; // Let required="true" handle.
 		}
 
-		String password = (String) value;
 
 		if (password.length() < MIN_PASSWORD_LENGTH) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ungültiges Passwort", "Passwort muss länger als acht Stellen sein!"));

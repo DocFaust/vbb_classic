@@ -2,11 +2,11 @@ package de.docfaust.vbb.jsfbeans.convert;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +20,8 @@ import de.docfaust.vbb.data.facades.SpielerFacade;
  * @author xhu1011
  *
  */
-@ManagedBean
-public class SpielerConverter implements Converter {
+@Named
+public class SpielerConverter implements Converter<Spieler> {
 
 	@EJB
 	private SpielerFacade spielerFacade;
@@ -56,7 +56,7 @@ public class SpielerConverter implements Converter {
 	 * @return Spieler objekt
 	 */
 	@Override
-	public Object getAsObject(final FacesContext fc, final UIComponent uic, final String value) {
+	public Spieler getAsObject(final FacesContext fc, final UIComponent uic, final String value) {
 		if (value != null && value.trim().length() > 0) {
 			try {
 				Spieler spieler = spielerFacade.find(Integer.parseInt(value));
@@ -81,7 +81,7 @@ public class SpielerConverter implements Converter {
 	 *            Spielerobjekt
 	 * @return ID als String
 	 */
-	public String getAsString(final FacesContext fc, final UIComponent uic, final Object object) {
+	public String getAsString(final FacesContext fc, final UIComponent uic, final Spieler object) {
 		if (object != null && object instanceof Spieler) {
 			Spieler spieler = (Spieler) object;
 			String id = String.valueOf(spieler.getId());

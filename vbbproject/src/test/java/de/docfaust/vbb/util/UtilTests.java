@@ -12,7 +12,7 @@ import de.docfaust.vbb.util.templates.VelocityBuilderTest;
 
 @RunWith(JUnitPlatform.class)
 @SelectClasses({ TestUIMessages.class, TestStatusliste.class, VelocityBuilderTest.class, Slf4jLogChuteTest.class,
-		TestRegistrationState.class, TestMailConfigurationDB.class, TestLoggerProducer.class, TestMD5Util.class, TestJournal.class })
+		TestRegistrationState.class, TestMailConfigurationDB.class, TestLoggerProducer.class, TestJournal.class })
 public class UtilTests {
 
 }
