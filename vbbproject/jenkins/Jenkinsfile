@@ -32,18 +32,6 @@ pipeline {
 			   }
             }
        }
-	   stage ('Cobertura') {
-		   steps {
-			   	dir("vbbproject") {
-			   		sh 'mvn -Dmaven.test.failure.ignore=true cobertura:cobertura'
-				}
-		   }
-		   post {
-			   always {
-				   step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
-			   }
-		   }
-	   }
 	   stage ('Site') {
 		   steps {
 				dir("vbbproject") {
