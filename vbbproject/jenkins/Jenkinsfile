@@ -34,6 +34,9 @@ pipeline {
        }
        stage('JaCoCo') {
 	     steps {
+	    	dir("vbbproject") {
+                sh 'mvn -Dmaven.test.failure.ignore=true verify' 
+			}
 	        step( [ $class: 'JacocoPublisher' ] )
 	     }
 }
