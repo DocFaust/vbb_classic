@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.facades.SeasonFacade;
 import de.docfaust.vbb.util.statusliste.Statusliste;
@@ -90,7 +91,7 @@ public class SeasonServiceImpl implements SeasonService {
 
 	/**
 	 * Löscht alle Seasons vor einem Datum.
-	 * 
+	 * Macht nur Sinn, wenn die zugehörigen Spiele gelöscht sind. 
 	 * @param date
 	 *            Datum
 	 */
