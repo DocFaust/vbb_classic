@@ -32,6 +32,11 @@ pipeline {
 			   }
             }
        }
+       stage('JaCoCo') {
+	     steps {
+	        step( [ $class: 'JacocoPublisher' ] )
+	     }
+}
 	   stage ('Site') {
 		   steps {
 				dir("vbbproject") {
