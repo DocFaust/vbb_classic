@@ -9,15 +9,15 @@
 		</layout>
 	</appender>
 	<logger name="de.docfaust" additivity="false">
-		<level value="debug" />
+		<level value="info" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger name="org.hibernate.SQL" additivity="false">
-		<level value="TRACE" />
+		<level value="info" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger name="org.jboss.security" additivity="false">
-		<level value="debug" />
+		<level value="info" />
 		<appender-ref ref="console" />
 	</logger>
 	<root>

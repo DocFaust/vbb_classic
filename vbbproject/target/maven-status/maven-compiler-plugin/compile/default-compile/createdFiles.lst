@@ -73,7 +73,6 @@ de\docfaust\vbb\service\CutOffServiceImpl.class
 de\docfaust\vbb\data\entity\IEntity.class
 de\docfaust\vbb\service\UserService.class
 de\docfaust\vbb\data\entity\Group_.class
-de\docfaust\vbb\util\MD5Util.class
 de\docfaust\vbb\service\GroupServiceImpl.class
 de\docfaust\vbb\service\ConfigService.class
 de\docfaust\vbb\util\messages\annotations\JacksonMessages.class

@@ -4,7 +4,6 @@ de\docfaust\vbb\service\TestSaldoService.class
 de\docfaust\vbb\jsfbeans\TestEditProfileBean.class
 de\docfaust\vbb\service\TestMailService.class
 de\docfaust\vbb\service\TestBuchungService.class
-de\docfaust\vbb\util\TestMD5Util.class
 de\docfaust\vbb\data\facade\TestUserFacade.class
 de\docfaust\vbb\data\entity\AllEntityTests.class
 de\docfaust\vbb\util\TestLoggerProducer.class
