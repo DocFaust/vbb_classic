@@ -1,2 +1,5 @@
 target
-vbbproject/target
+.setting/
+.metadata/
+.gradle/
+.sts4-cache/
