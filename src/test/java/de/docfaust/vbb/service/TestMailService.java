@@ -47,7 +47,6 @@ public class TestMailService extends JpaBaseRolledBackTestCase {
 		}
 	}
 
-	// FIXME Write new
 	@Test
 	public void testSendSpiel() {
 		int count = facadenFactory.getMailFacade().count();
