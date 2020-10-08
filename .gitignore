@@ -1,6 +1,7 @@
 target
-.setting/
+.settings/
 .metadata/
 .gradle/
 .sts4-cache/
 .classpath
+.project
