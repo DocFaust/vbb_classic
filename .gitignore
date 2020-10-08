@@ -3,3 +3,4 @@ target
 .metadata/
 .gradle/
 .sts4-cache/
+.classpath
