@@ -1,7 +1,7 @@
 connect 127.0.0.1
 
-set dbuser=vbb_prod
-set dbpassword=vbb_prod
+set dbuser=
+set dbpassword=
 set driverpath="/C:/Users/wfa339/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"
 set dburl=jdbc:mysql://localhost:3306/vbb
 
