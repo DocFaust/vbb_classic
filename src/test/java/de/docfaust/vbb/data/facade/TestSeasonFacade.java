@@ -1,5 +1,7 @@
 package de.docfaust.vbb.data.facade;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,12 +12,8 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
 
-import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.entity.Season;
 import de.docfaust.vbb.data.entity.Spiel;
 import de.docfaust.vbb.data.facades.SeasonFacade;
