@@ -1,0 +1,30 @@
+<ui:composition template="templateohnemenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<div id="login">
+			<p:panel header="Anmeldung">
+				<form method="post" action="j_security_check">
+					<p:panelGrid columns="2">
+						<h:outputText value="Username" />
+						<input type="text" name="j_username" autocomplete="off" />
+
+						<h:outputText value="Password" />
+						<input type="password" name="j_password" autocomplete="off" />
+
+					</p:panelGrid>
+					<p />
+				<p:panelGrid columns="2">
+					<input type="submit" name="submit" value="Login" />
+					<h:button outcome="index" value="Cancel" />
+				</p:panelGrid>
+				</form>
+			</p:panel>
+		</div>
+	</ui:define>
+</ui:composition>

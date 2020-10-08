@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%.30c#%-25M:%4L] [%-80m] 
+				[%t] (%-5p)[%d{yyyy-MM-dd HH:mm:ss,SSS}]%n" />
+		</layout>
+	</appender>
+	<logger name="de.docfaust" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="org.hibernate.SQL" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="org.jboss.security" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+	</root>
+
+</log4j:configuration>

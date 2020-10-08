@@ -1,0 +1,46 @@
+<ui:composition template="templateohnemenu.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<p:panel header="#{msg['register.title'] }">
+			<h:form id="registerform">
+				<p:growl id="growl" showDetail="true" />
+				<div id="description">
+					Bitte gib hier Deinen Namen, eine BenutzerID, Deine Mailadresse und ein Passwort an.<br /> Diese Daten werden zur Anmeldung und Versendung einer Registrierungsmail verwendet.<br />
+					Eine Weitergabe an Dritte findet nicht statt.<br /> Mit Abschluß der Registrierung erklärst Du Dich mit der Nutzung der Daten für einverstanden.
+				</div>
+				<p:panelGrid columns="3">
+					<p:outputLabel value="#{msg['register.userid']}" for="userid" />
+					<p:inputText value="#{registerBean.userid }" placeholder="UserID" id="userid" required="true" requiredMessage="#{msg['valuerequired']}" />
+					<p:message for="userid" />
+
+					<p:outputLabel for="username" value="#{msg['register.name']}" />
+					<p:inputText value="#{registerBean.username }" placeholder="User Name" id="username" required="true" requiredMessage="#{msg['valuerequired']}" />
+					<p:message for="username" />
+
+					<p:outputLabel value="#{msg['register.email']}" for="email" />
+					<p:inputText value="#{registerBean.email}" placeholder="Email" id="email" validatorMessage="Keine gültige Emailadresse" required="true"
+						requiredMessage="#{msg['valuerequired']}">
+						<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+					<p:message for="email" />
+
+					<p:outputLabel value="#{msg['register.password'] }" for="password" />
+					<p:password value="#{registerBean.password }" placeholder="Passwort" id="password" required="true" requiredMessage="#{msg['valuerequired']}" binding="#{password}">
+						<f:validator validatorId="passwordRepetitionValidator" />
+						<f:attribute name="confirm" value="#{confirmPassword.submittedValue}" />
+					</p:password>
+					<p:message for="password" id="m_password"/>
+
+					<p:outputLabel value="#{msg['register.passwordrepeat'] }" for="confirm" />
+					<p:password id="confirm" placeholder="Passwort" required="true" requiredMessage="#{msg['valuerequired']}" binding="#{confirmPassword}"/>
+					<p:message for="confirm" id="m_confirm"/>
+					
+				</p:panelGrid>
+
+				<p:commandButton action="#{registerBean.register}" value="#{msg['register.register'] }" ajax="false"/>
+				<p:commandButton action="index" value="#{msg['cancel'] }"  ajax="false" immediate="true"/>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

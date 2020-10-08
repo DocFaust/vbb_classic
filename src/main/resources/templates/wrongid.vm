@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volleyballbuchung Registrierung</title>
+</head>
+<body>
+	<h1>Falsche ID</h1>
+	<h2>Der Benutzer mit der ID $userid konnte nicht registriert werden.</h2>
+</body>
+</html>

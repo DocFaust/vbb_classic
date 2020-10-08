@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Volleyballbuchung Registrierung</title>
+	</head>
+	<body>
+		<h1>Bereits registriert</h1>
+		<h2>Der Benutzer mit der ID $userid wurde bereits registriert.</h2>
+	</body>
+</html>

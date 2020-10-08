@@ -1,0 +1,29 @@
+<ui:composition template="../template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="editconfigform">
+
+			<p:panel id="pnl" header="Konfiguration bearbeiten">
+				<p:growl id="growl" showDetail="true" />
+				<p:panelGrid columns="2" columnClasses="key, value">
+				<p:outputLabel value="Domäne: " for="domain" />
+				<p:inputText value="#{editConfigBean.domain}" placeholder="http://localhost:8080/vbb" id="domain" required="true" requiredMessage="Bitte Domäne angeben"  style="width:400px"/>
+				
+				<p:outputLabel value="Emailbetreff: " for="subject" />
+				<p:inputText value="#{editConfigBean.subject}" placeholder="Betreff" id="subject" required="true" requiredMessage="Bitte Betreff angeben"  style="width:400px"/>
+				
+				<p:outputLabel value="Absenderadresse: " for="from" />
+				<p:inputText value="#{editConfigBean.from}" placeholder="Absender" id="from" required="true" requiredMessage="Bitte Absenderadresse angeben"  style="width:400px"/>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:commandButton value="Speichern" actionListener="#{editConfigBean.save}" update="growl,editconfigform"/>
+			<p:commandButton value="Zurücksetzen" actionListener="#{editConfigBean.reset}" update="growl,editconfigform"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

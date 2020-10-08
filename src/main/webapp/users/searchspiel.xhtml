@@ -1,0 +1,98 @@
+
+<ui:composition template="../template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel id="pnl" header="Spiele bearbeiten">
+				<p:growl id="growl" showDetail="true" />
+				<p:dataTable id="spieleTab" value="#{searchSpielBean.spiele}" var="spiel" scrollHeight="200" scrollable="true" selection="#{searchSpielBean.selectedSpiel}"
+					selectionMode="single" rowKey="#{spiel.id}" emptyMessage="Keine Spiele gefunden">
+					<p:ajax event="rowSelect" update=":form:buchungenTab" />
+					<f:facet name="header">
+		            	Spiele
+        			</f:facet>
+					<p:column id="date" headerText="Datum" width="90">
+						<h:outputText value="#{spiel.datum }" converter="javax.faces.DateTime" />
+					</p:column>
+					<p:column id="season" headerText="Saison" >
+						<h:outputText value="#{spiel.season.description }" />
+					</p:column>
+					<p:column id="price" headerText="Preis" width="90">
+						<h:outputText value="#{spiel.season.price }">
+							<f:convertNumber currencyCode="EUR" type="currency" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+				<p:separator />
+
+				<p:dataTable id="buchungenTab" value="#{searchSpielBean.selectedSpiel.buchungen}" var="buchung" scrollHeight="250" scrollable="true"
+					selection="#{searchSpielBean.selectedBuchung}" selectionMode="single" rowKey="#{buchung.id}" emptyMessage="Keine Buchungen zu Spiel">
+					<f:facet name="header">
+			            Buchungen
+        			</f:facet>
+					<p:column id="date" headerText="Datum" width="90">
+						<h:outputText value="#{buchung.datum }" converter="javax.faces.DateTime" />
+					</p:column>
+					<p:column id="name" headerText="Spieler" width="200">
+						<h:outputText value="#{buchung.spieler.name }" />
+					</p:column>
+					<p:column id="description" headerText="Beschreibung">
+						<h:outputText value="#{buchung.description }" />
+					</p:column>
+					<p:column id="price" headerText="Preis" width="90">
+						<h:outputText value="#{buchung.price }">
+							<f:convertNumber currencyCode="EUR" type="currency" />
+						</h:outputText>
+					</p:column>
+					<f:facet name="footer">
+						<p:outputLabel value="Spielsaldo: " />
+						<p:outputLabel id="saldo" value="#{searchSpielBean.saldo }">
+							<f:convertNumber currencyCode="EUR" type="currency" />
+						</p:outputLabel>
+					</f:facet>
+				</p:dataTable>
+
+				<p:contextMenu for="buchungenTab">
+					<p:menuitem value="Neu" update="growl,:dlg:buchungPan" icon="ui-icon-plus" actionListener="#{searchSpielBean.addBuchung}" oncomplete="PF('buchungDialog').show()" disabled="#{searchSpielBean.newGameDisabled}"/>
+					<p:menuitem value="Bearbeiten" update="growl,:dlg:buchungPan" icon="ui-icon-pencil" oncomplete="PF('buchungDialog').show()" />
+					<p:menuitem value="Löschen" update="growl,:dlg:buchungPan,:form:buchungenTab" icon="ui-icon-close" actionListener="#{searchSpielBean.deleteBuchung}" />
+				</p:contextMenu>
+
+				<p:contextMenu for="spieleTab">
+					<p:menuitem value="Löschen" update="growl,:form:spieleTab" icon="ui-icon-close" actionListener="#{searchSpielBean.deleteSpiel}" />
+				</p:contextMenu>
+
+			</p:panel>
+		</h:form>
+
+		<h:form id="dlg">
+			<p:dialog header="Buchung bearbeiten" widgetVar="buchungDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="buchungPan" style="text-align:center;">
+					<p:panelGrid columns="2" columnClasses="label,value">
+
+						<p:outputLabel for="datum" value="Anfangsdatum:" />
+						<p:calendar id="datum" value="#{searchSpielBean.selectedBuchung.datum}" locale="de" placeholder="Datum" />
+
+						<p:outputLabel for="name" value="Name:" />
+						<h:selectOneMenu id="name" value="#{searchSpielBean.selectedBuchung.spieler}" style="width:200px" converter="#{spielerConverter}">
+							<f:selectItems value="#{searchSpielBean.spieler}" var="sp" itemLabel="#{sp.name}" itemValue="#{sp}" />
+						</h:selectOneMenu>
+ 
+						<p:outputLabel for="descIn" value="Beschreibung:" />
+						<p:inputText id="descIn" value="#{searchSpielBean.selectedBuchung.description}" placeholder="Beschreibung" />
+
+						<p:outputLabel for="preis" value="Preis:" />
+						<p:inputText id="preis" value="#{searchSpielBean.selectedBuchung.price}" >
+							<f:convertNumber type="number" locale="de_DE"/>
+						</p:inputText>
+						
+					</p:panelGrid>
+					<p:commandButton value="Speichern" actionListener="#{searchSpielBean.saveBuchung}" update=":form:pnl,:form:growl,:form:buchungenTab" onclick="buchungDialog.hide()" />
+					<p:commandButton value="Abbrechen" onclick="buchungDialog.hide()" immediate="true"/>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

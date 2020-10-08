@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"
+	xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<servers>
+		<server>
+			<id>artifactory</id>
+			<username>wfaust</username>
+			<password>artifactory</password>
+		</server>
+		<server>
+			<id>projectsite</id>
+			<username>wfaust</username>
+			<password>o7juei0p</password>
+		</server>
+		<server>
+			<id>wildfly</id>
+			<username>wfaust</username>
+			<password>BDnm1S&amp;H</password>
+		</server>
+	</servers>
+	<mirrors>
+		<mirror>
+			<id>Docfaust</id>
+			<name>DocFaust's Mirror</name>
+			<url>https://artifactory.docfaust.de/artifactory/all/</url>
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+	</mirrors>
+</settings>

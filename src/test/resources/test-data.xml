@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dataset PUBLIC "//UNKNOWN/" "dataset.dtd">
+<dataset>
+	<TOKEN id="1" name="VALIDTOKEN" token="1" state="VALID"/>
+	<TOKEN id="2" name="INVALIDTOKEN" token="2" state="INVALID"/>
+
+	<SEASON ID="1" DESCRIPTION="Saison 1" STARTDATE="2014-01-01" ENDDATE="2014-01-02" PRICE="9" />
+	<SEASON ID="2" DESCRIPTION="Saison 2" STARTDATE="2014-01-05" ENDDATE="2014-02-06" PRICE="10" />
+	<SEASON ID="3" DESCRIPTION="Saison 3" STARTDATE="2015-01-07" ENDDATE="2015-02-09" PRICE="9" />
+	<!-- SEASON ID="4" DESCRIPTION="Saison 4" STARTDATE="2017-01-01" ENDDATE="2099-12-31" PRICE="9" /-->
+
+
+	<SPIEL id="1" season_id="1" datum="2014-01-01" />
+	<SPIEL id="2" season_id="1" datum="2014-01-02" />
+	<SPIEL id="3" season_id="2" datum="2014-01-05" />
+	<SPIEL id="4" season_id="2" datum="2014-01-06" />
+
+	<SPIELER id="1" name="Alfred Altmann" email="aaltmann@gmiks.de" activitylevel="1"/>
+	<SPIELER id="2" name="Bernd Brot" email="bbrot@gmiks.de" activitylevel="1"/>
+	<SPIELER id="3" name="Claus Caspar" email="ccaspar@gmiks.de" activitylevel="1"/>
+	<SPIELER id="4" name="Doreen Durstig" email="ddurstig@gmiks.de" activitylevel="1"/>
+	<SPIELER id="5" name="Erich Ehrlich" email="eehrlich@gmiks.de" activitylevel="1"/>
+	<SPIELER id="6" name="Franz Fröhlich" email="ffröhlich@gmiks.de" activitylevel="1"/>
+	<SPIELER id="7" name="Gretchen Gröhl" email="ggroehl@gmiks.de" activitylevel="1"/>
+	<SPIELER id="8" name="Hans Hohlbirne" email="hhohlbirne@gmiks.de" activitylevel="1"/>
+	<SPIELER id="9" name="Ines Ignorant" email="iignorant@gmiks.de" activitylevel="1"/>
+	<SPIELER id="10" name="Johann Jochbein" email="jjochbein@gmiks.de" activitylevel="1"/>
+
+	<BUCHUNG id="1" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="1" price="-3" spiel_id="1" />
+	<BUCHUNG id="2" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="2" price="-3" spiel_id="1" />
+	<BUCHUNG id="3" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="3" price="-3" spiel_id="1" />
+	<BUCHUNG id="4" datum="2014-01-03 12:00:00.000" description="Bezahlung" spieler_id="3" price="9" spiel_id="1" />
+	
+	<BUCHUNG id="5" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="1" price="-1" spiel_id="2" />
+	<BUCHUNG id="6" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="2" price="-1" spiel_id="2" />
+	<BUCHUNG id="7" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="3" price="-1" spiel_id="2" />
+	<BUCHUNG id="8" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="4" price="-1" spiel_id="2" />
+	<BUCHUNG id="9" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="5" price="-1" spiel_id="2" />
+	<BUCHUNG id="10" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="6" price="-1" spiel_id="2" />
+	<BUCHUNG id="11" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="7" price="-1" spiel_id="2" />
+	<BUCHUNG id="12" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="8" price="-1" spiel_id="2" />
+	<BUCHUNG id="13" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="9" price="-1" spiel_id="2" />
+	<BUCHUNG id="14" datum="2014-01-03 12:00:00.000" description="Bezahlung" spieler_id="9" price="9" spiel_id="2" />
+	
+	<BUCHUNG id="15" datum="2014-01-06 12:00:00.000" description="Spieleinsatz" spieler_id="1" price="-2.5" spiel_id="3" />
+	<BUCHUNG id="16" datum="2014-01-06 12:00:00.000" description="Spieleinsatz" spieler_id="2" price="-2.5" spiel_id="3" />
+	<BUCHUNG id="17" datum="2014-01-06 12:00:00.000" description="Spieleinsatz" spieler_id="3" price="-2.5" spiel_id="3" />
+	<BUCHUNG id="18" datum="2014-01-06 12:00:00.000" description="Spieleinsatz" spieler_id="4" price="-2.5" spiel_id="3" />
+	<BUCHUNG id="19" datum="2014-01-06 12:00:00.000" description="Spieleinsatz" spieler_id="5" price="-2.5" spiel_id="3" />
+	<BUCHUNG id="20" datum="2014-01-06 12:00:00.000" description="Bezahlung" spieler_id="5" price="12.5" spiel_id="3" />
+
+	<BUCHUNG id="21" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="1" price="-1" spiel_id="4" />
+	<BUCHUNG id="22" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="2" price="-1" spiel_id="4" />
+	<BUCHUNG id="23" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="3" price="-1" spiel_id="4" />
+	<BUCHUNG id="24" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="4" price="-1" spiel_id="4" />
+	<BUCHUNG id="25" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="5" price="-1" spiel_id="4" />
+	<BUCHUNG id="26" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="6" price="-1" spiel_id="4" />
+	<BUCHUNG id="27" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="7" price="-1" spiel_id="4" />
+	<BUCHUNG id="28" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="8" price="-1" spiel_id="4" />
+	<BUCHUNG id="29" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="9" price="-1" spiel_id="4" />
+	<BUCHUNG id="30" datum="2014-01-07 12:00:00.000" description="Spieleinsatz" spieler_id="10" price="-1" spiel_id="4" />
+	<BUCHUNG id="31" datum="2014-01-07 12:00:00.000" description="Bezahlung" spieler_id="10" price="10" spiel_id="4" />
+
+	<CONFIG id="1" configkey="a"                         configvalue="b" />
+	<CONFIG id="2" configkey="b"                         configvalue="c" />
+	<CONFIG id="3" configkey="sender.address"            configvalue="wfaust@localhost.net" />
+	<CONFIG id="4" configkey="sender.password"           configvalue="" />
+	<CONFIG id="5" configkey="subject"                   configvalue="Registrierung bei der Volleyballbuchung" />
+	<CONFIG id="6" configkey="domain"                    configvalue="http://localhost:8080/vbb" />
+
+	<ROLES id="1" name="ADMIN" description="Administrator" />
+	<ROLES id="2" name="USER" description="Benutzer" />
+	<ROLES id="3" name="READER" description="Leser" />
+
+	<USERS id="1" username="Alfred Altmann" email="aaltmann@mail.de" password="3e4abd445f37c2a286906754697aaa9a" state="PROOFED" regid="a" userid="aaltmann" group_id="2" />
+	<USERS id="2" username="Bernhard Bodenständig" email="bbodenst@mail.de" password="wwwwwwww" state="OPEN" regid="b" userid="bbodenst" group_id="1" />
+
+	
+	<MAILS id="1" recipient="ich" subject="test" text="testtext" attempt="1"/>
+	<MAILS id="2" recipient="wfaust@gmx.de" subject="test" text="testtext" attempt="10"/>
+
+	<JOURNAL id="1" tms="2017-08-21 10:44:00" userid="wfaust" description="Neues Spiel angelegt" business_case="BLUB"/>
+</dataset>

@@ -1,0 +1,50 @@
+<ui:composition template="../template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+	<f:loadBundle basename="de.docfaust.vbb.messages_de_DE" var="msg" />
+	<ui:define name="content">
+		<h:form id="searchSpielerForm">
+
+			<p:panel id="pnl" header="Spieler bearbeiten">
+				<p:growl id="growl" showDetail="true" />
+
+				<p:contextMenu for="tab">
+					<p:menuitem value="Neu" update="growl,:dlg:spielerPan" icon="ui-icon-plus" actionListener="#{editSpielerBean.addSpieler}"
+						oncomplete="PF('spielerDialog').show()" />
+					<p:menuitem value="Bearbeiten" update="growl,:dlg:spielerPan" icon="ui-icon-pencil" oncomplete="PF('spielerDialog').show()" />
+					<p:menuitem value="Löschen" update="growl,tab" icon="ui-icon-close" actionListener="#{editSpielerBean.deleteSpieler}" />
+				</p:contextMenu>
+
+				<p:dataTable id="tab" value="#{editSpielerBean.spieler}" var="spieler" scrollable="true" selection="#{editSpielerBean.selectedSpieler}"
+					selectionMode="single" rowKey="#{spieler.id}" emptyMessage="Keine Spieler gefunden">
+					<p:column id="Name" headerText="Name">
+						<h:outputText value="#{spieler.name}" />
+					</p:column>
+					<p:column id="email" headerText="Email">
+						<h:outputText value="#{spieler.email}" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+
+		<h:form id="dlg">
+			<p:dialog header="Spieler bearbeiten" widgetVar="spielerDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="spielerPan" style="text-align:center;">
+					<p:panelGrid columns="2" columnClasses="label,value">
+
+						<p:outputLabel for="name" value="Name:" />
+						<p:inputText id="name" value="#{editSpielerBean.selectedSpieler.name}" placeholder="Name" />
+						<p:outputLabel for="email" value="Emailadresse:" />
+						<p:inputText id="email" value="#{editSpielerBean.selectedSpieler.email}" placeholder="Emailadresse" validatorMessage="Keine gültige Emailadresse" required="true"
+						requiredMessage="#{msg['valuerequired']}">
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+						
+					</p:panelGrid>
+					<p:commandButton value="Speichern" actionListener="#{editSpielerBean.saveSpieler}" update=":searchSpielerForm:pnl,:searchSpielerForm:growl"
+						onclick="ruleDialog.hide()" />
+					<p:commandButton value="Abbrechen" onclick="ruleDialog.hide()" />
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
