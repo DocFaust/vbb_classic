@@ -28,7 +28,7 @@ pipeline {
        }
        stage('JaCoCo') {
 	     steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true verify' 
+                sh 'mvn -Dmaven.test.failure.ignore=true jacoco:prepare-agent verify' 
 	        step( [ $class: 'JacocoPublisher' ] )
 	     }
 }
