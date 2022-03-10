@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ignore all bugs in test classes, except for those bugs specifically 
+	relating to JUnit tests -->
+<!-- i.e. filter bug if ( classIsJUnitTest && ! bugIsRelatedToJUnit ) -->
+<FindBugsFilter
+	xmlns="https://github.com/spotbugs/filter/3.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0/spotbugs/etc/findbugsfilter.xsd">
+
+	<Match>
+		<!-- the Match filter is equivalent to a logical 'And' -->
+
+		<Class name="~.*\.*_" />
+	</Match>
+</FindBugsFilter>
