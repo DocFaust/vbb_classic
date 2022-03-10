@@ -17,10 +17,13 @@
 		<module name="SuppressWithNearbyCommentFilter" />
 
 		<property name="tabWidth" value="4" />
-		<module name="JavadocMethod">
-			<property name="scope" value="protected" />
-		</module>
-		<module name="JavadocType" />
+		<module name="MissingJavadocMethod">
+			<property name="severity" value="ignore"/>
+			<property name="accessModifiers" value="public, protected"/>
+			<property name="minLineCount" value="2"/>
+			<property name="allowedAnnotations" value="Override, Test"/>
+			<property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
+		  </module>		<module name="JavadocType" />
 		<module name="JavadocVariable">
 			<property name="scope" value="public" />
 		</module>
