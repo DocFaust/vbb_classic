@@ -1,49 +1,48 @@
 pipeline {
     agent any
-    tools { 
-        maven 'Maven 3.6.1' 
-        jdk 'JDK 11' 
+    tools {
+        maven 'Maven 3.6.1'
+        jdk 'JDK 11'
     }
     stages {
-       stage ('Build') {
+        stage ('Build') {
             steps {
-					sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
             post {
                 success {
-            	        junit 'target/surefire-reports/**/*.xml' 
+                        junit 'target/surefire-reports/**/*.xml'
                 }
             }
-       }
-	   
-       stage('JaCoCo') {
-	     steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true jacoco:prepare-agent verify' 
-	        step( [ $class: 'JacocoPublisher' ] )
-	     }
-}
-       stage ('Analysis') {
+        }
+
+        stage('JaCoCo') {
             steps {
-            	cleanWs()
-            	checkout scm
-	            sh 'mvn -Dmaven.test.failure.ignore=true jxr:jxr checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs' 
+                sh 'mvn -Dmaven.test.failure.ignore=true jacoco:prepare-agent verify'
+                step( [ $class: 'JacocoPublisher' ] )
+            }
+        }
+        stage ('Analysis') {
+            steps {
+                cleanWs()
+                checkout scm
+                sh 'mvn -Dmaven.test.failure.ignore=true jxr:jxr checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs'
             }
             post {
-			   always {
-		            recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
-		            recordIssues enabledForFailure: true, tools: [checkStyle()]
-		            recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/target/cpd.xml')]
-		            recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/target/pmd.xml')]
-			   }
+                always {
+                    recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
+                    recordIssues enabledForFailure: true, tools: [checkStyle()]
+                    recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/target/cpd.xml')]
+                    recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/target/pmd.xml')]
+                }
             }
-       }
+        }
 
-	   stage ('Site') {
-		   steps {
-			   		sh 'mvn -Dmaven.test.failure.ignore=true site'
-    	            recordIssues enabledForFailure: true, tools: [spotBugs()]
-
-		   }
-	   }
+        stage ('Site') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true site'
+                recordIssues enabledForFailure: true, tools: [spotBugs()]
+            }
+        }
     }
 }
