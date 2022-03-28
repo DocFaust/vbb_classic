@@ -1,6 +1,5 @@
 package de.docfaust.vbb.jsfbeans;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,14 +20,14 @@ import de.docfaust.vbb.util.messages.UIMessages;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
 /**
- * JSFBean für die Spielbearbeitung.
+ * JSFBean fï¿½r die Spielbearbeitung.
  * 
  * @author xhu1011
  *
  */
 @ViewScoped
 @Named
-public class SpielBean extends AbstractJSFBean implements Serializable {
+public class SpielBean extends AbstractJSFBean {
 	/**
 	 * 
 	 */
@@ -72,7 +71,7 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	}
 
 	/**
-	 * Befüllt die Spielerliste.
+	 * Befï¿½llt die Spielerliste.
 	 */
 	@PostConstruct
 	public void init() {
@@ -89,7 +88,7 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	}
 
 	/**
-	 * Gibt die Liste der Spieler zurück.
+	 * Gibt die Liste der Spieler zurï¿½ck.
 	 * 
 	 * @return Liste der Spieler
 	 */
@@ -102,7 +101,6 @@ public class SpielBean extends AbstractJSFBean implements Serializable {
 	}
 
 	private boolean checkSpielerList() {
-		logger.info(spielerList.toString());
 
 		long count = spielerList.stream().filter(Spieler::isBezahlt).count();
 
