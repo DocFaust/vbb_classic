@@ -24,8 +24,8 @@ import de.docfaust.vbb.util.messages.MessageConstants;
 import de.docfaust.vbb.util.statusliste.Statusliste;
 
 /**
- * Facade für den Datenbankzugriff zur Season via JPA. Implementierung als EJB.
- * Für JUnit Tests kann ein Entitymanager gesetzt werden, es ist aber selbst für
+ * Facade fï¿½r den Datenbankzugriff zur Season via JPA. Implementierung als EJB.
+ * Fï¿½r JUnit Tests kann ein Entitymanager gesetzt werden, es ist aber selbst fï¿½r
  * eine Transaktionsklammer zu sorgen.
  * 
  * @author xhu1011
@@ -40,7 +40,7 @@ public class SeasonFacade extends AbstractFacade<Season> {
 	private Logger logger;
 
 	/**
-	 * Leerer Konstruktor. Standard für den Zugriff via EJB. Die Entitätsklasse
+	 * Leerer Konstruktor. Standard fï¿½r den Zugriff via EJB. Die Entitï¿½tsklasse
 	 * wird der Superklasse gesetzt.
 	 */
 	public SeasonFacade() {
@@ -48,12 +48,12 @@ public class SeasonFacade extends AbstractFacade<Season> {
 	}
 
 	/**
-	 * Konstruktor für JUnit Tests. Die Entitätsklasse wird der Superklasse
-	 * gesetzt. Hier kann ein außerhalb erzeugter EntityManager getzt werden.
-	 * Achtung, für eine Transaktionsklammer muss selbst gesorgt werden.
+	 * Konstruktor fï¿½r JUnit Tests. Die Entitï¿½tsklasse wird der Superklasse
+	 * gesetzt. Hier kann ein auï¿½erhalb erzeugter EntityManager getzt werden.
+	 * Achtung, fï¿½r eine Transaktionsklammer muss selbst gesorgt werden.
 	 * 
 	 * @param em
-	 *            Außerhalb erzeugter EntityManager
+	 *            Auï¿½erhalb erzeugter EntityManager
 	 */
 	public SeasonFacade(final EntityManager em) {
 		super(Season.class);
@@ -74,7 +74,7 @@ public class SeasonFacade extends AbstractFacade<Season> {
 	 * Zeigt an, ob eine gegebene Saison mit anderen gespeicherten kollidiert.
 	 * 
 	 * @param season
-	 *            zu prüfende Saison.
+	 *            zu prï¿½fende Saison.
 	 * @return true, wenn die Saison kollidiert.
 	 */
 	public boolean hasCollisions(final Season season) {
@@ -112,7 +112,7 @@ public class SeasonFacade extends AbstractFacade<Season> {
 	 * 
 	 */
 	public Season getSeasonFromDate(final Date datum) {
-		logger.debug("Suche Saison für das Datum: " + datum.toString());
+		logger.debug("Suche Saison fÃ¼r das Datum: " + datum.toString());
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Season> cq = cb.createQuery(Season.class);
 		Root<Season> root = cq.from(Season.class);
@@ -131,20 +131,20 @@ public class SeasonFacade extends AbstractFacade<Season> {
 		try {
 			s = q.getSingleResult();
 		} catch (NoResultException e) {
-			logger.warn("Keine Saison für Datum gefunden");
+			logger.warn("Keine Saison fï¿½r Datum gefunden");
 		} catch (NonUniqueResultException nue) {
-			logger.error("Mehr als eine Saison für Datum gefunden", nue);
+			logger.error("Mehr als eine Saison fï¿½r Datum gefunden", nue);
 		}
 
 		return s;
 	}
 
 	/**
-	 * Löscht eine Saison, wenn sie vorhanden ist und keine Referenzen mehr zu
+	 * Lï¿½scht eine Saison, wenn sie vorhanden ist und keine Referenzen mehr zu
 	 * Spielen hat.
 	 * 
 	 * @param season
-	 *            zu löschende Saison
+	 *            zu lï¿½schende Saison
 	 * @return Statusliste
 	 */
 	public Statusliste deleteSeason(final Season season) {
@@ -155,10 +155,10 @@ public class SeasonFacade extends AbstractFacade<Season> {
 			logger.info("Saison nicht gefunden");
 			statusliste.addStatus(MessageConstants.SEASON_NOT_FOUND);
 		} else if (tmp.getSpiele() != null && !tmp.getSpiele().isEmpty()) {
-			logger.info("Saison hat noch gültige Spiele");
+			logger.info("Saison hat noch gï¿½ltige Spiele");
 			statusliste.addStatus(MessageConstants.SEASON_HAS_REFERENCES);
 		} else {
-			logger.info("Lösche Saison");
+			logger.info("Lï¿½sche Saison");
 			remove(season);
 			statusliste.addStatus(MessageConstants.SEASON_DELETED);
 		}
@@ -166,10 +166,10 @@ public class SeasonFacade extends AbstractFacade<Season> {
 	}
 
 	/**
-	 * Löscht alle Seasons bevor einem bestimmten Datum.
+	 * Lï¿½scht alle Seasons bevor einem bestimmten Datum.
 	 * 
 	 * @param date
-	 *            Datum, vor dem die Seans gelöscht werden sollen.
+	 *            Datum, vor dem die Seans gelï¿½scht werden sollen.
 	 * @return Liste der Seasons vor dem Datum
 	 */
 	public List<Season> getSeasonsBeforeDate(final Date date) {
