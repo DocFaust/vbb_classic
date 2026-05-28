@@ -2,6 +2,8 @@
 
 Webanwendung zur Verwaltung und Abrechnung der Kosten einer Volleyballgruppe: Spiele erfassen, Teilnehmer buchen, Saisons verwalten und Salden auswerten.
 
+> **Neuentwicklung (Spring Boot 4 + React):** Planung und Architekturentscheidungen auf Branch `feature/vbb-next` in [docs/](docs/README.md).
+
 | | |
 |---|---|
 | **Artefakt** | `de.docfaust:vbb:2.0-SNAPSHOT` (WAR) |
