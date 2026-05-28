@@ -8,3 +8,10 @@ target/
 .classpath
 .project
 *.log
+node_modules/
+dist/
+coverage/
+build/
+frontend/.vite/
+frontend/.sonar/
+backend/.sonar/
