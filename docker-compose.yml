@@ -1,0 +1,60 @@
+services:
+  mariadb:
+    image: mariadb:11.4
+    container_name: vbb-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-vbbroot}
+      MARIADB_DATABASE: ${DB_NAME:-vbb}
+      MARIADB_USER: ${DB_USER:-vbb}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-vbb}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p${DB_ROOT_PASSWORD:-vbbroot}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  flyway:
+    image: flyway/flyway:10.17.1
+    container_name: vbb-flyway
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    command:
+      - -url=jdbc:mariadb://mariadb:3306/${DB_NAME:-vbb}
+      - -user=${DB_USER:-vbb}
+      - -password=${DB_PASSWORD:-vbb}
+      - -connectRetries=60
+      - -locations=filesystem:/flyway/sql
+      - migrate
+    volumes:
+      - ./db/migrations:/flyway/sql:ro
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: vbb-app
+    depends_on:
+      flyway:
+        condition: service_completed_successfully
+    environment:
+      DB_HOST: mariadb
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-vbb}
+      DB_USER: ${DB_USER:-vbb}
+      DB_PASSWORD: ${DB_PASSWORD:-vbb}
+      WILDFLY_MGMT_USER: ${WILDFLY_MGMT_USER:-mgmt}
+      WILDFLY_MGMT_PASSWORD: ${WILDFLY_MGMT_PASSWORD:-change-me}
+      WILDFLY_BIND_ADDRESS: 0.0.0.0
+      WILDFLY_BIND_MANAGEMENT_ADDRESS: 0.0.0.0
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+
+volumes:
+  mariadb-data:

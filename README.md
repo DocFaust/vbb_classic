@@ -155,6 +155,26 @@ mvn site
 
 Tests nutzen primär **HSQLDB** im Speicher; einige Tests arbeiten mit DBUnit und XML-Fixtures unter `src/test/resources/`.
 
+## Docker Compose (PR2 Grundgeruest)
+
+Ein erstes Compose-Setup fuer **WildFly + MariaDB + Flyway** ist enthalten.
+
+```bash
+# 1) Lokale Umgebungswerte vorbereiten
+cp .env.example .env
+
+# 2) Stack starten
+docker compose up --build
+```
+
+Enthaltene Services:
+
+- `mariadb` (persistente Daten in `mariadb-data`)
+- `flyway` (fuehrt Migrationen aus `db/migrations/` aus)
+- `app` (WildFly mit Deployment der WAR aus `Dockerfile.app`)
+
+Hinweis: Dieses Grundgeruest bereitet die naechsten Modernisierungsschritte vor. Die fachliche Vollmigration der bestehenden SQL-Skripte in Flyway erfolgt in der naechsten Phase.
+
 ## Sicherheit & Rollen
 
 | Rolle | Zugriff (Auszug) |
