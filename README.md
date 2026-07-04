@@ -87,7 +87,7 @@ vbb_classic/
 
 ## Voraussetzungen
 
-- **JDK 11** (empfohlen gemäß `pom.xml`; CI auf GitHub mit JDK 17)
+- **JDK 11+** (aktuelle CI-Baseline: JDK 17)
 - **Maven 3.6+**
 - **MySQL** (Datenbank `vbb`)
 - **WildFly** (oder kompatibler JBoss EAP) mit konfigurierter Security-Domain `secureDomainVBB` und MySQL-Treiber
@@ -132,7 +132,9 @@ $WILDFLY_HOME/bin/jboss-cli.sh --file=cli/db.cli
 
 ```bash
 mvn clean package
-# Optional mit WildFly-Maven-Plugin (Zugangsdaten in pom.xml anpassen):
+# Optional mit WildFly-Maven-Plugin (Zugangsdaten per Umgebung setzen):
+#   WILDFLY_MGMT_USER
+#   WILDFLY_MGMT_PASSWORD
 mvn wildfly:deploy
 ```
 
