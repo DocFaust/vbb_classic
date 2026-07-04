@@ -6,7 +6,7 @@ Webanwendung zur Verwaltung und Abrechnung der Kosten einer Volleyballgruppe: Sp
 |---|---|
 | **Artefakt** | `de.docfaust:vbb:2.0-SNAPSHOT` (WAR) |
 | **Kontextpfad** | `/vbb` |
-| **Java** | 11 (lokal/Jenkins); GitHub Actions nutzt JDK 17 |
+| **Java** | Build-Baseline JDK 25; Bytecode-Target bleibt 11 (WildFly-Kompatibilitaet) |
 | **Zeichenkodierung** | ISO-8859-1 |
 
 ## Funktionen
@@ -87,7 +87,7 @@ vbb_classic/
 
 ## Voraussetzungen
 
-- **JDK 11+** (aktuelle CI-Baseline: JDK 17)
+- **JDK 25** fuer Build/CI (Maven kompiliert weiterhin mit `--release 11`)
 - **Maven 3.6+**
 - **MySQL** (Datenbank `vbb`)
 - **WildFly** (oder kompatibler JBoss EAP) mit konfigurierter Security-Domain `secureDomainVBB` und MySQL-Treiber
