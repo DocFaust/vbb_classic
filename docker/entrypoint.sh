@@ -16,6 +16,7 @@ SMTP_USERNAME="${SMTP_USERNAME:-}"
 SMTP_PASSWORD="${SMTP_PASSWORD:-}"
 SMTP_FROM="${SMTP_FROM:-${SMTP_USERNAME:-}}"
 SMTP_SSL="${SMTP_SSL:-true}"
+SMTP_TLS="${SMTP_TLS:-false}"
 
 if [[ ! -f /opt/jboss/wildfly/standalone/configuration/mgmt-users.properties ]] \
   || ! grep -q "^${WILDFLY_MGMT_USER}=" /opt/jboss/wildfly/standalone/configuration/mgmt-users.properties; then
@@ -44,12 +45,23 @@ cat > /tmp/configure-mail.cli <<EOF
 embed-server --server-config=standalone.xml --std-out=echo
 if (outcome != success) of /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:read-resource
   /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:add(host=${SMTP_HOST},port=${SMTP_PORT})
+else
+  /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:write-attribute(name=host,value=${SMTP_HOST})
+  /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:write-attribute(name=port,value=${SMTP_PORT})
 end-if
 if (outcome != success) of /subsystem=mail/mail-session=docfaust:read-resource
   /subsystem=mail/mail-session=docfaust:add(jndi-name=java:/mail/DocFaust,from=${SMTP_FROM})
+else
+  /subsystem=mail/mail-session=docfaust:write-attribute(name=from,value=${SMTP_FROM})
 end-if
 if (outcome != success) of /subsystem=mail/mail-session=docfaust/server=smtp:read-resource
-  /subsystem=mail/mail-session=docfaust/server=smtp:add(outbound-socket-binding-ref=docfaust-mail-smtp,ssl=${SMTP_SSL},username=${SMTP_USERNAME},password=${SMTP_PASSWORD})
+  /subsystem=mail/mail-session=docfaust/server=smtp:add(outbound-socket-binding-ref=docfaust-mail-smtp,ssl=${SMTP_SSL},tls=${SMTP_TLS},username=${SMTP_USERNAME},password=${SMTP_PASSWORD})
+else
+  /subsystem=mail/mail-session=docfaust/server=smtp:write-attribute(name=outbound-socket-binding-ref,value=docfaust-mail-smtp)
+  /subsystem=mail/mail-session=docfaust/server=smtp:write-attribute(name=ssl,value=${SMTP_SSL})
+  /subsystem=mail/mail-session=docfaust/server=smtp:write-attribute(name=tls,value=${SMTP_TLS})
+  /subsystem=mail/mail-session=docfaust/server=smtp:write-attribute(name=username,value=${SMTP_USERNAME})
+  /subsystem=mail/mail-session=docfaust/server=smtp:write-attribute(name=password,value=${SMTP_PASSWORD})
 end-if
 stop-embedded-server
 EOF

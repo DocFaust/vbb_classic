@@ -54,6 +54,7 @@ services:
       SMTP_PASSWORD: ${SMTP_PASSWORD:-}
       SMTP_FROM: ${SMTP_FROM:-}
       SMTP_SSL: ${SMTP_SSL:-true}
+      SMTP_TLS: ${SMTP_TLS:-false}
       WILDFLY_MGMT_USER: ${WILDFLY_MGMT_USER:-mgmt}
       WILDFLY_MGMT_PASSWORD: ${WILDFLY_MGMT_PASSWORD:-change-me}
       WILDFLY_BIND_ADDRESS: 0.0.0.0
