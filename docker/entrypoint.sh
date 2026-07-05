@@ -10,6 +10,12 @@ WILDFLY_MGMT_USER="${WILDFLY_MGMT_USER:-mgmt}"
 WILDFLY_MGMT_PASSWORD="${WILDFLY_MGMT_PASSWORD:-mgmtpw}"
 WILDFLY_BIND_ADDRESS="${WILDFLY_BIND_ADDRESS:-0.0.0.0}"
 WILDFLY_BIND_MANAGEMENT_ADDRESS="${WILDFLY_BIND_MANAGEMENT_ADDRESS:-0.0.0.0}"
+SMTP_HOST="${SMTP_HOST:-}"
+SMTP_PORT="${SMTP_PORT:-465}"
+SMTP_USERNAME="${SMTP_USERNAME:-}"
+SMTP_PASSWORD="${SMTP_PASSWORD:-}"
+SMTP_FROM="${SMTP_FROM:-${SMTP_USERNAME:-}}"
+SMTP_SSL="${SMTP_SSL:-true}"
 
 if [[ ! -f /opt/jboss/wildfly/standalone/configuration/mgmt-users.properties ]] \
   || ! grep -q "^${WILDFLY_MGMT_USER}=" /opt/jboss/wildfly/standalone/configuration/mgmt-users.properties; then
@@ -32,6 +38,25 @@ if (outcome != success) of /subsystem=security/security-domain=secureDomainVBB/a
 end-if
 stop-embedded-server
 EOF
+
+if [[ -n "$SMTP_HOST" && -n "$SMTP_USERNAME" && -n "$SMTP_PASSWORD" ]]; then
+cat > /tmp/configure-mail.cli <<EOF
+embed-server --server-config=standalone.xml --std-out=echo
+if (outcome != success) of /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:read-resource
+  /socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=docfaust-mail-smtp:add(host=${SMTP_HOST},port=${SMTP_PORT})
+end-if
+if (outcome != success) of /subsystem=mail/mail-session=docfaust:read-resource
+  /subsystem=mail/mail-session=docfaust:add(jndi-name=java:/mail/DocFaust,from=${SMTP_FROM})
+end-if
+if (outcome != success) of /subsystem=mail/mail-session=docfaust/server=smtp:read-resource
+  /subsystem=mail/mail-session=docfaust/server=smtp:add(outbound-socket-binding-ref=docfaust-mail-smtp,ssl=${SMTP_SSL},username=${SMTP_USERNAME},password=${SMTP_PASSWORD})
+end-if
+stop-embedded-server
+EOF
+
+/opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-mail.cli
+rm -f /tmp/configure-mail.cli
+fi
 
 /opt/jboss/wildfly/bin/jboss-cli.sh --file=/tmp/configure-datasource.cli
 rm -f /tmp/configure-datasource.cli

@@ -173,6 +173,33 @@ Enthaltene Services:
 - `flyway` (fuehrt Migrationen aus `db/migrations/` aus)
 - `app` (WildFly mit Deployment der WAR aus `Dockerfile.app`)
 
+### SMTP / Netcup Mail
+
+Der WildFly-Container kann die JavaMail-Session `java:/mail/DocFaust` automatisch aus Umgebungsvariablen anlegen.
+
+Beispiel fuer Netcup in `.env`:
+
+```env
+SMTP_HOST=mail.example.netcup.net
+SMTP_PORT=465
+SMTP_USERNAME=mailbox@example.com
+SMTP_PASSWORD=<app-oder-postfach-passwort>
+SMTP_FROM=mailbox@example.com
+SMTP_SSL=true
+```
+
+Danach den Stack neu bauen:
+
+```bash
+docker compose up --build -d
+```
+
+Zusätzlich muessen in der Anwendungskonfiguration bzw. Tabelle `CONFIG` diese Werte sinnvoll gesetzt sein:
+
+- `sender.address` = Absenderadresse
+- `subject` = Betreff fuer Registrierungs-Mails
+- `domain` = oeffentliche Basis-URL, z. B. `http://localhost:8080/vbb`
+
 Hinweis: Dieses Grundgeruest bereitet die naechsten Modernisierungsschritte vor. Die fachliche Vollmigration der bestehenden SQL-Skripte in Flyway erfolgt in der naechsten Phase.
 
 ## Sicherheit & Rollen
