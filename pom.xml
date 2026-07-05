@@ -12,6 +12,7 @@
 	</ciManagement>
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<sonar.organization>docfaust</sonar.organization>
 		<sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<hibernate.version>5.4.10.Final</hibernate.version>
 		<maven.compiler.source>11</maven.compiler.source>

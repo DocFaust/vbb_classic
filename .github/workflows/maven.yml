@@ -12,6 +12,7 @@ on:
   push:
     branches: [ "master", "feature/vbb-modernize" ]
   pull_request:
+    types: [opened, synchronize, reopened]
     branches: [ "master" ]
 
 jobs:
@@ -35,15 +36,12 @@ jobs:
     - name: SonarQube analysis
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-        SONAR_PROJECT_KEY: ${{ vars.SONAR_PROJECT_KEY }}
       run: |
-        if [ -n "$SONAR_TOKEN" ] && [ -n "$SONAR_HOST_URL" ] && [ -n "$SONAR_PROJECT_KEY" ]; then
-          mvn -B sonar:sonar --file pom.xml \
-            -Dsonar.host.url="$SONAR_HOST_URL" \
-            -Dsonar.projectKey="$SONAR_PROJECT_KEY"
+        if [ -n "$SONAR_TOKEN" ]; then
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar --file pom.xml \
+            -Dsonar.projectKey=DocFaust_vbb_classic
         else
-          echo "Skipping SonarQube analysis because SONAR_TOKEN, SONAR_HOST_URL or SONAR_PROJECT_KEY is missing."
+          echo "Skipping SonarQube analysis because SONAR_TOKEN is missing."
         fi
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
