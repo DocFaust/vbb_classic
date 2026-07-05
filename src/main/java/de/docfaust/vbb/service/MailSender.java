@@ -57,9 +57,9 @@ public class MailSender {
 	 * Konstruktor fuer Aufruf ohne EJB Context.
 	 * 
 	 * @param em
-	 *            Entitymanager
+	 *                Entitymanager
 	 * @param session
-	 *            JavaMail Session
+	 *                JavaMail Session
 	 */
 	public MailSender(final EntityManager em, final Session session) {
 		this.mailFacade = new MailFacade(em);
