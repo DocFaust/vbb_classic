@@ -1,6 +1,7 @@
 package de.docfaust.vbb.service;
 
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -53,7 +54,7 @@ public class MailSender {
 	}
 
 	/**
-	 * Konstruktor für Aufruf ohne EJB Context.
+	 * Konstruktor fuer Aufruf ohne EJB Context.
 	 * 
 	 * @param em
 	 *            Entitymanager
@@ -77,13 +78,14 @@ public class MailSender {
 			List<Mail> mails = mailFacade.findAll();
 			mails.stream().filter(mail -> mail.getAttempt() < MAX_ATTEMPTS).forEach(mail -> sendMail(mail));
 		} else {
-			logger.warn("Keine Session definiert! Mails können nicht versendet werden.");
+			logger.warn("Keine Session definiert! Mails koennen nicht versendet werden.");
 		}
 	}
 
 	private void sendMail(final Mail mail) {
 		logger.info("Versende Mail an " + mail.getRecipient());
 		try {
+			applyOptionalTlsTrustOverrides();
 			MimeMessage message = new MimeMessage(session);
 			InternetAddress from = new InternetAddress(mailConfig.getSenderAddress());
 			message.setFrom(from);
@@ -100,6 +102,18 @@ public class MailSender {
 			logger.error("Fehler beim Versenden der Email", e);
 			mail.setAttempt(mail.getAttempt() + 1);
 			mailFacade.edit(mail);
+		}
+	}
+
+	private void applyOptionalTlsTrustOverrides() {
+		Properties properties = session.getProperties();
+		String trust = System.getenv("SMTP_SSL_TRUST");
+		if (trust != null && !trust.trim().isEmpty()) {
+			properties.put("mail.smtp.ssl.trust", trust.trim());
+		}
+		String checkServerIdentity = System.getenv("SMTP_SSL_CHECKSERVERIDENTITY");
+		if (checkServerIdentity != null && !checkServerIdentity.trim().isEmpty()) {
+			properties.put("mail.smtp.ssl.checkserveridentity", checkServerIdentity.trim());
 		}
 	}
 }

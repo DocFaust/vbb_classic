@@ -185,14 +185,32 @@ SMTP_PORT=465
 SMTP_USERNAME=mailbox@example.com
 SMTP_PASSWORD=<app-oder-postfach-passwort>
 SMTP_FROM=mailbox@example.com
-SMTP_SSL=true
+SMTP_SSL=false
+SMTP_TLS=true
 ```
+
+Bei TLS-Fehlern wie `PKIX path building failed` (Zertifikatskette nicht vertrauenswuerdig), optional:
+
+```env
+SMTP_SSL_TRUST=mail.example.netcup.net
+SMTP_SSL_CHECKSERVERIDENTITY=false
+```
+
+Diese beiden Variablen sind ein Workaround fuer fehlerhafte oder unvollstaendige Zertifikatsketten auf SMTP-Seite.
 
 Danach den Stack neu bauen:
 
 ```bash
 docker compose up --build -d
 ```
+
+Bei einer frischen Datenbank legt Flyway automatisch einen initialen Admin an:
+
+- Benutzer: `admin`
+- Passwort: `admin`
+
+Dieser Bootstrap-Account wird nur angelegt, wenn noch kein Benutzer mit Rolle `ADMIN` existiert.
+Bitte Passwort nach dem ersten Login sofort aendern.
 
 Zusätzlich muessen in der Anwendungskonfiguration bzw. Tabelle `CONFIG` diese Werte sinnvoll gesetzt sein:
 
