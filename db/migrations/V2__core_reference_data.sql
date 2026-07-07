@@ -8,6 +8,6 @@ ON DUPLICATE KEY UPDATE DESCRIPTION = VALUES(DESCRIPTION);
 INSERT INTO CONFIG (CONFIGKEY, CONFIGVALUE)
 VALUES
   ('subject', 'Registrierung bei der Volleyballbuchung'),
-  ('sender.address', 'DocFaust75@gmail.com'),
+  ('sender.address', 'werner@docfaust.de'),
   ('domain', 'http://localhost:8080/vbb')
 ON DUPLICATE KEY UPDATE CONFIGVALUE = VALUES(CONFIGVALUE);
