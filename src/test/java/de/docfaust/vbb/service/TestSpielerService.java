@@ -24,7 +24,7 @@ class TestSpielerService extends JpaBaseRolledBackTestCase {
 		ServiceCreator sc = new ServiceCreator(em);
 		SpielerService spielerService = sc.getSpielerService();
 		List<String> spielerNames = spielerService.getSpielerNames();
-		assertThat(spielerNames).hasSize(facadenFactory.getSpielerFacade().count()).contains("Alfred Altmann", "Bernd Brot", "Claus Caspar", "Doreen Durstig", "Erich Ehrlich", "Franz Fröhlich", "Gretchen Gröhl", "Hans Hohlbirne", "Johann Jochbein", "Ines Ignorant");
+		assertThat(spielerNames).hasSize(facadenFactory.getSpielerFacade().count()).contains("Alex Ander", "Bea Beispiel", "Chris Cordt", "Dana Dorn", "Emil Engel", "Frieda Falk", "Gustav Gruen", "Helene Herbst", "Jonas Jorek", "Ida Immer");
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ class TestSpielerService extends JpaBaseRolledBackTestCase {
 		assertThat(initialcount).isNotEqualTo(0);
 		
 		Spieler spieler = SpielerBuilder.create()
-				.name("Karl Kloßbrühe")
+				.name("Karl Kloï¿½brï¿½he")
 				.email("k@k.k")
 				.anwesend(false)
 				.bezahlt(false)

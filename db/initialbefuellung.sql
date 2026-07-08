@@ -5,5 +5,5 @@ INSERT INTO vbb.ROLES (NAME, DESCRIPTION) VALUES
 
 INSERT INTO vbb.CONFIG (CONFIGKEY, CONFIGVALUE) VALUES 
 ('subject', 'Registrierung bei der Volleyballbuchung'),
-('sender.address', 'DocFaust75@gmail.com'),
+('sender.address', 'noreply@volleybuchung.example'),
 ('domain', 'http://localhost:8080/vbb');

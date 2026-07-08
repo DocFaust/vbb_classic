@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE dataset PUBLIC "//UNKNOWN/" "dataset.dtd">
 <dataset>
-	<CONFIG id="1" configkey="sender.address"            configvalue="wfaust@localhost.net" />
+	<CONFIG id="1" configkey="sender.address"            configvalue="noreply@volleybuchung.example" />
 	<CONFIG id="2" configkey="subject"                   configvalue="Registrierung bei der Volleyballbuchung" />
 	<CONFIG id="3" configkey="domain"                   configvalue="http://localhost:8080/vbb" />
 
@@ -9,6 +9,6 @@
 	<ROLES id="2" name="USER" description="Benutzer" />
 	<ROLES id="3" name="READER" description="Leser" />
 
-	<USERS id="1" username="Alfred Altmann" email="aaltmann@mail.de" password="3e4abd445f37c2a286906754697aaa9a" state="PROOFED" regid="a" userid="aaltmann" group_id="2" />
-	<USERS id="2" username="Bernhard Bodenständig" email="bbodenst@mail.de" password="wwwwwwww" state="OPEN" regid="b" userid="bbodenst" group_id="1" />
+	<USERS id="1" username="Alex Ander" email="alex.ander@example.invalid" password="3e4abd445f37c2a286906754697aaa9a" state="PROOFED" regid="a" userid="aander" group_id="2" />
+	<USERS id="2" username="Bea Beispiel" email="bea.beispiel@example.invalid" password="wwwwwwww" state="OPEN" regid="b" userid="bbeispiel" group_id="1" />
 </dataset>

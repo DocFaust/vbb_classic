@@ -36,11 +36,11 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testFindByName() {
-		User user = facadenFactory.getUserFacade().findByUserName("aaltmann");
+		User user = facadenFactory.getUserFacade().findByUserName("aander");
 		assertNotNull(user);
-		assertEquals("aaltmann", user.getUserid());
-		assertEquals("Alfred Altmann", user.getUsername());
-		assertEquals("aaltmann@mail.de", user.getEmail());
+		assertEquals("aander", user.getUserid());
+		assertEquals("Alex Ander", user.getUsername());
+		assertEquals("alex.ander@example.invalid", user.getEmail());
 		assertEquals(RegistrationState.PROOFED, user.getState());
 		assertEquals("a", user.getRegid());
 	}
@@ -56,7 +56,7 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -80,7 +80,7 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -99,7 +99,7 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -124,7 +124,7 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -159,14 +159,14 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testCheckEmailOk() {
-		User u = EntityFactory.createUser("FFaaltmann", "", "FFaAlTmAnN@mail.de", "", RegistrationState.OPEN, "");
+		User u = EntityFactory.createUser("ffaander", "", "ff.aander@example.invalid", "", RegistrationState.OPEN, "");
 		Statusliste statusliste = facadenFactory.getUserFacade().checkEmail(u);
 		assertTrue(statusliste.booleanValue());
 	}
 
 	@Test
 	public void testCheckEmail() {
-		User u = EntityFactory.createUser("aaltmann", "", "aAlTmAnN@mail.de", "", RegistrationState.OPEN, "");
+		User u = EntityFactory.createUser("aander", "", "alex.ander@example.invalid", "", RegistrationState.OPEN, "");
 		Statusliste statusliste = facadenFactory.getUserFacade().checkEmail(u);
 		assertFalse(statusliste.booleanValue());
 		statusliste.hasStatus(MessageConstants.EMAIL_EXISTS);
@@ -174,14 +174,14 @@ public class TestUserFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testCheckUserIDOk() {
-		User u = EntityFactory.createUser("FFaaltmann", "", "FFaAlTmAnN@mail.de", "", RegistrationState.OPEN, "");
+		User u = EntityFactory.createUser("ffaander", "", "ff.aander@example.invalid", "", RegistrationState.OPEN, "");
 		Statusliste statusliste = facadenFactory.getUserFacade().checkUserID(u);
 		assertTrue(statusliste.booleanValue());
 	}
 
 	@Test
 	public void testCheckUserID() {
-		User u = EntityFactory.createUser("aAlTtMaNn", "", "aAlTmAnN@mail.de", "", RegistrationState.OPEN, "");
+		User u = EntityFactory.createUser("aaNder", "", "alex.ander@example.invalid", "", RegistrationState.OPEN, "");
 		Statusliste statusliste = facadenFactory.getUserFacade().checkEmail(u);
 		assertFalse(statusliste.booleanValue());
 		statusliste.hasStatus(MessageConstants.USERID_EXISTS);

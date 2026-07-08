@@ -15,16 +15,16 @@
 	<SPIEL id="3" season_id="2" datum="2014-01-05" />
 	<SPIEL id="4" season_id="2" datum="2014-01-06" />
 
-	<SPIELER id="1" name="Alfred Altmann" email="aaltmann@gmiks.de" activitylevel="1"/>
-	<SPIELER id="2" name="Bernd Brot" email="bbrot@gmiks.de" activitylevel="1"/>
-	<SPIELER id="3" name="Claus Caspar" email="ccaspar@gmiks.de" activitylevel="1"/>
-	<SPIELER id="4" name="Doreen Durstig" email="ddurstig@gmiks.de" activitylevel="1"/>
-	<SPIELER id="5" name="Erich Ehrlich" email="eehrlich@gmiks.de" activitylevel="1"/>
-	<SPIELER id="6" name="Franz Fröhlich" email="ffröhlich@gmiks.de" activitylevel="1"/>
-	<SPIELER id="7" name="Gretchen Gröhl" email="ggroehl@gmiks.de" activitylevel="1"/>
-	<SPIELER id="8" name="Hans Hohlbirne" email="hhohlbirne@gmiks.de" activitylevel="1"/>
-	<SPIELER id="9" name="Ines Ignorant" email="iignorant@gmiks.de" activitylevel="1"/>
-	<SPIELER id="10" name="Johann Jochbein" email="jjochbein@gmiks.de" activitylevel="1"/>
+	<SPIELER id="1" name="Alex Ander" email="alex.ander@example.invalid" activitylevel="1"/>
+	<SPIELER id="2" name="Bea Beispiel" email="bea.beispiel@example.invalid" activitylevel="1"/>
+	<SPIELER id="3" name="Chris Cordt" email="chris.cordt@example.invalid" activitylevel="1"/>
+	<SPIELER id="4" name="Dana Dorn" email="dana.dorn@example.invalid" activitylevel="1"/>
+	<SPIELER id="5" name="Emil Engel" email="emil.engel@example.invalid" activitylevel="1"/>
+	<SPIELER id="6" name="Frieda Falk" email="frieda.falk@example.invalid" activitylevel="1"/>
+	<SPIELER id="7" name="Gustav Gruen" email="gustav.gruen@example.invalid" activitylevel="1"/>
+	<SPIELER id="8" name="Helene Herbst" email="helene.herbst@example.invalid" activitylevel="1"/>
+	<SPIELER id="9" name="Ida Immer" email="ida.immer@example.invalid" activitylevel="1"/>
+	<SPIELER id="10" name="Jonas Jorek" email="jonas.jorek@example.invalid" activitylevel="1"/>
 
 	<BUCHUNG id="1" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="1" price="-3" spiel_id="1" />
 	<BUCHUNG id="2" datum="2014-01-03 12:00:00.000" description="Spieleinsatz" spieler_id="2" price="-3" spiel_id="1" />
@@ -63,7 +63,7 @@
 
 	<CONFIG id="1" configkey="a"                         configvalue="b" />
 	<CONFIG id="2" configkey="b"                         configvalue="c" />
-	<CONFIG id="3" configkey="sender.address"            configvalue="wfaust@localhost.net" />
+	<CONFIG id="3" configkey="sender.address"            configvalue="noreply@volleybuchung.example" />
 	<CONFIG id="4" configkey="sender.password"           configvalue="" />
 	<CONFIG id="5" configkey="subject"                   configvalue="Registrierung bei der Volleyballbuchung" />
 	<CONFIG id="6" configkey="domain"                    configvalue="http://localhost:8080/vbb" />
@@ -72,12 +72,12 @@
 	<ROLES id="2" name="USER" description="Benutzer" />
 	<ROLES id="3" name="READER" description="Leser" />
 
-	<USERS id="1" username="Alfred Altmann" email="aaltmann@mail.de" password="3e4abd445f37c2a286906754697aaa9a" state="PROOFED" regid="a" userid="aaltmann" group_id="2" />
-	<USERS id="2" username="Bernhard Bodenständig" email="bbodenst@mail.de" password="wwwwwwww" state="OPEN" regid="b" userid="bbodenst" group_id="1" />
+	<USERS id="1" username="Alex Ander" email="alex.ander@example.invalid" password="3e4abd445f37c2a286906754697aaa9a" state="PROOFED" regid="a" userid="aander" group_id="2" />
+	<USERS id="2" username="Bea Beispiel" email="bea.beispiel@example.invalid" password="wwwwwwww" state="OPEN" regid="b" userid="bbeispiel" group_id="1" />
 
 	
 	<MAILS id="1" recipient="ich" subject="test" text="testtext" attempt="1"/>
-	<MAILS id="2" recipient="wfaust@gmx.de" subject="test" text="testtext" attempt="10"/>
+	<MAILS id="2" recipient="alex.ander@example.invalid" subject="test" text="testtext" attempt="10"/>
 
-	<JOURNAL id="1" tms="2017-08-21 10:44:00" userid="wfaust" description="Neues Spiel angelegt" business_case="BLUB"/>
+	<JOURNAL id="1" tms="2017-08-21 10:44:00" userid="aander" description="Neues Spiel angelegt" business_case="BLUB"/>
 </dataset>

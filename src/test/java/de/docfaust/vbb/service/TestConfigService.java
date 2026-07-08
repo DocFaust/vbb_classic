@@ -26,6 +26,6 @@ public class TestConfigService extends JpaBaseRolledBackTestCase {
 	void testGetMailConfig() {
 		assertThat(configService.getMailConfig()).isNotNull()
 				.extracting("domain", "senderAddress", "registrationSubject").contains("http://localhost:8080/vbb",
-						"wfaust@localhost.net", "Registrierung bei der Volleyballbuchung");
+						"noreply@volleybuchung.example", "Registrierung bei der Volleyballbuchung");
 	}
 }

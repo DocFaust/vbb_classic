@@ -17,16 +17,16 @@ import de.docfaust.vbb.model.SaldoModel;
 import de.docfaust.vbb.util.EntityFactory;
 
 class TestSaldoService extends JpaBaseRolledBackTestCase {
-	private static final String HANS_HOHLBIRNE = "Hans Hohlbirne";
-	private static final String GRETCHEN_GROEHL = "Gretchen Gröhl";
-	private static final String FRANZ_FROEHLICH = "Franz Fröhlich";
-	private static final String ERICH_EHRLICH = "Erich Ehrlich";
-	private static final String DOREEN_DURSTIG = "Doreen Durstig";
-	private static final String CLAUS_CASPAR = "Claus Caspar";
-	private static final String BERND_BROT = "Bernd Brot";
-	private static final String ALFRED_ALTMANN = "Alfred Altmann";
-	private static final String INES_IGNORANT = "Ines Ignorant";
-	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
+	private static final String HELENE_HERBST = "Helene Herbst";
+	private static final String GUSTAV_GRUEN = "Gustav Gruen";
+	private static final String FRIEDA_FALK = "Frieda Falk";
+	private static final String EMIL_ENGEL = "Emil Engel";
+	private static final String DANA_DORN = "Dana Dorn";
+	private static final String CHRIS_CORDT = "Chris Cordt";
+	private static final String BEA_BEISPIEL = "Bea Beispiel";
+	private static final String ALEX_ANDER = "Alex Ander";
+	private static final String IDA_IMMER = "Ida Immer";
+	private static final String JONAS_JOREK = "Jonas Jorek";
 
 	private SaldoService service;
 
@@ -50,16 +50,16 @@ class TestSaldoService extends JpaBaseRolledBackTestCase {
 		assertThat(saldoModel.getSpielersaldi()).isNotNull().isNotEmpty().hasSize(10);
 
 		assertThat(saldoModel.getSpielersaldi()).extracting("spielerName", "saldo").contains(
-				tuple(ALFRED_ALTMANN, BigDecimal.valueOf(-7.5F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(BERND_BROT, BigDecimal.valueOf(-7.5F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(CLAUS_CASPAR, BigDecimal.valueOf(1.5F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(DOREEN_DURSTIG, BigDecimal.valueOf(-4.5F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(ERICH_EHRLICH, BigDecimal.valueOf(8F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(FRANZ_FROEHLICH, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(GRETCHEN_GROEHL, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(HANS_HOHLBIRNE, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(INES_IGNORANT, BigDecimal.valueOf(7F).setScale(2, RoundingMode.HALF_UP)),
-				tuple(JOHANN_JOCHBEIN, BigDecimal.valueOf(9F).setScale(2, RoundingMode.HALF_UP)));
+				tuple(ALEX_ANDER, BigDecimal.valueOf(-7.5F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(BEA_BEISPIEL, BigDecimal.valueOf(-7.5F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(CHRIS_CORDT, BigDecimal.valueOf(1.5F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(DANA_DORN, BigDecimal.valueOf(-4.5F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(EMIL_ENGEL, BigDecimal.valueOf(8F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(FRIEDA_FALK, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(GUSTAV_GRUEN, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(HELENE_HERBST, BigDecimal.valueOf(-2F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(IDA_IMMER, BigDecimal.valueOf(7F).setScale(2, RoundingMode.HALF_UP)),
+				tuple(JONAS_JOREK, BigDecimal.valueOf(9F).setScale(2, RoundingMode.HALF_UP)));
 	}
 
 	@Test

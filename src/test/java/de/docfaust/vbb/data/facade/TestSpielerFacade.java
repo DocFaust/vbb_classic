@@ -36,7 +36,7 @@ public class TestSpielerFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testFindByNameSuccessful() throws Exception {
-		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		assertNotNull(spieler);
 	}
 
@@ -61,7 +61,7 @@ public class TestSpielerFacade extends JpaBaseRolledBackTestCase {
 	public void testAddBuchung() {
 		BuchungFacade buchungFacade = facadenFactory.getBuchungFacade();
 		assertThat(buchungFacade.count(), equalTo(31));
-		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		Buchung buchung = EntityFactory.createBuchung(new Date(), BigDecimal.TEN);
 		
 		spieler.addBuchung(buchung);
@@ -74,7 +74,7 @@ public class TestSpielerFacade extends JpaBaseRolledBackTestCase {
 
 	@Test
 	public void testRemoveBuchung() {
-		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		int count = spieler.getBuchungen().size();
 		Buchung buchung = facadenFactory.getBuchungFacade().find(1);
 		spieler.removeBuchung(buchung);
@@ -82,6 +82,6 @@ public class TestSpielerFacade extends JpaBaseRolledBackTestCase {
 		facadenFactory.getSpielerFacade().edit(spieler);
 		
 
-		assertEquals(--count, facadenFactory.getSpielerFacade().findByName("Alfred Altmann").getBuchungen().size());
+		assertEquals(--count, facadenFactory.getSpielerFacade().findByName("Alex Ander").getBuchungen().size());
 	}
 }

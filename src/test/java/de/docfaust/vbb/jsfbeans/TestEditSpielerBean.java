@@ -21,7 +21,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testInit() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 	}
 	private EditSpielerBean initBean() {
 		ServiceCreator sc = new ServiceCreator(em);
@@ -34,7 +34,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testAddSpieler() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 		
 		bean.addSpieler();
 
@@ -47,7 +47,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testSaveSpieler() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 		
 		bean.addSpieler();
 		
@@ -70,7 +70,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testDeleteSpieler() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 		
 		bean.addSpieler();
 		
@@ -98,7 +98,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testDeleteSpielerError() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 		
 		
 		
@@ -112,7 +112,7 @@ public class TestEditSpielerBean extends JpaBaseRolledBackTestCase {
 	public void testDeleteSpielerNoneSelected() {
 		EditSpielerBean bean = initBean();
 		assertThat(bean.getSpieler().size(), equalTo(10));
-		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alfred Altmann"));
+		assertThat(bean.getSelectedSpieler().getName(), equalTo("Alex Ander"));
 		
 		bean.setSelectedSpieler(null);
 		

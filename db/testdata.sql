@@ -10,12 +10,12 @@ insert into SEASON (DESCRIPTION, STARTDATE, ENDDATE, PRICE) values
 delete from spieler;
 
 insert into SPIELER (NAME, EMAIL, ACTIVITYLEVEL) values 
-('Werner Faust', 'wfaust@gmx.de', '10'),
-('Markus Pfeiffer', '', '10'),
-('Anita Goldmann', '', '10'),
-('Katja Mann', '', '10'),
-('Matthias Matzka', '', '10'),
-('Fabian Goldmann', '', '10'),
-('Christian DiIorio', '', '10'),
-('Thomas Haimerl', '', '1'),
-('Martin Putz', '', '1');
+('Alex Ander', 'alex.ander@example.invalid', '10'),
+('Bea Beispiel', '', '10'),
+('Chris Cordt', '', '10'),
+('Dana Dorn', '', '10'),
+('Emil Engel', '', '10'),
+('Frieda Falk', '', '10'),
+('Gustav Gruen', '', '10'),
+('Helene Herbst', '', '1'),
+('Ida Immer', '', '1');

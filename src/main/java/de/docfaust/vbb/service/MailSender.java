@@ -96,13 +96,17 @@ public class MailSender {
 			logger.debug("Sending: " + text);
 			message.setText(text, "UTF-8", "html");
 			logger.debug("Session Properties: " + session.getProperties());
-			Transport.send(message);
+			sendMessage(message);
 			mailFacade.remove(mail);
 		} catch (MessagingException e) {
 			logger.error("Fehler beim Versenden der Email", e);
 			mail.setAttempt(mail.getAttempt() + 1);
 			mailFacade.edit(mail);
 		}
+	}
+
+	protected void sendMessage(final MimeMessage message) throws MessagingException {
+		Transport.send(message);
 	}
 
 	private void applyOptionalTlsTrustOverrides() {

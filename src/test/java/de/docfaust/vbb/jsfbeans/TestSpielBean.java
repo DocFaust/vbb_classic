@@ -140,12 +140,12 @@ public class TestSpielBean extends JpaBaseRolledBackTestCase {
 //		@SuppressWarnings("serial")
 //		Map<String, BigDecimal> exp = new Hashtable<String, BigDecimal>() {
 //			{
-//				put("Alfred Altmann", new BigDecimal(-7.50));
-//				put("Ines Ignorant", new BigDecimal(7.00));
-//				put("Doreen Durstig", new BigDecimal(-4.50));
-//				put("Hans Hohlbirne", new BigDecimal(-2.00));
-//				put("Franz Fröhlich", new BigDecimal(-2.00));
-//				put("Gretchen Gröhl", new BigDecimal(-2.00));
+//				put("Alex Ander", new BigDecimal(-7.50));
+//				put("Ida Immer", new BigDecimal(7.00));
+//				put("Dana Dorn", new BigDecimal(-4.50));
+//				put("Helene Herbst", new BigDecimal(-2.00));
+//				put("Frieda Falk", new BigDecimal(-2.00));
+//				put("Gustav Gruen", new BigDecimal(-2.00));
 //				put("Claus Caspar", new BigDecimal(1.50));
 //				put("Bernd Brot", new BigDecimal(-7.50));
 //				put("Johann Jochbein", new BigDecimal(9.00));

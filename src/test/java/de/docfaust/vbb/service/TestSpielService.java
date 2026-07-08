@@ -34,16 +34,16 @@ class TestSpielService extends JpaBaseRolledBackTestCase {
 		facadenFactory.getSeasonFacade().create(season);
 		
 		List<Spieler> spielerList = new ArrayList<Spieler>();
-		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		spieler1.setAnwesend(true);
 		spieler1.setBezahlt(true);
 		spielerList.add(spieler1);
 
-		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
+		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Chris Cordt");
 		spieler2.setAnwesend(true);
 		spieler2.setBezahlt(false);
 		spielerList.add(spieler2);
-		Spieler spieler3 = facadenFactory.getSpielerFacade().findByName("Bernd Brot");
+		Spieler spieler3 = facadenFactory.getSpielerFacade().findByName("Bea Beispiel");
 		spieler3.setAnwesend(false);
 		spieler3.setBezahlt(false);
 		spielerList.add(spieler3);
@@ -64,12 +64,12 @@ class TestSpielService extends JpaBaseRolledBackTestCase {
 		facadenFactory.getSeasonFacade().create(season);
 		
 		List<Spieler> spielerList = new ArrayList<Spieler>();
-		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		spieler1.setAnwesend(true);
 		spieler1.setBezahlt(true);
 		spielerList.add(spieler1);
 
-		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
+		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Chris Cordt");
 		spieler2.setAnwesend(true);
 		spieler2.setBezahlt(false);
 		spielerList.add(spieler2);
@@ -89,12 +89,12 @@ class TestSpielService extends JpaBaseRolledBackTestCase {
 		Date from = Date.from(LocalDate.of(2000, 1, 5).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 		
 		List<Spieler> spielerList = new ArrayList<Spieler>();
-		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alfred Altmann");
+		Spieler spieler1 = facadenFactory.getSpielerFacade().findByName("Alex Ander");
 		spieler1.setAnwesend(true);
 		spieler1.setBezahlt(true);
 		spielerList.add(spieler1);
 
-		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Claus Caspar");
+		Spieler spieler2 = facadenFactory.getSpielerFacade().findByName("Chris Cordt");
 		spieler2.setAnwesend(true);
 		spieler2.setBezahlt(false);
 		spielerList.add(spieler2);

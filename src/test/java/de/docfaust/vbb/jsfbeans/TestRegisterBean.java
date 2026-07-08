@@ -25,11 +25,11 @@ public class TestRegisterBean extends JpaBaseRolledBackTestCase {
 		int oldUserCount = facadenFactory.getUserFacade().count();
 		RegisterBean bean = initBean();
 		
-		String email = "hhuegel@got.wr";
+		String email = "jule.jorek@example.invalid";
 		String password = "12345678";
 		String passwordrepeat = "12345678";
-		String userid = "hhuegel";
-		String username = "Hugor Hügel";
+		String userid = "jjorek";
+		String username = "Jule Jorek";
 		
 		bean.setEmail(email);
 		bean.setPassword(password);
@@ -56,11 +56,11 @@ public class TestRegisterBean extends JpaBaseRolledBackTestCase {
 		int oldUserCount = facadenFactory.getUserFacade().count();
 		RegisterBean bean = initBean();
 		
-		String email = "hhuegel@got.wr";
+		String email = "jule.jorek@example.invalid";
 		String password = "12345678";
 		String passwordrepeat = "12345678";
-		String userid = "aaltmann";
-		String username = "Hugor Hügel";
+		String userid = "aander";
+		String username = "Jule Jorek";
 		
 		bean.setEmail(email);
 		bean.setPassword(password);

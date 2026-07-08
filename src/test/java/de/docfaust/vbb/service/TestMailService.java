@@ -34,10 +34,10 @@ public class TestMailService extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testSendRegistrationMail() {
 		User user = new User();
-		user.setUserid("wfaust");
-		user.setUsername("Werner Faust");
+		user.setUserid("aander");
+		user.setUsername("Alex Ander");
 		user.setState(RegistrationState.OPEN);
-		user.setEmail("wfaust@gmx.de");
+		user.setEmail("alex.ander@example.invalid");
 		user.setRegid("a");
 		try {
 			mailService.sendRegistrationMail(user);

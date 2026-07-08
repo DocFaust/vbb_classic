@@ -58,7 +58,7 @@ public class TestEditConfigBean extends JpaBaseRolledBackTestCase {
 		EditConfigBean bean = new EditConfigBean(new UIMessagesTestImpl(),sc.getConfigService());
 		bean.init();
 		assertThat(bean.getDomain(), equalTo("http://localhost:8080/vbb"));
-		assertThat(bean.getFrom(), equalTo("wfaust@localhost.net"));
+		assertThat(bean.getFrom(), equalTo("noreply@volleybuchung.example"));
 		assertThat(bean.getSubject(), equalTo("Registrierung bei der Volleyballbuchung"));
 		return bean;
 	}

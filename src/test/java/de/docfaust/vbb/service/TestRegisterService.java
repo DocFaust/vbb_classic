@@ -30,14 +30,14 @@ class TestRegisterService extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testProcessRegistrationYetRegistered() {
 
-		String registration = registerService.processRegistration("a", "aaltmann");
+		String registration = registerService.processRegistration("a", "aander");
 		LoggerFactory.getLogger(getClass()).info(registration);
 		assertThat(registration).contains("Bereits registriert");
 	}
 
 	@Test
 	public void testProcessRegistrationWrongRegid() {
-		String registration = registerService.processRegistration("abc", "aaltmann");
+		String registration = registerService.processRegistration("abc", "aander");
 		LoggerFactory.getLogger(getClass()).info(registration);
 		assertThat(registration).contains("Falsche ID");
 	}
@@ -46,7 +46,7 @@ class TestRegisterService extends JpaBaseRolledBackTestCase {
 	public void testProcessRegistrationOk() {
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -78,7 +78,7 @@ class TestRegisterService extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testProcessRegistrationWrongRegID() {
 
-		String registration = registerService.processRegistration(null, "aaltmann");
+		String registration = registerService.processRegistration(null, "aander");
 		LoggerFactory.getLogger(getClass()).info(registration);
 		assertThat(registration).contains("Falsche ID");
 	}

@@ -15,14 +15,14 @@ public class TestMailConfigurationDB extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testGetSenderAddress() {
 		MailConfiguration config = new MailConfigurationDBImpl(em);
-		assertThat(config.getSenderAddress(), equalTo("wfaust@localhost.net"));
+		assertThat(config.getSenderAddress(), equalTo("noreply@volleybuchung.example"));
 	}
 
 	@Test
 	public void testSetSenderaddress() {
 		int count = facadenFactory.getConfigFacade().count();
 		MailConfiguration config = new MailConfigurationDBImpl(em);
-		String address = "wfaust@gmx.de";
+		String address = "kontakt@volleybuchung.example";
 		config.setSenderaddress(address);
 		
 		assertThat(facadenFactory.getConfigFacade().count(), equalTo(count));

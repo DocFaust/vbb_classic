@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Properties;
 
-import javax.mail.PasswordAuthentication;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,34 +29,26 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 	public static final String TEXT = "text";
 	public static final String MAIL_SMTP_TIMEOUT = "mail.smtp.timeout";
 	public static final String MAIL_SMTP_CONNECTIONTIMEOUT = "mail.smtp.connectiontimeout";
+	private static int sentMessageCount;
 
 	@BeforeAll
 	public static void initSession() {
 		Properties props = new Properties();
-		props.put("mail.debug", "true");
-		props.put(SMTP_MAIL_HOST, "smtp.gmail.com");
-		props.put(MAIL_SMTP_AUTH, true);
-		props.put(MAIL_SMTP_STARTTLS_ENABLE, true);
-		props.put(MAIL_SMTP_PORT, 25);
-		props.put(MAIL_SMTP_CONNECTIONTIMEOUT, 3000);
-		props.put(MAIL_SMTP_TIMEOUT, 3000);
-
-		session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(facadenFactory.getConfigFacade().getValue(SENDER_ADDRESS), facadenFactory.getConfigFacade().getValue(
-						SENDER_PASSWORD));
-			}
-		});
+		session = Session.getInstance(props);
 	}
 
 	@Test
 	public void testSendMailsNoMail() {
-		MailSender sender = new MailSender(em, session);
+		clearMails();
+		sentMessageCount = 0;
+		MailSender sender = new TestMailSender(em, session);
 		sender.sendMails();
+		assertThat(sentMessageCount).isEqualTo(0);
 	}
 
 	@Test
 	public void testSendMails() {
+		clearMails();
 		Mail m = new Mail();
 		m.setAttempt(0);
 		m.setRecipient("info@docfaust.de");
@@ -64,9 +58,11 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 		mailFacade.create(m);
 
 		assertThat(m.getAttempt()).isEqualTo(0);
-		MailSender sender = new MailSender(em, session);
+		sentMessageCount = 0;
+		MailSender sender = new TestMailSender(em, session);
 		sender.sendMails();
-		// Assert.assertEquals(0, mailFacade.findAll().size());
+		assertThat(sentMessageCount).isEqualTo(1);
+		assertThat(mailFacade.findAll()).isEmpty();
 	}
 
 	// FIXME Repair
@@ -85,5 +81,24 @@ public class MailSenderTest extends JpaBaseRolledBackTestCase {
 	@Test
 	public void test() {
 		assertThat(new MailSender()).isNotNull();
+	}
+
+	private void clearMails() {
+		MailFacade mailFacade = facadenFactory.getMailFacade();
+		mailFacade.findAll().forEach(mailFacade::remove);
+	}
+
+	private static class TestMailSender extends MailSender {
+
+		TestMailSender(javax.persistence.EntityManager em, Session session) {
+			super(em, session);
+		}
+
+		@Override
+		protected void sendMessage(final MimeMessage message) throws MessagingException {
+			sentMessageCount++;
+			assertThat(message.getFrom()).isNotNull();
+			assertThat(message.getRecipients(Message.RecipientType.TO)).isNotNull();
+		}
 	}
 }

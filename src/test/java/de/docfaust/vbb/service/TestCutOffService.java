@@ -13,16 +13,16 @@ import de.docfaust.vbb.data.entity.Buchung;
 import de.docfaust.vbb.data.util.JpaBaseRolledBackTestCase;
 
 public class TestCutOffService extends JpaBaseRolledBackTestCase {
-	private static final String HANS_HOHLBIRNE = "Hans Hohlbirne";
-	private static final String GRETCHEN_GROEHL = "Gretchen Gröhl";
-	private static final String FRANZ_FROEHLICH = "Franz Fröhlich";
-	private static final String ERICH_EHRLICH = "Erich Ehrlich";
-	private static final String DOREEN_DURSTIG = "Doreen Durstig";
-	private static final String CLAUS_CASPAR = "Claus Caspar";
-	private static final String BERND_BROT = "Bernd Brot";
-	private static final String ALFRED_ALTMANN = "Alfred Altmann";
-	private static final String INES_IGNORANT = "Ines Ignorant";
-	private static final String JOHANN_JOCHBEIN = "Johann Jochbein";
+	private static final String HELENE_HERBST = "Helene Herbst";
+	private static final String GUSTAV_GRUEN = "Gustav Gruen";
+	private static final String FRIEDA_FALK = "Frieda Falk";
+	private static final String EMIL_ENGEL = "Emil Engel";
+	private static final String DANA_DORN = "Dana Dorn";
+	private static final String CHRIS_CORDT = "Chris Cordt";
+	private static final String BEA_BEISPIEL = "Bea Beispiel";
+	private static final String ALEX_ANDER = "Alex Ander";
+	private static final String IDA_IMMER = "Ida Immer";
+	private static final String JONAS_JOREK = "Jonas Jorek";
 
 	private CutOffService cutOffService;
 
@@ -43,34 +43,34 @@ public class TestCutOffService extends JpaBaseRolledBackTestCase {
 		assertThat(allBuchungen).hasSize(10);
 
 		for (Buchung buchung : allBuchungen) {
-			if (ALFRED_ALTMANN.equals(buchung.getSpieler().getName())) {
+			if (ALEX_ANDER.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-7);
 			}
-			if (BERND_BROT.equals(buchung.getSpieler().getName())) {
+			if (BEA_BEISPIEL.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-7);
 			}
-			if (CLAUS_CASPAR.equals(buchung.getSpieler().getName())) {
+			if (CHRIS_CORDT.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().floatValue()).isEqualTo(1.5F);
 			}
-			if (DOREEN_DURSTIG.equals(buchung.getSpieler().getName())) {
+			if (DANA_DORN.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-4);
 			}
-			if (ERICH_EHRLICH.equals(buchung.getSpieler().getName())) {
+			if (EMIL_ENGEL.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(8);
 			}
-			if (FRANZ_FROEHLICH.equals(buchung.getSpieler().getName())) {
+			if (FRIEDA_FALK.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-2);
 			}
-			if (GRETCHEN_GROEHL.equals(buchung.getSpieler().getName())) {
+			if (GUSTAV_GRUEN.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-2);
 			}
-			if (HANS_HOHLBIRNE.equals(buchung.getSpieler().getName())) {
+			if (HELENE_HERBST.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(-2);
 			}
-			if (INES_IGNORANT.equals(buchung.getSpieler().getName())) {
+			if (IDA_IMMER.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(7);
 			}
-			if (JOHANN_JOCHBEIN.equals(buchung.getSpieler().getName())) {
+			if (JONAS_JOREK.equals(buchung.getSpieler().getName())) {
 				assertThat(buchung.getPrice().intValue()).isEqualTo(9);
 			}
 		}

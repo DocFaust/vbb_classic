@@ -31,7 +31,7 @@ public class TestEditUserBean extends JpaBaseRolledBackTestCase {
 		user.setUsername("Neuer Name");
 		bean.saveUser();
 		
-		User name = facadenFactory.getUserFacade().findByUserName("aaltmann");
+		User name = facadenFactory.getUserFacade().findByUserName("aander");
 		
 		assertThat(name.getUsername(), equalTo("Neuer Name"));
 	}
@@ -65,7 +65,7 @@ public class TestEditUserBean extends JpaBaseRolledBackTestCase {
 		String email = "hhuegel@got.wr";
 		String password = "12345678";
 		String userid = "hhuegel";
-		String username = "Hugor Hügel";
+		String username = "Hugor Hï¿½gel";
 		
 		user.setEmail(email);
 		user.setPassword(PasswordUtil.encryptPassword(password));

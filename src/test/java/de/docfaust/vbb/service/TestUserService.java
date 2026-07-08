@@ -49,9 +49,9 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testRegisterExisting() {
 		assertThat(facadenFactory.getUserFacade().count()).isEqualTo(2);
-		String username = "Alfred Altmann";
-		String userid = "aaltmann";
-		String email = "aaltmann@mail.de";
+		String username = "Alex Ander";
+		String userid = "aander";
+		String email = "alex.ander@example.invalid";
 		String password = "wwwwwwww";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "a";
@@ -67,7 +67,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -86,7 +86,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -105,7 +105,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -123,7 +123,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -163,7 +163,7 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 		UserFacade userFacade = facadenFactory.getUserFacade();
 		String userid = "ccltmann";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -185,9 +185,9 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 	public void testSaveUserExisting() {
 		int count = facadenFactory.getUserFacade().count();
 
-		String userid = "aaltmann";
+		String userid = "aander";
 		String passwort = "12345678";
-		String name = "Alfred Altmann";
+		String name = "Alex Ander";
 		String email = "ccltmann@gmiks.de";
 		RegistrationState state = RegistrationState.OPEN;
 		String regid = "1";
@@ -204,17 +204,17 @@ class TestUserService extends JpaBaseRolledBackTestCase {
 	@Test
 	public void testGetLoggedInUser() {
 
-		User user = userService.getLoggedInUser("aaltmann");
-		assertThat(user).isNotNull().extracting("userid", "username", "email", "state", "regid").contains("aaltmann",
-				"Alfred Altmann", "aaltmann@mail.de", RegistrationState.PROOFED, "a");
+		User user = userService.getLoggedInUser("aander");
+		assertThat(user).isNotNull().extracting("userid", "username", "email", "state", "regid").contains("aander",
+				"Alex Ander", "alex.ander@example.invalid", RegistrationState.PROOFED, "a");
 
 	}
 
 	@Test
 	public void testFindByUserName() {
-		assertThat(userService.findByUserName("aaltmann")).isNotNull()
+		assertThat(userService.findByUserName("aander")).isNotNull()
 				.extracting("userid", "username", "email", "state", "regid")
-				.contains("aaltmann", "Alfred Altmann", "aaltmann@mail.de", RegistrationState.PROOFED, "a");
+				.contains("aander", "Alex Ander", "alex.ander@example.invalid", RegistrationState.PROOFED, "a");
 	}
 
 }
