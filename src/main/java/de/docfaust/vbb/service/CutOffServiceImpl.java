@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,7 +95,7 @@ public class CutOffServiceImpl implements CutOffService {
 		spielService.saveSpiel(spiel);
 
 		spielerService.getSpieler().stream().forEach(spieler -> {
-			BigDecimal saldo = getSaldoForSpieler(spieler);
+			BigDecimal saldo = getSaldoForSpieler(spieler, datum);
 			Buchung buchung = BuchungFactory.createBuchung(datum, BuchungFactory.DESC_BUCHUNGSSCHNITT, saldo, spiel,
 					spieler);
 			buchungService.saveBuchung(buchung);
@@ -105,15 +106,37 @@ public class CutOffServiceImpl implements CutOffService {
 	}
 
 	/**
-	 * Liefert das Saldo für einen Spieler.
+	 * Liefert das Saldo für einen Spieler über die Buchungen, die der
+	 * Buchungsschnitt löscht. Alle anderen Buchungen bleiben bestehen und dürfen
+	 * nicht erneut in das Saldo eingehen.
 	 * 
 	 * @param spieler Spieler
+	 * @param datum   Datum des Buchungsschnitts
 	 * @return Saldo
 	 */
-	public final BigDecimal getSaldoForSpieler(final Spieler spieler) {
+	public final BigDecimal getSaldoForSpieler(final Spieler spieler, final Date datum) {
 		List<Buchung> buchungen = spieler.getBuchungen();
-		BigDecimal saldo = buchungen.stream().map(Buchung::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+		BigDecimal saldo = buchungen.stream().filter(buchung -> wirdGeloescht(buchung, datum)).map(Buchung::getPrice)
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
 		return saldo;
+	}
+
+	/**
+	 * Zeigt an, ob eine Buchung beim Buchungsschnitt gelöscht wird. Muss zu
+	 * BuchungService.removeOldBuchungen und SpielService.removeOldSpiele passen.
+	 * 
+	 * @param buchung Buchung
+	 * @param datum   Datum des Buchungsschnitts
+	 * @return true, wenn die Buchung gelöscht wird
+	 */
+	private boolean wirdGeloescht(final Buchung buchung, final Date datum) {
+		if (buchung.getDatum().before(datum)) {
+			return true;
+		}
+		Spiel spiel = buchung.getSpiel();
+		return spiel != null && !spiel.getDatum().after(datum)
+				&& !(DateUtils.isSameDay(spiel.getDatum(), datum)
+						&& SeasonFactory.DESC_BUCHUNGSSCHNITT.equals(spiel.getSeason().getDescription()));
 	}
 
 }

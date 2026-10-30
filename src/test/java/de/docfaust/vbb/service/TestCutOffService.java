@@ -2,8 +2,14 @@ package de.docfaust.vbb.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -78,6 +84,96 @@ public class TestCutOffService extends JpaBaseRolledBackTestCase {
 		assertThat(facadenFactory.getSeasonFacade().count()).isEqualTo(1);
 
 		assertThat(facadenFactory.getSpielFacade().count()).isEqualTo(1);
+	}
+
+	/** Spiele 1+2 liegen vor dem Schnitt, Spiele 3+4 und ihre Buchungen dahinter. */
+	@Test
+	public void testSaldoBleibtErhaltenWennBuchungenNachDemSchnittExistieren() {
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+
+		cutOffService.starteBuchungsschnitt(datum(2014, Calendar.JANUARY, 4, 0));
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+	}
+
+	/** Spiel 3 faellt auf den Schnitttag, seine Buchungen sind aber spaeter erfasst. */
+	@Test
+	public void testSaldoBleibtErhaltenWennSpielAufSchnitttagSpaeterErfasstWurde() {
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+
+		cutOffService.starteBuchungsschnitt(datum(2014, Calendar.JANUARY, 5, 0));
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+	}
+
+	@Test
+	public void testSaldoBleibtErhaltenBeiWiederholtemSchnittZumGleichenDatum() {
+		entferneSeasonIndexWieImProduktivschema();
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+		Date datum = datum(2016, Calendar.JANUARY, 1, 0);
+
+		cutOffService.starteBuchungsschnitt(datum);
+		em.clear();
+		cutOffService.starteBuchungsschnitt(datum);
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+	}
+
+	@Test
+	public void testSaldoBleibtErhaltenBeiWiederholtemSchnittAmGleichenTag() {
+		entferneSeasonIndexWieImProduktivschema();
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+
+		cutOffService.starteBuchungsschnitt(datum(2016, Calendar.JANUARY, 1, 10));
+		em.clear();
+		cutOffService.starteBuchungsschnitt(datum(2016, Calendar.JANUARY, 1, 18));
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+	}
+
+	@Test
+	public void testSaldoBleibtErhaltenBeiAufeinanderfolgendenSchnitten() {
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+
+		cutOffService.starteBuchungsschnitt(datum(2014, Calendar.JANUARY, 4, 0));
+		em.clear();
+		cutOffService.starteBuchungsschnitt(datum(2016, Calendar.JANUARY, 1, 0));
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+		assertThat(facadenFactory.getBuchungFacade().count()).isEqualTo(10);
+	}
+
+	@Test
+	public void testSaldoBleibtErhaltenBeiSpaetererBuchungOhneSpiel() {
+		Buchung buchung = new Buchung();
+		buchung.setDatum(datum(2014, Calendar.JANUARY, 10, 0));
+		buchung.setPrice(BigDecimal.TEN);
+		buchung.setSpieler(facadenFactory.getSpielerFacade().find(1));
+		facadenFactory.getBuchungFacade().create(buchung);
+		Map<Integer, BigDecimal> saldoVorher = saldoProSpieler();
+
+		cutOffService.starteBuchungsschnitt(datum(2014, Calendar.JANUARY, 4, 0));
+
+		assertThat(saldoProSpieler()).isEqualTo(saldoVorher);
+	}
+
+	/** Der Unique-Index stammt aus der Entity und fehlt in db/migrations. */
+	private void entferneSeasonIndexWieImProduktivschema() {
+		startTransaction();
+		em.createNativeQuery("ALTER TABLE SEASON DROP CONSTRAINT start_end_idx").executeUpdate();
+		commitTransaction();
+	}
+
+	private Map<Integer, BigDecimal> saldoProSpieler() {
+		em.clear();
+		Map<Integer, BigDecimal> saldi = new TreeMap<>();
+		facadenFactory.getBuchungFacade().findAll().forEach(buchung -> saldi.merge(buchung.getSpieler().getId(),
+				buchung.getPrice().setScale(2, RoundingMode.HALF_UP), BigDecimal::add));
+		return saldi;
+	}
+
+	private static Date datum(final int jahr, final int monat, final int tag, final int stunde) {
+		return new GregorianCalendar(jahr, monat, tag, stunde, 0).getTime();
 	}
 
 }
